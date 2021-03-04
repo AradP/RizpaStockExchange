@@ -1,11 +1,8 @@
 package commands;
 
 public class ShowAllCommandsCommand extends AbstractCommand {
-    public ShowAllCommandsCommand() {
-    }
-
     @Override
-    public String execute(String value) {
+    public String execute(String... value) {
         return null;
     }
 

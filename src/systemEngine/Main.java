@@ -1,6 +1,7 @@
 package systemEngine;
 
 import commands.AbstractCommand;
+import commands.CommandHandler;
 import ui.ConsoleIOHandler;
 import ui.IIOHandler;
 
@@ -9,9 +10,10 @@ import java.util.List;
 public class Main {
     private static final IIOHandler ioHandler = new ConsoleIOHandler();
     private static final CommandHandler commandHandler = new CommandHandler();
+    private static final List<AbstractCommand> commandsList = commandHandler.getCommands();
 
     public static void main(String[] args) {
-        String currentCommandNum;
+        String currentCommand;
         String currentCommandResult;
 
         // Start waiting for commands
@@ -21,28 +23,63 @@ public class Main {
             // Show the main commands menu
             showMainCommandsMenu();
             // Get the chosen command from the user input
-            currentCommandNum = ioHandler.read();
+            currentCommand = ioHandler.read();
 
             // Validates the chosen command really is presented
-            if (validateCommandInput(currentCommandNum)) {
+            if (validateCommandInput(currentCommand)) {
+                final int currentCommandNum = Integer.parseInt(currentCommand) - 1;
+
+                AbstractCommand command = commandsList.get(currentCommandNum);
+
                 // Map the command to its execution
                 switch (currentCommandNum) {
-
+                    // Read System Details File Command
+                    case (0): {
+                        // Get the file's path
+                        ioHandler.write("Enter the file's path (must be xml file):");
+                        String filePath = ioHandler.read();
+                        ioHandler.write(command.execute(filePath));
+                        break;
+                    }
+                    // Show all stocks command
+                    case (1): {
+                        ioHandler.write(command.execute());
+                        break;
+                    }
+                    // Show a single stock command
+                    case (2): {
+                        ioHandler.write("Enter stock symbol:");
+                        String stockName = ioHandler.read();
+                        ioHandler.write(command.execute(stockName));
+                    }
+                    // Execute exchange process
+                    case (3): {
+                        // TODO:
+                        break;
+                    }
+                    case (4): {
+                        // TODO: Omer
+                        break;
+                    }
+                    // Exit system command
+                    case (5) : {
+                        command.execute();
+                        break;
+                    }
+                    default: {
+                        break;
+                    }
                 }
-                // If it's a command that needs another value:
-                ioHandler.write("Great, now you need to choose:");
-                currentCommandResult = commandHandler.handleCommand(currentCommandNum);
-                ioHandler.write(currentCommandResult);
             }
         }
     }
 
     private static void showMainCommandsMenu() {
-        List<AbstractCommand> commandList = commandHandler.getCommands();
+
         int commandCounter = 1;
 
-        for (AbstractCommand command : commandList) {
-            ioHandler.write( commandCounter + ". " + command.getName());
+        for (AbstractCommand command : commandsList) {
+            ioHandler.write(commandCounter + ". " + command.getName());
             commandCounter++;
         }
     }
@@ -63,7 +100,7 @@ public class Main {
             return false;
         }
 
-        if ((commandNumber >= commandHandler.getCommands().size()) || (commandNumber <= 0)) {
+        if ((commandNumber > commandsList.size()) || (commandNumber <= 0)) {
             ioHandler.write("The number you entered is not in the list. Please try again");
             return false;
         }

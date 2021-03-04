@@ -1,11 +1,8 @@
 package commands;
 
 public class ExecuteTradeCommand extends AbstractCommand {
-    public ExecuteTradeCommand() {
-    }
-
     @Override
-    public String execute(String value) {
+    public String execute(String... value) {
         return null;
     }
 

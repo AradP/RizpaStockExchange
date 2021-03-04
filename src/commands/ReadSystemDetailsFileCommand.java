@@ -16,6 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -23,12 +24,10 @@ public class ReadSystemDetailsFileCommand extends AbstractCommand {
     private static final Logger logger = Logger.getLogger(ReadSystemDetailsFileCommand.class.getName());
     private static final StockHandler stockHandler = new StockHandler();
 
-    public ReadSystemDetailsFileCommand() {
-    }
-
     @Override
-    public String execute(String value) {
-        final File systemDetailsFile = new File(value);
+    public String execute(String... value) {
+        // TODO: Check that it's really an xml file (.xml)
+        final File systemDetailsFile = new File(Arrays.toString(value));
         final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = null;
 

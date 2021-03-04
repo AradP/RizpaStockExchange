@@ -7,11 +7,8 @@ import stocks.StockTransaction;
 import java.util.ArrayList;
 
 public class ShowStocksCommand extends AbstractCommand {
-    public ShowStocksCommand() {
-    }
-
     @Override
-    public String execute(String value) {
+    public String execute(String... value) {
         // TODO: Check that there is a valid XML system file loaded
 
         StringBuilder stocksInfo = new StringBuilder();
