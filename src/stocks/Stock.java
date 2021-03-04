@@ -25,7 +25,7 @@ public class Stock {
     }
 
     public void setSymbol(final String symbol) {
-        if (!symbol.isBlank()) {
+        if (!symbol.isEmpty()) {
             this.symbol = symbol;
         }
     }
@@ -35,7 +35,7 @@ public class Stock {
     }
 
     public void setCompanyName(final String companyName) {
-        if (!companyName.isBlank()) {
+        if (!companyName.isEmpty()) {
             this.companyName = companyName;
         }
     }
