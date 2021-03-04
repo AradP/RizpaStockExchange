@@ -1,5 +1,6 @@
 package commands;
 
+import bl.interfaces.ICommand;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-public class ReadSystemDetailsFileCommand extends AbstractCommand {
+public class ReadSystemDetailsFileCommand implements ICommand {
     private static final Logger logger = Logger.getLogger(ReadSystemDetailsFileCommand.class.getName());
     private static final StockHandler stockHandler = new StockHandler();
 
@@ -85,7 +86,7 @@ public class ReadSystemDetailsFileCommand extends AbstractCommand {
     }
 
     @Override
-    public String getName() {
+    public String getCommandName() {
         return "Read System Details File";
     }
 

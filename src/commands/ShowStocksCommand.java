@@ -1,12 +1,13 @@
 package commands;
 
+import bl.interfaces.ICommand;
 import stocks.Stock;
 import stocks.StockHandler;
 import stocks.StockTransaction;
 
 import java.util.ArrayList;
 
-public class ShowStocksCommand extends AbstractCommand {
+public class ShowStocksCommand implements ICommand {
     @Override
     public String execute(String... value) {
         // TODO: Check that there is a valid XML system file loaded
@@ -31,7 +32,7 @@ public class ShowStocksCommand extends AbstractCommand {
     }
 
     @Override
-    public String getName() {
+    public String getCommandName() {
         return "Show All Stocks";
     }
 }

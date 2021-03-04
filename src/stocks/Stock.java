@@ -1,7 +1,4 @@
 package stocks;
-
-import stocks.StockTransaction;
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 

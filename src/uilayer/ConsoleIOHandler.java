@@ -1,14 +1,13 @@
-package ui;
+package uilayer;
 
 import java.io.*;
 import java.util.logging.Logger;
 
-public class ConsoleIOHandler implements IIOHandler {
+public class ConsoleIOHandler {
     private static final Logger log = Logger.getLogger(ConsoleIOHandler.class.getName());
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-    @Override
     public String read() {
         try {
             return br.readLine();
@@ -20,7 +19,6 @@ public class ConsoleIOHandler implements IIOHandler {
         }
     }
 
-    @Override
     public void write(final String value) {
         try {
             bw.write(value, 0, value.length());

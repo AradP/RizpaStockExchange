@@ -1,13 +1,15 @@
 package commands;
 
-public class ExecuteTradeCommand extends AbstractCommand {
+import bl.interfaces.ICommand;
+
+public class ExecuteTradeCommand implements ICommand {
     @Override
     public String execute(String... value) {
         return null;
     }
 
     @Override
-    public String getName() {
+    public String getCommandName() {
         return "Execute Trade";
     }
 }
