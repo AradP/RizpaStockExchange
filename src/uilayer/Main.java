@@ -1,16 +1,14 @@
-package systemEngine;
+package uilayer;
 
-import commands.AbstractCommand;
+import bl.interfaces.ICommand;
 import commands.CommandHandler;
-import ui.ConsoleIOHandler;
-import ui.IIOHandler;
 
 import java.util.List;
 
 public class Main {
-    private static final IIOHandler ioHandler = new ConsoleIOHandler();
+    private static final ConsoleIOHandler ConsoleHandler = new ConsoleIOHandler();
     private static final CommandHandler commandHandler = new CommandHandler();
-    private static final List<AbstractCommand> commandsList = commandHandler.getCommands();
+    private static final List<ICommand> commandsList = commandHandler.getCommands();
 
     public static void main(String[] args) {
         String currentCommand;
@@ -18,39 +16,41 @@ public class Main {
 
         // Start waiting for commands
         while (true) {
-            ioHandler.write("Hello! Choose A Command:");
+            ConsoleHandler.write("Hello! Choose A Command:");
 
             // Show the main commands menu
             showMainCommandsMenu();
+
             // Get the chosen command from the user input
-            currentCommand = ioHandler.read();
+            currentCommand = ConsoleHandler.read();
 
             // Validates the chosen command really is presented
             if (validateCommandInput(currentCommand)) {
                 final int currentCommandNum = Integer.parseInt(currentCommand) - 1;
 
-                AbstractCommand command = commandsList.get(currentCommandNum);
+                ICommand command = commandsList.get(currentCommandNum);
 
                 // Map the command to its execution
                 switch (currentCommandNum) {
                     // Read System Details File Command
                     case (0): {
                         // Get the file's path
-                        ioHandler.write("Enter the file's path (must be xml file):");
-                        String filePath = ioHandler.read();
-                        ioHandler.write(command.execute(filePath));
+                        ConsoleHandler.write("Enter the file's path (must be xml file):");
+                        String filePath = ConsoleHandler.read();
+                        ConsoleHandler.write(command.execute(filePath));
                         break;
                     }
                     // Show all stocks command
                     case (1): {
-                        ioHandler.write(command.execute());
+                        ConsoleHandler.write(command.execute());
                         break;
                     }
                     // Show a single stock command
                     case (2): {
-                        ioHandler.write("Enter stock symbol:");
-                        String stockName = ioHandler.read();
-                        ioHandler.write(command.execute(stockName));
+                        ConsoleHandler.write("Enter stock symbol:");
+                        String stockName = ConsoleHandler.read();
+                        ConsoleHandler.write(command.execute(stockName));
+                        break;
                     }
                     // Execute exchange process
                     case (3): {
@@ -78,9 +78,8 @@ public class Main {
 
         int commandCounter = 1;
 
-        for (AbstractCommand command : commandsList) {
-            ioHandler.write(commandCounter + ". " + command.getName());
-            commandCounter++;
+        for (ICommand command : commandsList) {
+            ConsoleHandler.write(commandCounter++ + ". " + command.getCommandName());
         }
     }
 
@@ -96,12 +95,12 @@ public class Main {
         try {
             commandNumber = Integer.parseInt(command);
         } catch (NumberFormatException e) {
-            ioHandler.write("The commands are represented by their number from the menu. Please enter a number");
+            ConsoleHandler.write("The commands are represented by their number from the menu. Please enter a number");
             return false;
         }
 
         if ((commandNumber > commandsList.size()) || (commandNumber <= 0)) {
-            ioHandler.write("The number you entered is not in the list. Please try again");
+            ConsoleHandler.write("The number you entered is not in the list. Please try again");
             return false;
         }
 

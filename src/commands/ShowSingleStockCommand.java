@@ -1,11 +1,12 @@
 package commands;
 
+import bl.interfaces.ICommand;
 import stocks.Stock;
 import stocks.StockHandler;
 
 import java.util.Arrays;
 
-public class ShowSingleStockCommand extends AbstractCommand {
+public class ShowSingleStockCommand implements ICommand {
     @Override
     //TODO: Throw exception(s) so it would know there is no xml and so ShowStocksCommand won't happen too?
     public String execute(String... value) {
@@ -25,7 +26,7 @@ public class ShowSingleStockCommand extends AbstractCommand {
     }
 
     @Override
-    public String getName() {
+    public String getCommandName() {
         return "Show A Single stocks.Stock";
     }
 }

@@ -1,6 +1,8 @@
 package commands;
 
-public class ExitSystemCommand extends AbstractCommand {
+import bl.interfaces.ICommand;
+
+public class ExitSystemCommand implements ICommand {
 
     @Override
     public String execute(String... value) {
@@ -12,7 +14,7 @@ public class ExitSystemCommand extends AbstractCommand {
     }
 
     @Override
-    public String getName() {
+    public String getCommandName() {
         return "Exit System";
     }
 }

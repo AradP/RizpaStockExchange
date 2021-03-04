@@ -1,10 +1,12 @@
 package commands;
 
+import bl.interfaces.ICommand;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandHandler {
-    private List<AbstractCommand> commands;
+    private List<ICommand> commands;
 
     public CommandHandler() {
         this.commands = new ArrayList<>();
@@ -20,7 +22,7 @@ public class CommandHandler {
     }
 
     public String handleCommand(final int commandNum) {
-        AbstractCommand command = this.commands.get(commandNum);
+        ICommand command = this.commands.get(commandNum);
 
 
         return "hole!";
@@ -31,19 +33,19 @@ public class CommandHandler {
      * @param command - the given command string to convert
      * @return the actual command
      */
-    private AbstractCommand convertStringToActualCommand(final String command) {
+    private ICommand convertStringToActualCommand(final String command) {
         return new ExitSystemCommand();
     }
 
-    public List<AbstractCommand> getCommands() {
+    public List<ICommand> getCommands() {
         return this.commands;
     }
 
-    public void setCommands(final List<AbstractCommand> commands) {
+    public void setCommands(final List<ICommand> commands) {
         this.commands = commands;
     }
 
-    public String executeCommand(final AbstractCommand command, final String value) {
+    public String executeCommand(final ICommand command, final String value) {
         return command.execute(value);
     }
 }
