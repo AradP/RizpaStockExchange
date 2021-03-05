@@ -1,5 +1,7 @@
 package models;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -8,14 +10,12 @@ public class Stock {
     private String companyName;
     private double price;
     private ArrayList<Order> orders;
-    private int ordersPeriod;
 
-    public Stock(String symbol, String companyName, int price, int ordersPeriod) {
+    public Stock(String symbol, String companyName, int price) {
         this.symbol = symbol;
         this.companyName = companyName;
         this.price = price;
         this.orders = new ArrayList<>();
-        this.ordersPeriod = ordersPeriod;
     }
 
     public String getSymbol() {
@@ -52,14 +52,6 @@ public class Stock {
         return orders;
     }
 
-    public int getOrdersPeriod() {
-        return this.ordersPeriod;
-    }
-
-    public void setOrdersPeriod(final int ordersPeriod) {
-        this.ordersPeriod = ordersPeriod;
-    }
-
     /**
      * Returns the orders sorted be date
      *
@@ -74,13 +66,26 @@ public class Stock {
 
     /**
      * Get basic information about the stock
+     *
      * @return - the information as a string
      */
     public String getBasicInfo() {
+        double ordersPeriod = 0;
+        final ArrayList<Order> sortedOrders = getOrdersSortedByDate();
+
+        // Calculate orders period of the last month
+        for (Order order : sortedOrders) {
+            String monthAgoTimestamp = DateTimeFormatter.ofPattern("HH:mm:ss:SSS").format(LocalDateTime.now().minusMonths(1));
+            if (order.compareByDate(monthAgoTimestamp) >= 0) {
+                ordersPeriod += order.getVolume();
+            }
+            else break;
+        }
+
         return "Symbol: " + symbol + "\n" +
                 "Company Name: " + companyName + "\n" +
                 "Price: " + price + "\n" +
-                "Orders Sum: " + orders.size() + "\n" +
-                "Orders Period: " + ordersPeriod + "\n";
+                "Total orders number: " + orders.size() + "\n" +
+                "Last Month Orders Period: " + ordersPeriod + "\n";
     }
 }
