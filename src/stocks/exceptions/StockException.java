@@ -1,16 +1,10 @@
 package stocks.exceptions;
 
-import java.util.logging.Logger;
-
-public abstract class StockException extends Throwable {
-    private static final Logger logger = Logger.getLogger(StockException.class.getName());
-
+public abstract class StockException extends Exception {
     /**
-     * Logs the exception
-     * @param classException - class type of the exception
      * @param message - message of the exception
      */
-    public StockException(final String classException, final String message) {
-        logger.severe(message);
+    protected StockException(final String message) {
+        super(message);
     }
 }

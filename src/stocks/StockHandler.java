@@ -1,5 +1,6 @@
 package stocks;
 
+import models.Stock;
 import stocks.exceptions.CompanyAlreadyExistException;
 import stocks.exceptions.StockSymbolAlreadyExistException;
 

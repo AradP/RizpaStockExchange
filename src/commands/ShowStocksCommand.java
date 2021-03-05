@@ -1,7 +1,7 @@
 package commands;
 
 import bl.interfaces.ICommand;
-import stocks.Stock;
+import models.Stock;
 import stocks.StockHandler;
 import stocks.StockTransaction;
 
@@ -10,7 +10,10 @@ import java.util.ArrayList;
 public class ShowStocksCommand implements ICommand {
     @Override
     public String execute(String... value) {
-        // TODO: Check that there is a valid XML system file loaded
+        // Check that there are stocks loaded
+        if (!StockHandler.getInstance().areStocksLoaded()) {
+            return "You need to load stocks to the system first...";
+        }
 
         StringBuilder stocksInfo = new StringBuilder();
         ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
@@ -19,12 +22,14 @@ public class ShowStocksCommand implements ICommand {
         for (Stock stock : stocks) {
             stocksInfo.append("Basic Info is:\n");
             stocksInfo.append(stock.getBasicInfo()).append("\n");
-            stocksInfo.append("And more info about the transactions of this stock:\n");
             final ArrayList<StockTransaction> sortedStockTransactions = stock.getSortedByDateStockTransactions();
+            if (sortedStockTransactions.size() > 0) {
+                stocksInfo.append("And more info about the transactions of this stock:\n");
 
-            // Get the basic info about every stockTransaction
-            for (StockTransaction stockTransaction : sortedStockTransactions) {
-                stocksInfo.append(stockTransaction.getBasicInfo());
+                // Get the basic info about every stockTransaction
+                for (StockTransaction stockTransaction : sortedStockTransactions) {
+                    stocksInfo.append(stockTransaction.getBasicInfo());
+                }
             }
         }
 
