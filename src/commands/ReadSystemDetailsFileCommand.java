@@ -52,6 +52,7 @@ public class ReadSystemDetailsFileCommand implements ICommand {
 
         final ArrayList<Stock> newStocks = new ArrayList<Stock>();
 
+        // Get the information about each stock
         for (int temp = 0; temp < nList.getLength(); temp++) {
             final Node nNode = nList.item(temp);
 

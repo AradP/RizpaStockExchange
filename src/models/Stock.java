@@ -1,23 +1,21 @@
 package models;
 
-import stocks.StockTransaction;
-
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.Comparator;
 
 public class Stock {
     private String symbol;
     private String companyName;
     private double price;
-    private ArrayList<StockTransaction> stockTransactions;
-    private int transactionsPeriod;
+    private ArrayList<Order> orders;
+    private int ordersPeriod;
 
-    public Stock(String symbol, String companyName, int price, int transactionsPeriod) {
+    public Stock(String symbol, String companyName, int price, int ordersPeriod) {
         this.symbol = symbol;
         this.companyName = companyName;
         this.price = price;
-        this.stockTransactions = new ArrayList<>();
-        this.transactionsPeriod = transactionsPeriod;
+        this.orders = new ArrayList<>();
+        this.ordersPeriod = ordersPeriod;
     }
 
     public String getSymbol() {
@@ -50,36 +48,39 @@ public class Stock {
         }
     }
 
-    public ArrayList<StockTransaction> getStockTransactions() {
-        return stockTransactions;
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
-    public int getTransactionsPeriod() {
-        return this.transactionsPeriod;
+    public int getOrdersPeriod() {
+        return this.ordersPeriod;
     }
 
-    public void setTransactionsPeriod(final int transactionsPeriod) {
-        this.transactionsPeriod = transactionsPeriod;
+    public void setOrdersPeriod(final int ordersPeriod) {
+        this.ordersPeriod = ordersPeriod;
     }
 
     /**
-     * Returns the stockTransactions arraylist sorted be date
+     * Returns the orders sorted be date
      *
-     * @return the sorted stockTransactions
+     * @return the sorted orders
      */
-    public ArrayList<StockTransaction> getSortedByDateStockTransactions() {
-        return this.stockTransactions
-                .stream()
-                .sorted()
-                .collect(Collectors.toCollection(ArrayList::new));
+    public ArrayList<Order> getOrdersSortedByDate() {
+        ArrayList<Order> sortedOrders = new ArrayList<>(orders);
+        sortedOrders.sort(Comparator.comparing(Order::getTimestamp));
+        return sortedOrders;
 
     }
 
+    /**
+     * Get basic information about the stock
+     * @return - the information as a string
+     */
     public String getBasicInfo() {
         return "Symbol: " + symbol + "\n" +
                 "Company Name: " + companyName + "\n" +
                 "Price: " + price + "\n" +
-                "Transactions Sum: " + stockTransactions.size() + "\n" +
-                "Transactions Period: " + transactionsPeriod + "\n";
+                "Orders Sum: " + orders.size() + "\n" +
+                "Orders Period: " + ordersPeriod + "\n";
     }
 }
