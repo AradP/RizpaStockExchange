@@ -30,7 +30,7 @@ public class Main {
             if (validateCommandInput(currentCommand)) {
                 final int currentCommandNum = Integer.parseInt(currentCommand) - 1;
 
-                ICommand command = commandsList.get(currentCommandNum);
+                final ICommand command = commandsList.get(currentCommandNum);
 
                 // Map the command to its execution
                 switch (currentCommandNum) {
@@ -38,7 +38,7 @@ public class Main {
                     case (0): {
                         // Get the file's path
                         ConsoleHandler.write("Enter the file's path (must be xml file):");
-                        String filePath = ConsoleHandler.read();
+                        final String filePath = ConsoleHandler.read();
                         ConsoleHandler.write(command.execute(filePath));
                         break;
                     }
@@ -54,7 +54,7 @@ public class Main {
                             break;
                         }
                         ConsoleHandler.write("Enter stock symbol:");
-                        String stockName = ConsoleHandler.read();
+                        final String stockName = ConsoleHandler.read();
                         ConsoleHandler.write(command.execute(stockName));
                         break;
                     }
@@ -81,11 +81,8 @@ public class Main {
     }
 
     private static void showMainCommandsMenu() {
-
-        int commandCounter = 1;
-
-        for (ICommand command : commandsList) {
-            ConsoleHandler.write(commandCounter++ + ". " + command.getCommandName());
+        for (int commandCounter = 0; commandCounter < commandsList.size(); commandCounter++) {
+            ConsoleHandler.write(commandCounter + 1 + ". " + commandsList.get(commandCounter).getCommandName());
         }
     }
 

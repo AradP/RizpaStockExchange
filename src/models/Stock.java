@@ -8,7 +8,7 @@ import java.util.Comparator;
 public class Stock {
     private String symbol;
     private String companyName;
-    private double price;
+    private int price;
     private ArrayList<Order> orders;
 
     public Stock(String symbol, String companyName, int price) {
@@ -42,7 +42,7 @@ public class Stock {
         return this.price;
     }
 
-    public void setPrice(final double price) {
+    public void setPrice(final int price) {
         if (price > 0) {
             this.price = price;
         }

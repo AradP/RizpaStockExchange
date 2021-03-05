@@ -61,11 +61,11 @@ public class ReadSystemDetailsFileCommand implements ICommand {
 
                 Stock stock = null;
 
-                String tempStockSymbol = eElement.getElementsByTagName("rse-symbol").item(0).getTextContent();
+                final String tempStockSymbol = eElement.getElementsByTagName("rse-symbol").item(0).getTextContent();
 
                 // Validate the stock contains only letters and only in English
                 if (!isAlpha(tempStockSymbol)) {
-                    return "Stock symbol can contain only letters and only in English";
+                    return "Stock symbol must contain only English letters";
                 }
 
                 int tempStockPrice = 0;
@@ -80,8 +80,18 @@ public class ReadSystemDetailsFileCommand implements ICommand {
                     return "Price must be a positive number";
                 }
 
+                final String tempCompnanyName = eElement.getElementsByTagName("rse-company-name").item(0).getTextContent();
+
+                if (tempCompnanyName.isEmpty()) {
+                    return "Company name can't be empty";
+                }
+
+                if (tempCompnanyName.startsWith(" ") || tempCompnanyName.endsWith(" ")) {
+                    return "Company name can't start or end with a space";
+                }
+
                 stock = new Stock(tempStockSymbol.toUpperCase(),
-                        eElement.getElementsByTagName("rse-company-name").item(0).getTextContent(),
+                        tempCompnanyName,
                         tempStockPrice);
 
                 newStocks.add(stock);
@@ -113,7 +123,7 @@ public class ReadSystemDetailsFileCommand implements ICommand {
      * @throws StockSymbolAlreadyExistException - if symbol already exists
      * @throws CompanyAlreadyExistException     - if company already has stocks
      */
-    private void validateSystemFile(ArrayList<Stock> stocks) throws StockSymbolAlreadyExistException, CompanyAlreadyExistException {
+    private void validateSystemFile(final ArrayList<Stock> stocks) throws StockSymbolAlreadyExistException, CompanyAlreadyExistException {
         // We don't have to run for each stock, because we already do it in the inner for
         for (int stockCounter = 0; stockCounter < stocks.size(); stockCounter++) {
             for (int tempStockCounter = stockCounter + 1; tempStockCounter < stocks.size(); tempStockCounter++) {
@@ -137,7 +147,7 @@ public class ReadSystemDetailsFileCommand implements ICommand {
      * @param file - the file
      * @return - the extension (".xml" for example)
      */
-    private String getFileExtension(File file) {
+    private String getFileExtension(final File file) {
         final String name = file.getName();
         int lastIndexOf = name.lastIndexOf(".");
 
@@ -154,7 +164,7 @@ public class ReadSystemDetailsFileCommand implements ICommand {
      * @param name - the string to check
      * @return - true if contains only letters, else false
      */
-    private boolean isAlpha(String name) {
+    private boolean isAlpha(final String name) {
         return name.matches("[a-zA-Z]+");
     }
 }
