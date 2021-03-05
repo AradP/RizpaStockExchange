@@ -1,7 +1,10 @@
 package models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Order {
     private String symbol;
@@ -49,12 +52,21 @@ public class Order {
     /**
      * Compare to another order by date
      *
-     * @param order - the order you want to compare to
+     * @param timestamp - the timestamp you want to compare to
      * @return - a positive number in case the current order date is more recent,
      * 0 if it is the same, or else a negative number
      */
-    public int compareTo(final Order order) {
-        return timestamp.compareTo(order.getTimestamp());
+    public int compareByDate(final String timestamp) {
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date currentTimestamp = sdformat.parse(this.timestamp);
+            Date otherTimestamp = sdformat.parse(timestamp);
+            return currentTimestamp.compareTo(otherTimestamp);
+        } catch (ParseException e) {
+            // We shouldn't get here as we are the ones who create the timestamp
+            return -2;
+        }
     }
 
     /**

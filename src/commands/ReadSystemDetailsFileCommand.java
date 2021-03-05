@@ -76,9 +76,13 @@ public class ReadSystemDetailsFileCommand implements ICommand {
                     return "Price must be a number";
                 }
 
+                if (tempStockPrice <= 0) {
+                    return "Price must be a positive number";
+                }
+
                 stock = new Stock(tempStockSymbol.toUpperCase(),
                         eElement.getElementsByTagName("rse-company-name").item(0).getTextContent(),
-                        tempStockPrice, 0);
+                        tempStockPrice);
 
                 newStocks.add(stock);
             }

@@ -23,6 +23,7 @@ public class ShowStocksCommand implements ICommand {
             stocksInfo.append("Basic Info is:\n");
             stocksInfo.append(stock.getBasicInfo()).append("\n");
             final ArrayList<Order> sortedOrders = stock.getOrdersSortedByDate();
+
             if (sortedOrders.size() > 0) {
                 stocksInfo.append("And more info about the orders of this stock:\n");
 
