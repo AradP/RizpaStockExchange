@@ -25,9 +25,11 @@ public class ReadSystemDetailsFileCommand implements ICommand {
     public String execute(String... value) {
         final File systemDetailsFile = new File(value.clone()[0]);
 
+        // Validates this really is a xml file
         if (!getFileExtension(systemDetailsFile).equals(".xml")) {
             return "Please insert a valid xml file";
         }
+
         final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = null;
 
@@ -46,15 +48,15 @@ public class ReadSystemDetailsFileCommand implements ICommand {
         }
 
         doc.getDocumentElement().normalize();
-        NodeList nList = doc.getElementsByTagName("rse-stock");
+        final NodeList nList = doc.getElementsByTagName("rse-stock");
 
-        ArrayList<Stock> newStocks = new ArrayList<Stock>();
+        final ArrayList<Stock> newStocks = new ArrayList<Stock>();
 
         for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
+            final Node nNode = nList.item(temp);
 
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
+                final Element eElement = (Element) nNode;
 
                 Stock stock = null;
                 try {
@@ -69,6 +71,7 @@ public class ReadSystemDetailsFileCommand implements ICommand {
             }
         }
 
+        // Validates the stocks entered
         try {
             validateSystemFile(newStocks);
         } catch (StockSymbolAlreadyExistException | CompanyAlreadyExistException e) {
@@ -87,7 +90,7 @@ public class ReadSystemDetailsFileCommand implements ICommand {
     }
 
     /**
-     * Validates the enters stocks are unique (symbol and company name)
+     * Validates the entered stocks are unique (symbol and company name)
      *
      * @param stocks - the stocks to validate
      * @throws StockSymbolAlreadyExistException - if symbol already exists
@@ -100,12 +103,12 @@ public class ReadSystemDetailsFileCommand implements ICommand {
 
                 // Check the symbol is unique
                 if (stocks.get(tempStockCounter).getSymbol().toUpperCase(Locale.ROOT).equals(stocks.get(stockCounter).getSymbol().toUpperCase())) {
-                    throw new StockSymbolAlreadyExistException();
+                    throw new StockSymbolAlreadyExistException(stocks.get(tempStockCounter).getSymbol());
                 }
 
                 // Check the company name is unique
                 if (stocks.get(tempStockCounter).getCompanyName().equals(stocks.get(stockCounter).getCompanyName())) {
-                    throw new CompanyAlreadyExistException();
+                    throw new CompanyAlreadyExistException(stocks.get(stockCounter).getCompanyName());
                 }
             }
         }

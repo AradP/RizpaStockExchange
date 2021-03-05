@@ -1,7 +1,7 @@
 package stocks.exceptions;
 
 public class StockSymbolAlreadyExistException extends StockException {
-    public StockSymbolAlreadyExistException() {
-        super("Stock symbol already exists");
+    public StockSymbolAlreadyExistException(final String symbol) {
+        super("Stock symbol " + symbol + " already exists");
     }
 }

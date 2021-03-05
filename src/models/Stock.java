@@ -63,24 +63,6 @@ public class Stock {
     }
 
     /**
-     * Validates and Submits a stock transaction to the stockTransactions TODO: is it neccesary?
-     *
-     * @param stockTransaction
-     * @return
-     */
-    public boolean submitStockTransaction(final StockTransaction stockTransaction) {
-        boolean success = false;
-
-        // Check that the new stockTransaction is valid
-//        if (stockTransaction) {
-//            stockTransactions.add(stockTransaction);
-//            success = false;
-//        }
-
-        return success;
-    }
-
-    /**
      * Returns the stockTransactions arraylist sorted be date
      *
      * @return the sorted stockTransactions
