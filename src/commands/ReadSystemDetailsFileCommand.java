@@ -63,9 +63,9 @@ public class ReadSystemDetailsFileCommand implements ICommand {
 
                 String tempStockSymbol = eElement.getElementsByTagName("rse-symbol").item(0).getTextContent();
 
-                // Validate the stock contains only digits
+                // Validate the stock contains only letters and only in English
                 if (!isAlpha(tempStockSymbol)) {
-                    return "Stock symbol can contain only digits";
+                    return "Stock symbol can contain only letters and only in English";
                 }
 
                 int tempStockPrice = 0;
