@@ -11,7 +11,6 @@ public class CommandHandler {
     public CommandHandler() {
         this.commands = new ArrayList<>();
 
-        // TODO: Ichsss
         this.commands.add(new ReadSystemDetailsFileCommand());
         this.commands.add(new ShowStocksCommand());
         this.commands.add(new ShowSingleStockCommand());

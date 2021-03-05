@@ -59,13 +59,25 @@ public class ReadSystemDetailsFileCommand implements ICommand {
                 final Element eElement = (Element) nNode;
 
                 Stock stock = null;
-                try {
-                    stock = new Stock(eElement.getElementsByTagName("rse-symbol").item(0).getTextContent().toUpperCase(),
-                            eElement.getElementsByTagName("rse-company-name").item(0).getTextContent(),
-                            Integer.parseInt(eElement.getElementsByTagName("rse-price").item(0).getTextContent()), 0);
-                } catch (NumberFormatException e) {
-                    return "The price must be a number";
+
+                String tempStockSymbol = eElement.getElementsByTagName("rse-symbol").item(0).getTextContent();
+
+                // Validate the stock contains only digits
+                if (!isAlpha(tempStockSymbol)) {
+                    return "Stock symbol can contain only digits";
                 }
+
+                int tempStockPrice = 0;
+
+                try {
+                    tempStockPrice = Integer.parseInt(eElement.getElementsByTagName("rse-price").item(0).getTextContent());
+                } catch (NumberFormatException e) {
+                    return "Price must be a number";
+                }
+
+                stock = new Stock(tempStockSymbol.toUpperCase(),
+                        eElement.getElementsByTagName("rse-company-name").item(0).getTextContent(),
+                        tempStockPrice, 0);
 
                 newStocks.add(stock);
             }
@@ -121,11 +133,23 @@ public class ReadSystemDetailsFileCommand implements ICommand {
      * @return - the extension (".xml" for example)
      */
     private String getFileExtension(File file) {
-        String name = file.getName();
+        final String name = file.getName();
         int lastIndexOf = name.lastIndexOf(".");
+
         if (lastIndexOf == -1) {
             return ""; // empty extension
         }
+
         return name.substring(lastIndexOf);
+    }
+
+    /**
+     * Checks if the given string contain only letters
+     *
+     * @param name - the string to check
+     * @return - true if contains only letters, else false
+     */
+    private boolean isAlpha(String name) {
+        return name.matches("[a-zA-Z]+");
     }
 }
