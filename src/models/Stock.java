@@ -1,4 +1,7 @@
-package stocks;
+package models;
+
+import stocks.StockTransaction;
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -22,7 +25,7 @@ public class Stock {
     }
 
     public void setSymbol(final String symbol) {
-        if (!symbol.isEmpty()) {
+        if (!symbol.isEmpty() | symbol.equals("")) {
             this.symbol = symbol;
         }
     }

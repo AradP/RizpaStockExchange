@@ -30,6 +30,7 @@ public class CommandHandler {
 
     /**
      * Converts the given stExecute Tradering that represents a command to the actual command
+     *
      * @param command - the given command string to convert
      * @return the actual command
      */
