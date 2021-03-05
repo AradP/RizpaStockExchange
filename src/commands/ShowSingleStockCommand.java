@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 public class ShowSingleStockCommand implements ICommand {
     @Override
-    //TODO: Throw exception(s) so it would know there is no xml and so ShowStocksCommand won't happen too?
     public String execute(String... value) {
         // Check that there is a valid XML system file loaded
         if (!StockHandler.getInstance().areStocksLoaded()) {

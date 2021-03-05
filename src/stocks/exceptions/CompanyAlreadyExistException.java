@@ -1,7 +1,7 @@
 package stocks.exceptions;
 
 public class CompanyAlreadyExistException extends StockException {
-    public CompanyAlreadyExistException() {
-        super("Company already have stocks");
+    public CompanyAlreadyExistException(final String companyName) {
+        super("Company " + companyName + " already have stocks");
     }
 }

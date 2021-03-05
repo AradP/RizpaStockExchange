@@ -42,12 +42,12 @@ public class StockHandler {
     public void addStock(Stock stock) throws StockSymbolAlreadyExistException, CompanyAlreadyExistException {
         // Check that the stock symbol doesn't already exist
         if (this.getStockBySymbol(stock.getSymbol()) != null) {
-            throw new StockSymbolAlreadyExistException();
+            throw new StockSymbolAlreadyExistException(stock.getSymbol());
         }
 
         // Check that the company doesn't already have stocks
         if (this.getStockByCompany(stock.getCompanyName()) != null) {
-            throw new CompanyAlreadyExistException();
+            throw new CompanyAlreadyExistException(stock.getCompanyName());
         }
 
         this.stocks.add(stock);
