@@ -2,6 +2,7 @@ package uilayer;
 
 import bl.interfaces.ICommand;
 import commands.CommandHandler;
+import stocks.StockHandler;
 
 import java.util.List;
 
@@ -12,11 +13,12 @@ public class Main {
 
     public static void main(String[] args) {
         String currentCommand;
-        String currentCommandResult;
+
+        ConsoleHandler.write("Hello!");
 
         // Start waiting for commands
         while (true) {
-            ConsoleHandler.write("Hello! Choose A Command:");
+            ConsoleHandler.write("Choose A Command:");
 
             // Show the main commands menu
             showMainCommandsMenu();
@@ -47,6 +49,10 @@ public class Main {
                     }
                     // Show a single stock command
                     case (2): {
+                        if (!StockHandler.getInstance().areStocksLoaded()) {
+                            ConsoleHandler.write("You need to load stocks to the system first...");
+                            break;
+                        }
                         ConsoleHandler.write("Enter stock symbol:");
                         String stockName = ConsoleHandler.read();
                         ConsoleHandler.write(command.execute(stockName));
@@ -62,7 +68,7 @@ public class Main {
                         break;
                     }
                     // Exit system command
-                    case (5) : {
+                    case (5): {
                         command.execute();
                         break;
                     }

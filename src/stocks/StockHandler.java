@@ -6,6 +6,7 @@ import stocks.exceptions.StockSymbolAlreadyExistException;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class StockHandler {
     // static variable single_instance of type Singleton
@@ -54,19 +55,19 @@ public class StockHandler {
     }
 
     public Stock getStockBySymbol(String stockName) {
-        return stocks.stream().filter(stock -> stock.getSymbol().equals(stockName.toUpperCase())).findAny().get();
+        Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getSymbol().equals(stockName.toUpperCase())).findAny();
+        return tempStock.orElse(null);
+
     }
 
     public Stock getStockByCompany(String companyName) {
-        try {
-            return stocks.stream().filter(stock -> stock.getCompanyName().equals(companyName)).findAny().get();
-        } catch (NoSuchElementException e) {
-            return null;
-        }
+        Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getCompanyName().equals(companyName)).findAny();
+        return tempStock.orElse(null);
     }
 
     /**
      * We need to check that there is a valid xml file loaded in our system
+     *
      * @return - true if there are stocks loaded, else false
      */
     public boolean areStocksLoaded() {
