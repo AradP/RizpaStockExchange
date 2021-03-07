@@ -31,6 +31,7 @@ public class SaveSystemDataToFile implements ICommand {
             // Get the stocks list
             ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
             // TODO: Save the state of orders and exchange commands after Omer finish
+            // Maybe as Object[]?
 
             // Write the stocks to the file
             oos.writeObject(stocks);
