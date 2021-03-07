@@ -17,14 +17,9 @@ public class CommandHandler {
         this.commands.add(new ExecuteTradeCommand());
         this.commands.add(new ShowAllCommandsCommand());
         this.commands.add(new ExitSystemCommand());
+        this.commands.add(new SaveSystemDataToFile());
+        this.commands.add(new ReadSystemDataFromFile());
 
-    }
-
-    public String handleCommand(final int commandNum) {
-        ICommand command = this.commands.get(commandNum);
-
-
-        return "hole!";
     }
 
     /**

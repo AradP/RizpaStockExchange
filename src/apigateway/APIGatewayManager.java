@@ -23,7 +23,7 @@ public final class APIGatewayManager implements IAPICommands {
 
     //endregion
 
-    private BLManager blManager = BLManager.getInstance();
+    private final BLManager blManager = BLManager.getInstance();
 
     @Override
     public boolean loadConfigurationFileByPath(String xmlFilePath) {
@@ -63,5 +63,10 @@ public final class APIGatewayManager implements IAPICommands {
     @Override
     public List<String> getTradesHistory(String symbol) {
         return blManager.getTradesHistory(symbol);
+    }
+
+    @Override
+    public String saveDataToFile(String path) {
+        return blManager.saveDataToFile(path);
     }
 }

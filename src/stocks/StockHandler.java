@@ -3,9 +3,7 @@ package stocks;
 import models.Stock;
 import stocks.exceptions.CompanyAlreadyExistException;
 import stocks.exceptions.StockSymbolAlreadyExistException;
-
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class StockHandler {

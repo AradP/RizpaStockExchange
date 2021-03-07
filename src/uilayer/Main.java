@@ -72,6 +72,18 @@ public class Main {
                         command.execute();
                         break;
                     }
+                    // Save current system data to a file
+                    case (6): {
+                        ConsoleHandler.write("Enter the path of the destination file:");
+                        final String path = ConsoleHandler.read();
+                        ConsoleHandler.write(command.execute(path));
+                        break;
+                    }
+                    // Load the system data from a file
+                    case (7): {
+                        ConsoleHandler.write(command.execute());
+                        break;
+                    }
                     default: {
                         break;
                     }

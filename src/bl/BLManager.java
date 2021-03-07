@@ -61,4 +61,10 @@ public final class BLManager implements IAPICommands {
     public List<String> getTradesHistory(String symbol) {
         return null;
     }
+
+    @Override
+    public String saveDataToFile(String path) {
+        return null;
+    }
+
 }

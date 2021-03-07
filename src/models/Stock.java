@@ -1,11 +1,12 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Stock {
+public class Stock implements Serializable {
     private String symbol;
     private String companyName;
     private int price;

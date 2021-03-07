@@ -19,4 +19,6 @@ public interface IAPICommands {
     List<String> getOrderBuyBook(String symbol);
 
     List<String> getTradesHistory(String symbol);
+
+    String saveDataToFile(String path);
 }
