@@ -1,5 +1,7 @@
 package models;
 
+import enums.OrderType;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -10,15 +12,15 @@ public class Order {
     private String symbol;
     private String timestamp;
     private int count;
-    private double exchangeRate;
-    private double volume;
+    private double requestedExchangeRate;
+    private OrderType orderType;
 
-    public Order(String symbol, int count, double exchangeRate) {
+    public Order(String symbol, int count, double requestedExchangeRate, OrderType orderType) {
         this.symbol = symbol;
         this.count = count;
-        this.exchangeRate = exchangeRate;
+        this.requestedExchangeRate = requestedExchangeRate;
         this.timestamp = DateTimeFormatter.ofPattern("HH:mm:ss:SSS").format(LocalDateTime.now());
-        volume = count * exchangeRate;
+        this.orderType = orderType;
     }
 
     public String getSymbol() {
@@ -36,18 +38,22 @@ public class Order {
     public void setCount(int count) {
         this.count = count;
     }
-
-    public double getExchangeRate() {
-        return exchangeRate;
+    public void reduceCount(int countToReduce){
+        this.count -= countToReduce;
     }
 
-    public void setExchangeRate(double exchangeRate) {
-        this.exchangeRate = exchangeRate;
+    public double getRequestedExchangeRate() {
+        return requestedExchangeRate;
+    }
+
+    public OrderType getOrderType() {
+        return orderType;
     }
 
     public double getVolume() {
-        return volume;
+        return count * requestedExchangeRate;
     }
+
 
     /**
      * Compare to another order by date
@@ -69,14 +75,11 @@ public class Order {
         }
     }
 
-    /**
-     * Get basic information about the order
-     * @return - the information as a string
-     */
-    public String getBasicInfo() {
+    @Override
+    public String toString() {
         return "Date: " + timestamp + "\n" +
                 "Number Of Stocks: " + count + "\n" +
-                "Single Stock Price: " + exchangeRate + "\n" +
-                "Total Order Price: " + volume;
+                "Single Stock Price: " + requestedExchangeRate + "\n" +
+                "Total Order Price: " + getVolume() + "\n";
     }
 }

@@ -17,6 +17,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Locale;
 
 public class ReadSystemDetailsFileCommand implements ICommand {
@@ -49,7 +50,6 @@ public class ReadSystemDetailsFileCommand implements ICommand {
 
         doc.getDocumentElement().normalize();
         final NodeList nList = doc.getElementsByTagName("rse-stock");
-
         final ArrayList<Stock> newStocks = new ArrayList<Stock>();
 
         // Get the information about each stock
@@ -58,8 +58,6 @@ public class ReadSystemDetailsFileCommand implements ICommand {
 
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 final Element eElement = (Element) nNode;
-
-                Stock stock = null;
 
                 final String tempStockSymbol = eElement.getElementsByTagName("rse-symbol").item(0).getTextContent();
 
@@ -90,7 +88,7 @@ public class ReadSystemDetailsFileCommand implements ICommand {
                     return "Company name can't start or end with a space";
                 }
 
-                stock = new Stock(tempStockSymbol.toUpperCase(),
+                Stock stock = new Stock(tempStockSymbol.toUpperCase(),
                         tempCompnanyName,
                         tempStockPrice);
 
