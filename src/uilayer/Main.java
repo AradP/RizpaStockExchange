@@ -66,12 +66,26 @@ public class Main {
                             ConsoleHandler.write("You need to load stocks to the system first...");
                             break;
                         }
-                        ConsoleHandler.write("For buy press 1, sell press 2, to return to the menu press 9:");
+
+                        ConsoleHandler.write("For LMT press 1, MKT press 2, to return to the menu press 9:");
+                        int orderTypeSymbol = ConsoleHandler.readInt();
+
+
+                        while (orderTypeSymbol != 1 && orderTypeSymbol != 2 && orderTypeSymbol != 9) {
+                            ConsoleHandler.write("For LMT press 1, MKT press 2, to return to the menu press 9:");
+                            orderTypeSymbol = ConsoleHandler.readInt();
+                        }
+                        if (orderTypeSymbol == 9) {
+                            break;
+                        }
+
+
+                        ConsoleHandler.write("For sell press 1, buy press 2, to return to the menu press 9:");
                         int isBuyOrder = ConsoleHandler.readInt();
 
 
                         while (isBuyOrder != 1 && isBuyOrder != 2 && isBuyOrder != 9) {
-                            ConsoleHandler.write("For buy press 1, sell press 2, to return to the menu press 9:");
+                            ConsoleHandler.write("For sell press 1, buy press 2, to return to the menu press 9:");
                             isBuyOrder = ConsoleHandler.readInt();
                         }
                         if (isBuyOrder == 9) {
@@ -84,15 +98,21 @@ public class Main {
                         ConsoleHandler.write("Enter amount of stocks:");
                         int amountOfStocks = ConsoleHandler.readInt();
 
-                        ConsoleHandler.write("Enter exchange rate (price):");
-                        int exchangeRate = ConsoleHandler.readInt();
-
                         try {
-
-                            String returnValue = isBuyOrder == 1 ? APIGatewayManager.getInstance().buyLimitOrder(stockName, amountOfStocks, exchangeRate) :
-                                    APIGatewayManager.getInstance().sellLimitOrder(stockName, amountOfStocks, exchangeRate);
-                            ConsoleHandler.write(returnValue);
-
+                            // LMT
+                            if (orderTypeSymbol == 1) {
+                                ConsoleHandler.write("Enter exchange rate (price):");
+                                int exchangeRate = ConsoleHandler.readInt();
+                                String returnValue = isBuyOrder == 1 ? APIGatewayManager.getInstance().sellLimitOrder(stockName, amountOfStocks, exchangeRate) :
+                                        APIGatewayManager.getInstance().buyLimitOrder(stockName, amountOfStocks, exchangeRate);
+                                ConsoleHandler.write(returnValue);
+                            }
+                            //MKT
+                            else if (orderTypeSymbol == 2) {
+                                String returnValue = isBuyOrder == 1 ? APIGatewayManager.getInstance().sellMKTOrder(stockName, amountOfStocks) :
+                                        APIGatewayManager.getInstance().buyMKTOrder(stockName, amountOfStocks);
+                                ConsoleHandler.write(returnValue);
+                            }
 
                         } catch (StockException e) {
                             ConsoleHandler.write(e.getMessage());

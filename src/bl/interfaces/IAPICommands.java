@@ -15,6 +15,9 @@ public interface IAPICommands {
     String sellLimitOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException;
 
     String buyLimitOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException;
+    String sellMKTOrder(String symbol, int numberOfStocks) throws StockException;
+
+    String buyMKTOrder(String symbol, int numberOfStocks) throws StockException;
 
     String getPendingSellOrder(String symbol);
 

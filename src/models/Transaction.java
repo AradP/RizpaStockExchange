@@ -81,5 +81,5 @@ public class Transaction {
         return "Date: " + getTimeStamp() + "\n" +
                 "Number Of Stocks: " + getAmountOfStocks() + "\n" +
                 "Single Stock Price: " + getPrice() + "\n" +
-                "Total Transaction Price: " + getVolume();    }
+                "Total Transaction Price: " + getVolume() + "\n";    }
 }

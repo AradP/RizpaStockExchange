@@ -68,12 +68,51 @@ public class Stock implements Serializable {
         return completedTransactions;
     }
 
+    private int getTheHighestPriceInPendingSellOrders() {
+        if (getPendingSellOrders().isEmpty()) {
+            return (int) getPrice();
+        } else {
+            return (int) getPendingSellOrders().get(getPendingSellOrders().size() - 1).getRequestedExchangeRate();
+        }
+    }
+
+    private int getTheLowestPriceInPendingBuyOrders() {
+        if (getPendingBuyOrders().isEmpty()) {
+            return (int) getPrice();
+        } else {
+            return (int) getPendingBuyOrders().get(getPendingBuyOrders().size() - 1).getRequestedExchangeRate();
+        }
+    }
+
     public boolean CreateSellOrder(int amountOfStocks, double requestedExchangeRate, OrderType orderType) {
         boolean didSuccess = false;
         Order newSellOrder = new Order(getSymbol(), amountOfStocks, requestedExchangeRate, orderType);
         didSuccess = pendingSellOrders.add(newSellOrder);
         if (didSuccess) {
             pendingSellOrders.sort(Comparator.comparingDouble(Order::getRequestedExchangeRate));
+        }
+
+        return didSuccess;
+    }
+
+    public boolean CreateSellOrderMKT(int amountOfStocks) {
+        boolean didSuccess = false;
+        Order newSellOrder = new Order(getSymbol(), amountOfStocks, getTheLowestPriceInPendingBuyOrders(), OrderType.MKT);
+        didSuccess = pendingSellOrders.add(newSellOrder);
+        if (didSuccess) {
+            pendingSellOrders.sort(Comparator.comparingDouble(Order::getRequestedExchangeRate));
+        }
+
+        return didSuccess;
+    }
+
+
+    public boolean CreateBuyOrderMKT(int amountOfStocks) {
+        boolean didSuccess = false;
+        Order newBuyOrder = new Order(getSymbol(), amountOfStocks, getTheHighestPriceInPendingSellOrders(), OrderType.MKT);
+        didSuccess = pendingBuyOrders.add(newBuyOrder);
+        if (didSuccess) {
+            pendingBuyOrders.sort(Comparator.comparingDouble(Order::getRequestedExchangeRate).reversed());
         }
 
         return didSuccess;
