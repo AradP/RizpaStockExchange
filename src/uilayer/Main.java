@@ -1,8 +1,10 @@
 package uilayer;
 
+import apigateway.APIGatewayManager;
 import bl.interfaces.ICommand;
 import commands.CommandHandler;
 import stocks.StockHandler;
+import stocks.exceptions.StockException;
 
 import java.util.List;
 
@@ -60,11 +62,50 @@ public class Main {
                     }
                     // Execute exchange process
                     case (3): {
-                        // TODO: Omer
+                        if (!StockHandler.getInstance().areStocksLoaded()) {
+                            ConsoleHandler.write("You need to load stocks to the system first...");
+                            break;
+                        }
+                        ConsoleHandler.write("For buy press 1, sell press 2, to return to the menu press 9:");
+                        int isBuyOrder = ConsoleHandler.readInt();
+
+
+                        while (isBuyOrder != 1 && isBuyOrder != 2 && isBuyOrder != 9) {
+                            ConsoleHandler.write("For buy press 1, sell press 2, to return to the menu press 9:");
+                            isBuyOrder = ConsoleHandler.readInt();
+                        }
+                        if (isBuyOrder == 9) {
+                            break;
+                        }
+
+                        ConsoleHandler.write("Enter stock symbol:");
+                        String stockName = ConsoleHandler.read().toLowerCase();
+
+                        ConsoleHandler.write("Enter amount of stocks:");
+                        int amountOfStocks = ConsoleHandler.readInt();
+
+                        ConsoleHandler.write("Enter exchange rate (price):");
+                        int exchangeRate = ConsoleHandler.readInt();
+
+                        try {
+
+                            String returnValue = isBuyOrder == 1 ? APIGatewayManager.getInstance().buyLimitOrder(stockName, amountOfStocks, exchangeRate) :
+                                    APIGatewayManager.getInstance().sellLimitOrder(stockName, amountOfStocks, exchangeRate);
+                            ConsoleHandler.write(returnValue);
+
+
+                        } catch (StockException e) {
+                            ConsoleHandler.write(e.getMessage());
+                        }
                         break;
                     }
                     case (4): {
-                        // TODO: Omer
+                        if (!StockHandler.getInstance().areStocksLoaded()) {
+                            ConsoleHandler.write("You need to load stocks to the system first...");
+                            break;
+                        }
+
+                        ConsoleHandler.write(APIGatewayManager.getInstance().AllOrdersAndTransactions());
                         break;
                     }
                     // Exit system command

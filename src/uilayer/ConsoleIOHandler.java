@@ -19,6 +19,21 @@ public class ConsoleIOHandler {
         }
     }
 
+    public int readInt() {
+        try {
+            return Integer.parseInt(br.readLine());
+        } catch (final IOException e) {
+            final String logWithException = "Could not read the entered value because of " + e.getMessage();
+            this.write(logWithException);
+            log.warning(logWithException);
+        }
+        catch(final NumberFormatException e){
+            final String logWithException = "Could not read the number";
+            this.write(logWithException);
+        }
+        return -1;
+    }
+
     public void write(final String value) {
         try {
             bw.write(value, 0, value.length());

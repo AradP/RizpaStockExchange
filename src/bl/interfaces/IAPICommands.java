@@ -1,5 +1,7 @@
 package bl.interfaces;
 
+import stocks.exceptions.StockException;
+
 import java.util.List;
 
 //TODO: Should find better name!
@@ -10,15 +12,15 @@ public interface IAPICommands {
 
     String getStock(String symbol);
 
-    boolean sellLimitOrder(String symbol, int numberOfStocks, double lowestPrice);
+    String sellLimitOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException;
 
-    boolean buyLimitOrder(String symbol, int numberOfStocks, double highestPrice);
+    String buyLimitOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException;
 
-    List<String> getOrderSellBook(String symbol);
+    String getPendingSellOrder(String symbol);
 
-    List<String> getOrderBuyBook(String symbol);
+    String getPendingBuyOrder(String symbol);
 
-    List<String> getTradesHistory(String symbol);
+    String getTransactionsHistory(String symbol);
 
     String saveDataToFile(String path);
 }

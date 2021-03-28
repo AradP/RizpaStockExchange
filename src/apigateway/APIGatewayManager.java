@@ -2,6 +2,9 @@ package apigateway;
 
 import bl.BLManager;
 import bl.interfaces.IAPICommands;
+import models.Stock;
+import stocks.StockHandler;
+import stocks.exceptions.StockException;
 
 import java.util.List;
 
@@ -41,28 +44,54 @@ public final class APIGatewayManager implements IAPICommands {
     }
 
     @Override
-    public boolean sellLimitOrder(String symbol, int numberOfStocks, double lowestPrice) {
-        return blManager.sellLimitOrder(symbol,numberOfStocks,lowestPrice);
+    public String sellLimitOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+        try {
+            return blManager.sellLimitOrder(symbol, numberOfStocks, lowestPrice);
+        } catch (StockException e) {
+            throw e;
+        }
     }
 
     @Override
-    public boolean buyLimitOrder(String symbol, int numberOfStocks, double highestPrice) {
-        return blManager.buyLimitOrder(symbol,numberOfStocks,highestPrice);
+    public String buyLimitOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+        try {
+            return blManager.buyLimitOrder(symbol, numberOfStocks, highestPrice);
+        } catch (StockException e) {
+            throw e;
+        }
+    }
+
+    public String AllOrdersAndTransactions() {
+        String returnValue = "";
+
+        for (Stock stock : StockHandler.getInstance().getStocks()) {
+            returnValue = returnValue.concat(stock.getSymbol() + ":" + "\n");
+            returnValue = returnValue.concat(BLManager.getInstance().getPendingBuyOrder(stock.getSymbol()));
+            returnValue = returnValue.concat("\n");
+
+            returnValue = returnValue.concat(BLManager.getInstance().getPendingSellOrder(stock.getSymbol()));
+            returnValue = returnValue.concat("\n");
+
+            returnValue = returnValue.concat(BLManager.getInstance().getTransactionsHistory(stock.getSymbol()));
+            returnValue = returnValue.concat("\n");
+        }
+
+        return returnValue;
     }
 
     @Override
-    public List<String> getOrderSellBook(String symbol) {
-        return blManager.getOrderSellBook(symbol);
+    public String getPendingSellOrder(String symbol) {
+        return blManager.getPendingSellOrder(symbol);
     }
 
     @Override
-    public List<String> getOrderBuyBook(String symbol) {
-        return blManager.getOrderBuyBook(symbol);
+    public String getPendingBuyOrder(String symbol) {
+        return blManager.getPendingBuyOrder(symbol);
     }
 
     @Override
-    public List<String> getTradesHistory(String symbol) {
-        return blManager.getTradesHistory(symbol);
+    public String getTransactionsHistory(String symbol) {
+        return blManager.getTransactionsHistory(symbol);
     }
 
     @Override

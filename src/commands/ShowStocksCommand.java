@@ -3,6 +3,7 @@ package commands;
 import bl.interfaces.ICommand;
 import models.Order;
 import models.Stock;
+import models.Transaction;
 import stocks.StockHandler;
 
 import java.util.ArrayList;
@@ -21,15 +22,15 @@ public class ShowStocksCommand implements ICommand {
         // Get the basic info about every stock
         for (Stock stock : stocks) {
             stocksInfo.append("Basic Info is:\n");
-            stocksInfo.append(stock.getBasicInfo()).append("\n");
-            final ArrayList<Order> sortedOrders = stock.getOrdersSortedByDate();
+            stocksInfo.append(stock.toString()).append("\n");
+            final ArrayList<Transaction> sortedTransactions = stock.getTransactionsSortedByDate();
 
-            if (sortedOrders.size() > 0) {
-                stocksInfo.append("And more info about the orders of this stock:\n");
+            if (sortedTransactions.size() > 0) {
+                stocksInfo.append("And more info about the transactions of this stock:\n");
 
                 // Get the basic info about every order
-                for (Order order : sortedOrders) {
-                    stocksInfo.append(order.getBasicInfo());
+                for (Transaction transaction : sortedTransactions) {
+                    stocksInfo.append(transaction.toString());
                 }
             }
         }

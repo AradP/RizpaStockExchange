@@ -1,9 +1,12 @@
 package stocks;
 
+import models.Order;
 import models.Stock;
+import models.Transaction;
 import stocks.exceptions.CompanyAlreadyExistException;
 import stocks.exceptions.StockSymbolAlreadyExistException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class StockHandler {
@@ -53,7 +56,7 @@ public class StockHandler {
     }
 
     public Stock getStockBySymbol(String stockName) {
-        Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getSymbol().equals(stockName.toUpperCase())).findAny();
+        Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getSymbol().equalsIgnoreCase(stockName)).findAny();
         return tempStock.orElse(null);
 
     }
@@ -63,6 +66,22 @@ public class StockHandler {
         return tempStock.orElse(null);
     }
 
+    public boolean isSymbolExists(String symbol)
+    {
+        return stocks.stream().anyMatch(stock->stock.getSymbol().equalsIgnoreCase(symbol));
+    }
+
+    public List<Order> getPendingSellOrder(String symbol) {
+        return getStockBySymbol(symbol).getPendingSellOrders();
+    }
+
+    public List<Order> getPendingBuyOrder(String symbol) {
+        return getStockBySymbol(symbol).getPendingBuyOrders();
+    }
+
+    public List<Transaction> getTransactionsHistory(String symbol) {
+        return getStockBySymbol(symbol).getTransactionsSortedByDate();
+    }
     /**
      * We need to check that there is a valid xml file loaded in our system
      *
