@@ -58,7 +58,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue=returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString());
                     }
 
                 } else {
@@ -85,7 +85,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue=returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString());
                     }
 
                 } else {
@@ -96,7 +96,61 @@ public final class BLManager implements IAPICommands {
             throw e;
         }
 
-        return returnValue+ "\n";
+        return returnValue + "\n";
+    }
+
+    @Override
+    public String sellMKTOrder(String symbol, int numberOfStocks) throws StockException {
+        String returnValue = "";
+
+        try {
+            ArrayList<Transaction> newTransactions;
+            if (verifySellBuyExecution(symbol, numberOfStocks)) {
+                StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrderMKT(numberOfStocks);
+                if (StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransaction()) {
+                    newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(true);
+
+                    returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
+                    for (Transaction transaction : newTransactions) {
+                        returnValue = returnValue.concat(transaction.toString());
+                    }
+
+                } else {
+                    returnValue = "The order has been added to the book";
+                }
+            }
+        } catch (StockException e) {
+            throw e;
+        }
+
+        return returnValue + "\n";
+    }
+
+    @Override
+    public String buyMKTOrder(String symbol, int numberOfStocks) throws StockException {
+        String returnValue = "";
+
+        try {
+            ArrayList<Transaction> newTransactions;
+            if (verifySellBuyExecution(symbol, numberOfStocks)) {
+                StockHandler.getInstance().getStockBySymbol(symbol).CreateBuyOrderMKT(numberOfStocks);
+                if (StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransaction()) {
+                    newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(false);
+
+                    returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
+                    for (Transaction transaction : newTransactions) {
+                        returnValue = returnValue.concat(transaction.toString());
+                    }
+
+                } else {
+                    returnValue = "The order has been added to the book";
+                }
+            }
+        } catch (StockException e) {
+            throw e;
+        }
+
+        return returnValue + "\n";
     }
 
     @Override
@@ -115,13 +169,13 @@ public final class BLManager implements IAPICommands {
             int totalOrderPrice = 0;
             returnValue = orders.size() + " sell orders are pending:" + "\n";
             for (Order order : orders) {
-                returnValue=returnValue.concat(order.toString());
+                returnValue = returnValue.concat(order.toString());
                 totalOrderPrice += order.getVolume();
             }
 
-            returnValue=returnValue.concat("Total sell orders volume: " + totalOrderPrice);
+            returnValue = returnValue.concat("Total sell orders volume: " + totalOrderPrice);
         }
-        return returnValue+ "\n";
+        return returnValue + "\n";
     }
 
     @Override
@@ -140,13 +194,13 @@ public final class BLManager implements IAPICommands {
             int totalOrderPrice = 0;
             returnValue = orders.size() + " buy orders are pending:" + "\n";
             for (Order order : orders) {
-                returnValue=returnValue.concat(order.toString());
+                returnValue = returnValue.concat(order.toString());
                 totalOrderPrice += order.getVolume();
             }
 
-            returnValue=returnValue.concat("Total buy orders volume: " + totalOrderPrice);
+            returnValue = returnValue.concat("Total buy orders volume: " + totalOrderPrice);
         }
-        return returnValue+ "\n";
+        return returnValue + "\n";
     }
 
     @Override
@@ -171,7 +225,7 @@ public final class BLManager implements IAPICommands {
 
             returnValue = returnValue.concat("Total transactions volume: " + totalOrderPrice);
         }
-        return returnValue+ "\n";
+        return returnValue + "\n";
     }
 
     @Override

@@ -61,6 +61,24 @@ public final class APIGatewayManager implements IAPICommands {
         }
     }
 
+    @Override
+    public String sellMKTOrder(String symbol, int numberOfStocks) throws StockException {
+        try {
+            return blManager.sellMKTOrder(symbol, numberOfStocks);
+        } catch (StockException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public String buyMKTOrder(String symbol, int numberOfStocks) throws StockException {
+        try {
+            return blManager.buyMKTOrder(symbol, numberOfStocks);
+        } catch (StockException e) {
+            throw e;
+        }
+    }
+
     public String AllOrdersAndTransactions() {
         String returnValue = "";
 
