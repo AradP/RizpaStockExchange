@@ -108,14 +108,7 @@ public class Stock implements Serializable {
 
 
     public boolean CreateBuyOrderMKT(int amountOfStocks) {
-        boolean didSuccess = false;
-        Order newBuyOrder = new Order(getSymbol(), amountOfStocks, getTheHighestPriceInPendingSellOrders(), OrderType.MKT);
-        didSuccess = pendingBuyOrders.add(newBuyOrder);
-        if (didSuccess) {
-            pendingBuyOrders.sort(Comparator.comparingDouble(Order::getRequestedExchangeRate).reversed());
-        }
-
-        return didSuccess;
+        return CreateBuyOrder(amountOfStocks, getTheHighestPriceInPendingSellOrders(), OrderType.MKT);
     }
 
     public boolean CreateBuyOrder(int amountOfStocks, double requestedExchangeRate, OrderType orderType) {
@@ -135,6 +128,39 @@ public class Stock implements Serializable {
         }
 
         return isItPossibleToMakeATransaction;
+    }
+
+    public boolean IsItPossibleToMakeATransactionFOK(boolean isSell, int amountOfStocks, double requestedExchangeRate) {
+        ArrayList<Order> oppositeOrders = isSell ? pendingBuyOrders : pendingSellOrders;
+        int currentCell = 0;
+        while (amountOfStocks > 0 && oppositeOrders.size() > currentCell &&
+                isSell ? requestedExchangeRate <= oppositeOrders.get(currentCell).getRequestedExchangeRate() :
+                requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate()) {
+            amountOfStocks -= oppositeOrders.get(currentCell++).getCount();
+        }
+
+        return amountOfStocks == 0;
+    }
+
+    /**
+     * @param isSell
+     * @param amountOfStocks
+     * @param requestedExchangeRate
+     * @return 0 - it is possible to make a transaction
+     * x>0 - it is possible to make a transaction but only half
+     * -1 - not possible to make a transaction.
+     */
+    public int IsItPossibleToMakeATransactionIOC(boolean isSell, int amountOfStocks, double requestedExchangeRate) {
+        ArrayList<Order> oppositeOrders = isSell ? pendingBuyOrders : pendingSellOrders;
+        int currentCell = 0;
+        int tempAmountOfStocks = amountOfStocks;
+        while (tempAmountOfStocks > 0 && oppositeOrders.size() > currentCell &&
+                isSell ? requestedExchangeRate <= oppositeOrders.get(currentCell).getRequestedExchangeRate() :
+                requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate()) {
+            tempAmountOfStocks -= oppositeOrders.get(currentCell++).getCount();
+        }
+
+        return tempAmountOfStocks == amountOfStocks ? -1 : tempAmountOfStocks <= 0 ? 0 : tempAmountOfStocks;
     }
 
 

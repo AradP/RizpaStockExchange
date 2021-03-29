@@ -46,7 +46,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellLimitOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+    public String sellLMTOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
         String returnValue = "";
 
         try {
@@ -62,7 +62,7 @@ public final class BLManager implements IAPICommands {
                     }
 
                 } else {
-                    returnValue = "The order has been added to the book";
+                    returnValue = "The order has been added to the book"+ "\n";
                 }
             }
         } catch (StockException e) {
@@ -73,7 +73,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyLimitOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+    public String buyLMTOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
         String returnValue = "";
 
         try {
@@ -89,7 +89,113 @@ public final class BLManager implements IAPICommands {
                     }
 
                 } else {
-                    returnValue = "The order has been added to the book";
+                    returnValue = "The order has been added to the book"+ "\n";
+                }
+            }
+        } catch (StockException e) {
+            throw e;
+        }
+
+        return returnValue + "\n";
+    }
+
+    @Override
+    public String sellFOKOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+        String returnValue = "";
+
+        try {
+            ArrayList<Transaction> newTransactions;
+            if (verifySellBuyExecution(symbol, numberOfStocks)) {
+                if (!StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionFOK(true, numberOfStocks, lowestPrice)) {
+                    returnValue = "It is not possible to add this order."+ "\n";
+                } else {
+                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks,lowestPrice,OrderType.FOK);
+                    newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(true);
+
+                    returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
+                    for (Transaction transaction : newTransactions) {
+                        returnValue = returnValue.concat(transaction.toString());
+                    }
+                }
+            }
+        } catch (StockException e) {
+            throw e;
+        }
+
+        return returnValue + "\n";
+    }
+
+    @Override
+    public String buyFOKOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+        String returnValue = "";
+
+        try {
+            ArrayList<Transaction> newTransactions;
+            if (verifySellBuyExecution(symbol, numberOfStocks)) {
+                if (!StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionFOK(false, numberOfStocks, highestPrice)) {
+                    returnValue = "It is not possible to add this order."+ "\n";
+                } else {
+                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks,highestPrice,OrderType.FOK);
+                    newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(false);
+
+                    returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
+                    for (Transaction transaction : newTransactions) {
+                        returnValue = returnValue.concat(transaction.toString());
+                    }
+                }
+            }
+        } catch (StockException e) {
+            throw e;
+        }
+
+        return returnValue + "\n";
+    }
+
+    @Override
+    public String sellIOCOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+        String returnValue = "";
+
+        try {
+            ArrayList<Transaction> newTransactions;
+            if (verifySellBuyExecution(symbol, numberOfStocks)) {
+                int isItPossibleToMakeATransactionIOC = StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionIOC(true, numberOfStocks, lowestPrice);
+                if (isItPossibleToMakeATransactionIOC == -1) {
+                    returnValue = "It is not possible to add this order."+ "\n";
+                } else {
+                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks-isItPossibleToMakeATransactionIOC,lowestPrice,OrderType.IOC);
+                        newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(true);
+
+                        returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
+                        for (Transaction transaction : newTransactions) {
+                            returnValue = returnValue.concat(transaction.toString());
+                    }
+                }
+            }
+        } catch (StockException e) {
+            throw e;
+        }
+
+        return returnValue + "\n";
+    }
+
+    @Override
+    public String buyIOCOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+        String returnValue = "";
+
+        try {
+            ArrayList<Transaction> newTransactions;
+            if (verifySellBuyExecution(symbol, numberOfStocks)) {
+                int isItPossibleToMakeATransactionIOC = StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionIOC(false, numberOfStocks, highestPrice);
+                if (isItPossibleToMakeATransactionIOC == -1) {
+                    returnValue = "It is not possible to add this order."+ "\n";
+                } else {
+                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks-isItPossibleToMakeATransactionIOC,highestPrice,OrderType.IOC);
+                    newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(false);
+
+                    returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
+                    for (Transaction transaction : newTransactions) {
+                        returnValue = returnValue.concat(transaction.toString());
+                    }
                 }
             }
         } catch (StockException e) {
@@ -116,7 +222,7 @@ public final class BLManager implements IAPICommands {
                     }
 
                 } else {
-                    returnValue = "The order has been added to the book";
+                    returnValue = "The order has been added to the book"+ "\n";
                 }
             }
         } catch (StockException e) {
@@ -143,7 +249,7 @@ public final class BLManager implements IAPICommands {
                     }
 
                 } else {
-                    returnValue = "The order has been added to the book";
+                    returnValue = "The order has been added to the book"+ "\n";
                 }
             }
         } catch (StockException e) {
@@ -160,7 +266,7 @@ public final class BLManager implements IAPICommands {
 
         if (orders.size() == 0) {
             returnValue = "Zero sell orders is pending" + "\n" +
-                    "Total sell orders volume: 0";
+                    "Total sell orders volume: 0"+ "\n";
         } else if (orders.size() == 1) {
             returnValue = "One sell order is pending:" + "\n"
                     + orders.get(0).toString() + "\n" +

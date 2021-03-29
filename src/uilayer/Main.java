@@ -103,8 +103,8 @@ public class Main {
                             if (orderTypeSymbol == 1) {
                                 ConsoleHandler.write("Enter exchange rate (price):");
                                 int exchangeRate = ConsoleHandler.readInt();
-                                String returnValue = isBuyOrder == 1 ? APIGatewayManager.getInstance().sellLimitOrder(stockName, amountOfStocks, exchangeRate) :
-                                        APIGatewayManager.getInstance().buyLimitOrder(stockName, amountOfStocks, exchangeRate);
+                                String returnValue = isBuyOrder == 1 ? APIGatewayManager.getInstance().sellLMTOrder(stockName, amountOfStocks, exchangeRate) :
+                                        APIGatewayManager.getInstance().buyLMTOrder(stockName, amountOfStocks, exchangeRate);
                                 ConsoleHandler.write(returnValue);
                             }
                             //MKT

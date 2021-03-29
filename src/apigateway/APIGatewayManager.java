@@ -6,8 +6,6 @@ import models.Stock;
 import stocks.StockHandler;
 import stocks.exceptions.StockException;
 
-import java.util.List;
-
 public final class APIGatewayManager implements IAPICommands {
 
     //region Lazy Singleton
@@ -44,22 +42,54 @@ public final class APIGatewayManager implements IAPICommands {
     }
 
     @Override
-    public String sellLimitOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+    public String sellLMTOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
         try {
-            return blManager.sellLimitOrder(symbol, numberOfStocks, lowestPrice);
+            return blManager.sellLMTOrder(symbol, numberOfStocks, lowestPrice);
         } catch (StockException e) {
             throw e;
         }
     }
 
     @Override
-    public String buyLimitOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+    public String buyLMTOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
         try {
-            return blManager.buyLimitOrder(symbol, numberOfStocks, highestPrice);
+            return blManager.buyLMTOrder(symbol, numberOfStocks, highestPrice);
         } catch (StockException e) {
             throw e;
         }
     }
+
+    @Override
+    public String sellFOKOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+        try {
+            return blManager.sellFOKOrder(symbol, numberOfStocks, lowestPrice);
+        } catch (StockException e) {
+            throw e;
+        }    }
+
+    @Override
+    public String buyFOKOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+        try {
+            return blManager.buyFOKOrder(symbol, numberOfStocks, highestPrice);
+        } catch (StockException e) {
+            throw e;
+        }    }
+
+    @Override
+    public String sellIOCOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+        try {
+            return blManager.sellIOCOrder(symbol, numberOfStocks, lowestPrice);
+        } catch (StockException e) {
+            throw e;
+        }    }
+
+    @Override
+    public String buyIOCOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+        try {
+            return blManager.buyIOCOrder(symbol, numberOfStocks, highestPrice);
+        } catch (StockException e) {
+            throw e;
+        }    }
 
     @Override
     public String sellMKTOrder(String symbol, int numberOfStocks) throws StockException {
