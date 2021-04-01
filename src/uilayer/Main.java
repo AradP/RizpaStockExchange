@@ -176,7 +176,7 @@ public class Main {
                         BLManager.getInstance().loadDataFromFile(filePath);
                         ConsoleHandler.write("Loaded the data to the system successfully");
                     } catch (final IOException | ClassNotFoundException | InvalidSystemDataFile e) {
-                        ConsoleHandler.write("There was a problem while reading the data from the file because of " + e.getMessage());
+                        ConsoleHandler.write("There was a problem while reading the data because: " + e.getMessage());
                     }
                     break;
                 }

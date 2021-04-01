@@ -464,8 +464,6 @@ public final class BLManager implements IAPICommands {
 
     @Override
     public void saveDataToFile(String path) throws IOException {
-        FileIO.getInstance().setFilePath(path);
-
         FileOutputStream fos = new FileOutputStream(path);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
 
@@ -481,16 +479,15 @@ public final class BLManager implements IAPICommands {
 
     @Override
     public void loadDataFromFile(String path) throws InvalidSystemDataFile, IOException, ClassNotFoundException {
-            final String filePath = FileIO.getInstance().getFilePath();
-            if (filePath == null) {
-                throw new InvalidSystemDataFile("it doesn't exist");
-            }
+        if (path == null) {
+            throw new InvalidSystemDataFile("it doesn't exist");
+        }
 
-            FileInputStream fis = new FileInputStream(FileIO.getInstance().getFilePath());
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            ArrayList<Stock> stocks = (ArrayList<Stock>) ois.readObject();
-            StockHandler.getInstance().setStocks(stocks);
-            ois.close();
+        FileInputStream fis = new FileInputStream(path);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        ArrayList<Stock> stocks = (ArrayList<Stock>) ois.readObject();
+        StockHandler.getInstance().setStocks(stocks);
+        ois.close();
     }
 
     private boolean verifySellBuyExecution(String symbol, int numberOfStocks) throws SymbolDoesntExistException, StocksNumberIsntValidException {
