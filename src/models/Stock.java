@@ -216,12 +216,9 @@ public class Stock implements Serializable {
         double ordersPeriod = 0;
         final ArrayList<Transaction> sortedTransactions = getTransactionsSortedByDate();
 
-        // Calculate orders period of the last month
+        // Calculate orders period
         for (Transaction transaction : sortedTransactions) {
-            String monthAgoTimestamp = DateTimeFormatter.ofPattern("HH:mm:ss:SSS").format(LocalDateTime.now().minusMonths(1));
-            if (transaction.compareByDate(monthAgoTimestamp) >= 0) {
                 ordersPeriod += transaction.getVolume();
-            } else break;
         }
 
         return "Symbol: " + symbol + "\n" +

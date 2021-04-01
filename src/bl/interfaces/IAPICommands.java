@@ -1,35 +1,42 @@
 package bl.interfaces;
 
+import stocks.exceptions.InvalidSystemDataFile;
 import stocks.exceptions.StockException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
-//TODO: Should find better name!
 public interface IAPICommands {
-    boolean loadConfigurationFileByPath(String xmlFilePath);
+    void loadConfigurationFileByPath(final String xmlFilePath) throws StockException;
 
     String getAllStocks();
 
-    String getStock(String symbol);
+    String getStock(final String symbol) throws StockException;
 
-    String sellLMTOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException;
+    String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException;
 
-    String buyLMTOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException;
-    String sellFOKOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException;
+    String buyLMTOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException;
 
-    String buyFOKOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException;
-    String sellIOCOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException;
+    String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException;
 
-    String buyIOCOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException;
-    String sellMKTOrder(String symbol, int numberOfStocks) throws StockException;
+    String buyFOKOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException;
 
-    String buyMKTOrder(String symbol, int numberOfStocks) throws StockException;
+    String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException;
 
-    String getPendingSellOrder(String symbol);
+    String buyIOCOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException;
 
-    String getPendingBuyOrder(String symbol);
+    String sellMKTOrder(final String symbol, final int numberOfStocks) throws StockException;
 
-    String getTransactionsHistory(String symbol);
+    String buyMKTOrder(final String symbol, final int numberOfStocks) throws StockException;
 
-    String saveDataToFile(String path);
+    String getPendingSellOrder(final String symbol);
+
+    String getPendingBuyOrder(final String symbol);
+
+    String getTransactionsHistory(final String symbol);
+
+    void saveDataToFile(final String path) throws IOException;
+
+    void loadDataFromFile(final String path) throws InvalidSystemDataFile, IOException, ClassNotFoundException;
 }

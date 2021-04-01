@@ -1,6 +1,4 @@
-package commands;
-
-import stocks.StockHandler;
+package bl;
 
 public class FileIO {
     // static variable single_instance of type Singleton

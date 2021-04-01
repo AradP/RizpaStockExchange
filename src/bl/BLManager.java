@@ -3,14 +3,23 @@ package bl;
 import bl.interfaces.IAPICommands;
 import enums.OrderType;
 import models.Order;
+import models.Stock;
 import models.Transaction;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import stocks.StockHandler;
-import stocks.exceptions.StockException;
-import stocks.exceptions.StocksNumberIsntValidException;
-import stocks.exceptions.SymbolIsntExistsException;
+import stocks.exceptions.*;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public final class BLManager implements IAPICommands {
 
@@ -31,18 +40,137 @@ public final class BLManager implements IAPICommands {
     //endregion
 
     @Override
-    public boolean loadConfigurationFileByPath(String xmlFilePath) {
-        return true;
+    public void loadConfigurationFileByPath(String xmlFilePath) throws StockException {
+        final File systemDetailsFile = new File(xmlFilePath);
+
+        // Validates this really is a xml file
+        if (!getFileExtension(systemDetailsFile).equals(".xml")) {
+            throw new InvalidSystemDataFile("the given file is not a xml file");
+        }
+
+        final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = null;
+
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            throw new InvalidSystemDataFile(e.getMessage());
+        }
+
+        Document doc = null;
+        try {
+            doc = dBuilder.parse(systemDetailsFile);
+        } catch (SAXException | IOException e) {
+            throw new InvalidSystemDataFile(e.getMessage());
+
+        }
+
+        doc.getDocumentElement().normalize();
+        final NodeList nList = doc.getElementsByTagName("rse-stock");
+        final ArrayList<Stock> newStocks = new ArrayList<Stock>();
+
+        // Get the information about each stock
+        for (int temp = 0; temp < nList.getLength(); temp++) {
+            final Node nNode = nList.item(temp);
+
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                final Element eElement = (Element) nNode;
+
+                final String tempStockSymbol = eElement.getElementsByTagName("rse-symbol").item(0).getTextContent();
+
+                // Validate the stock contains only letters and only in English
+                if (!isAlpha(tempStockSymbol)) {
+                    throw new InvalidSystemDataFile("Stock symbol must contain only English letters");
+                }
+
+                int tempStockPrice = 0;
+
+                try {
+                    tempStockPrice = Integer.parseInt(eElement.getElementsByTagName("rse-price").item(0).getTextContent());
+                } catch (NumberFormatException e) {
+                    throw new InvalidSystemDataFile("Price must be a number");
+                }
+
+                if (tempStockPrice <= 0) {
+                    throw new InvalidSystemDataFile("Price must be a positive number");
+                }
+
+                final String tempCompnanyName = eElement.getElementsByTagName("rse-company-name").item(0).getTextContent();
+
+                if (tempCompnanyName.isEmpty()) {
+                    throw new InvalidSystemDataFile("Company name can't be empty");
+                }
+
+                if (tempCompnanyName.startsWith(" ") || tempCompnanyName.endsWith(" ")) {
+                    throw new InvalidSystemDataFile("Company name can't start or end with a space");
+                }
+
+                Stock stock = new Stock(tempStockSymbol.toUpperCase(),
+                        tempCompnanyName,
+                        tempStockPrice);
+
+                newStocks.add(stock);
+            }
+        }
+
+        // Validates the stocks entered
+        validateSystemFile(newStocks);
+
+        // We can successfully update the stocks in our system
+        StockHandler.getInstance().setStocks(newStocks);
     }
 
     @Override
     public String getAllStocks() {
-        return null;
+        StringBuilder stocksInfo = new StringBuilder();
+        ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
+
+        // Get the basic info about every stock
+        for (Stock stock : stocks) {
+            stocksInfo.append("Basic Info is:\n");
+            stocksInfo.append(stock.toString()).append("\n");
+            final ArrayList<Transaction> sortedTransactions = stock.getTransactionsSortedByDate();
+
+            if (sortedTransactions.size() > 0) {
+                stocksInfo.append("And more info about the transactions of this stock:\n");
+
+                // Get the basic info about every order
+                for (Transaction transaction : sortedTransactions) {
+                    stocksInfo.append(transaction.toString());
+                }
+            }
+        }
+
+        return stocksInfo.toString();
     }
 
     @Override
-    public String getStock(String symbol) {
-        return null;
+    public String getStock(String symbol) throws StockException {
+        final Stock selectedStock = StockHandler.getInstance().getStockBySymbol(symbol);
+
+        if (selectedStock == null) {
+            throw new SymbolDoesntExistException(symbol);
+        }
+
+        StringBuilder stocksInfo = new StringBuilder();
+        ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
+
+        // Get the basic info
+        stocksInfo.append("Basic Info is:\n");
+        stocksInfo.append(selectedStock.toString()).append("\n");
+        stocksInfo.append("And more info about the transactions of this stock:\n");
+        final ArrayList<Transaction> sortedTransactions = selectedStock.getTransactionsSortedByDate();
+
+        if (sortedTransactions.size() == 0) {
+            stocksInfo.append("No transactions were made on this stock\n");
+        } else {
+            // Get the basic info about every transaction
+            for (Transaction transaction : sortedTransactions) {
+                stocksInfo.append(transaction.toString());
+            }
+        }
+
+        return stocksInfo.toString();
     }
 
     @Override
@@ -62,7 +190,7 @@ public final class BLManager implements IAPICommands {
                     }
 
                 } else {
-                    returnValue = "The order has been added to the book"+ "\n";
+                    returnValue = "The order has been added to the book" + "\n";
                 }
             }
         } catch (StockException e) {
@@ -89,7 +217,7 @@ public final class BLManager implements IAPICommands {
                     }
 
                 } else {
-                    returnValue = "The order has been added to the book"+ "\n";
+                    returnValue = "The order has been added to the book" + "\n";
                 }
             }
         } catch (StockException e) {
@@ -107,9 +235,9 @@ public final class BLManager implements IAPICommands {
             ArrayList<Transaction> newTransactions;
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
                 if (!StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionFOK(true, numberOfStocks, lowestPrice)) {
-                    returnValue = "It is not possible to add this order."+ "\n";
+                    returnValue = "It is not possible to add this order." + "\n";
                 } else {
-                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks,lowestPrice,OrderType.FOK);
+                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, lowestPrice, OrderType.FOK);
                     newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(true);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
@@ -133,9 +261,9 @@ public final class BLManager implements IAPICommands {
             ArrayList<Transaction> newTransactions;
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
                 if (!StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionFOK(false, numberOfStocks, highestPrice)) {
-                    returnValue = "It is not possible to add this order."+ "\n";
+                    returnValue = "It is not possible to add this order." + "\n";
                 } else {
-                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks,highestPrice,OrderType.FOK);
+                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, highestPrice, OrderType.FOK);
                     newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(false);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
@@ -160,14 +288,14 @@ public final class BLManager implements IAPICommands {
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
                 int isItPossibleToMakeATransactionIOC = StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionIOC(true, numberOfStocks, lowestPrice);
                 if (isItPossibleToMakeATransactionIOC == -1) {
-                    returnValue = "It is not possible to add this order."+ "\n";
+                    returnValue = "It is not possible to add this order." + "\n";
                 } else {
-                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks-isItPossibleToMakeATransactionIOC,lowestPrice,OrderType.IOC);
-                        newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(true);
+                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, lowestPrice, OrderType.IOC);
+                    newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(true);
 
-                        returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
-                        for (Transaction transaction : newTransactions) {
-                            returnValue = returnValue.concat(transaction.toString());
+                    returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
+                    for (Transaction transaction : newTransactions) {
+                        returnValue = returnValue.concat(transaction.toString());
                     }
                 }
             }
@@ -187,9 +315,9 @@ public final class BLManager implements IAPICommands {
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
                 int isItPossibleToMakeATransactionIOC = StockHandler.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionIOC(false, numberOfStocks, highestPrice);
                 if (isItPossibleToMakeATransactionIOC == -1) {
-                    returnValue = "It is not possible to add this order."+ "\n";
+                    returnValue = "It is not possible to add this order." + "\n";
                 } else {
-                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks-isItPossibleToMakeATransactionIOC,highestPrice,OrderType.IOC);
+                    StockHandler.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, highestPrice, OrderType.IOC);
                     newTransactions = StockHandler.getInstance().getStockBySymbol(symbol).makeATransaction(false);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
@@ -222,7 +350,7 @@ public final class BLManager implements IAPICommands {
                     }
 
                 } else {
-                    returnValue = "The order has been added to the book"+ "\n";
+                    returnValue = "The order has been added to the book" + "\n";
                 }
             }
         } catch (StockException e) {
@@ -249,7 +377,7 @@ public final class BLManager implements IAPICommands {
                     }
 
                 } else {
-                    returnValue = "The order has been added to the book"+ "\n";
+                    returnValue = "The order has been added to the book" + "\n";
                 }
             }
         } catch (StockException e) {
@@ -266,7 +394,7 @@ public final class BLManager implements IAPICommands {
 
         if (orders.size() == 0) {
             returnValue = "Zero sell orders is pending" + "\n" +
-                    "Total sell orders volume: 0"+ "\n";
+                    "Total sell orders volume: 0" + "\n";
         } else if (orders.size() == 1) {
             returnValue = "One sell order is pending:" + "\n"
                     + orders.get(0).toString() + "\n" +
@@ -335,16 +463,94 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String saveDataToFile(String path) {
-        return null;
+    public void saveDataToFile(String path) throws IOException {
+        FileIO.getInstance().setFilePath(path);
+
+        FileOutputStream fos = new FileOutputStream(path);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+        // Get the stocks list
+        ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
+        // TODO: Save the state of orders and exchange commands after Omer finish
+        // Maybe as Object[]?
+
+        // Write the stocks to the file
+        oos.writeObject(stocks);
+        oos.close();
     }
 
-    private boolean verifySellBuyExecution(String symbol, int numberOfStocks) throws SymbolIsntExistsException, StocksNumberIsntValidException {
+    @Override
+    public void loadDataFromFile(String path) throws InvalidSystemDataFile, IOException, ClassNotFoundException {
+            final String filePath = FileIO.getInstance().getFilePath();
+            if (filePath == null) {
+                throw new InvalidSystemDataFile("it doesn't exist");
+            }
+
+            FileInputStream fis = new FileInputStream(FileIO.getInstance().getFilePath());
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            ArrayList<Stock> stocks = (ArrayList<Stock>) ois.readObject();
+            StockHandler.getInstance().setStocks(stocks);
+            ois.close();
+    }
+
+    private boolean verifySellBuyExecution(String symbol, int numberOfStocks) throws SymbolDoesntExistException, StocksNumberIsntValidException {
         if (!StockHandler.getInstance().isSymbolExists(symbol)) {
-            throw new SymbolIsntExistsException(symbol);
+            throw new SymbolDoesntExistException(symbol);
         } else if (numberOfStocks <= 0) {
             throw new StocksNumberIsntValidException();
         }
         return true;
+    }
+
+    /**
+     * Validates the entered stocks are unique (symbol and company name)
+     *
+     * @param stocks - the stocks to validate
+     * @throws StockSymbolAlreadyExistException - if symbol already exists
+     * @throws CompanyAlreadyExistException     - if company already has stocks
+     */
+    private void validateSystemFile(final ArrayList<Stock> stocks) throws StockSymbolAlreadyExistException, CompanyAlreadyExistException {
+        // We don't have to run for each stock, because we already do it in the inner for
+        for (int stockCounter = 0; stockCounter < stocks.size(); stockCounter++) {
+            for (int tempStockCounter = stockCounter + 1; tempStockCounter < stocks.size(); tempStockCounter++) {
+
+                // Check the symbol is unique
+                if (stocks.get(tempStockCounter).getSymbol().toUpperCase(Locale.ROOT).equals(stocks.get(stockCounter).getSymbol().toUpperCase())) {
+                    throw new StockSymbolAlreadyExistException(stocks.get(tempStockCounter).getSymbol());
+                }
+
+                // Check the company name is unique
+                if (stocks.get(tempStockCounter).getCompanyName().equals(stocks.get(stockCounter).getCompanyName())) {
+                    throw new CompanyAlreadyExistException(stocks.get(stockCounter).getCompanyName());
+                }
+            }
+        }
+    }
+
+    /**
+     * Get the file extension
+     *
+     * @param file - the file
+     * @return - the extension (".xml" for example)
+     */
+    private String getFileExtension(final File file) {
+        final String name = file.getName();
+        int lastIndexOf = name.lastIndexOf(".");
+
+        if (lastIndexOf == -1) {
+            return ""; // empty extension
+        }
+
+        return name.substring(lastIndexOf);
+    }
+
+    /**
+     * Checks if the given string contain only letters
+     *
+     * @param name - the string to check
+     * @return - true if contains only letters, else false
+     */
+    private boolean isAlpha(final String name) {
+        return name.matches("[a-zA-Z]+");
     }
 }
