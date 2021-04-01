@@ -225,6 +225,6 @@ public class Stock implements Serializable {
                 "Company Name: " + companyName + "\n" +
                 "Price: " + price + "\n" +
                 "Total orders number: " + getCompletedTransactions().size() + "\n" +
-                "Last Month Orders Period: " + ordersPeriod + "\n";
+                "Orders Period: " + ordersPeriod + "\n";
     }
 }

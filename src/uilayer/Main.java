@@ -198,6 +198,6 @@ public class Main {
                 "5. Show All Trade Commands\n" +
                 "6. Exit System\n" +
                 "7. Save System Data To A File\n" +
-                "8. Read System Data From a File");
+                "8. Load System Data From a Previously Saved File");
     }
 }
