@@ -12,7 +12,7 @@ public class Main {
     private static final ConsoleIOHandler ConsoleHandler = new ConsoleIOHandler();
 
     public static void main(String[] args) {
-        String currentCommand;
+        int currentCommand;
 
         ConsoleHandler.write("Hello!");
 
@@ -24,17 +24,10 @@ public class Main {
             showMainCommandsMenu();
 
             // Get the chosen command from the user input
-            currentCommand = ConsoleHandler.read();
-
-            int currentCommandNum = -1;
-            try {
-                currentCommandNum = Integer.parseInt(currentCommand) - 1;
-            } catch (NumberFormatException e) {
-                ConsoleHandler.write("The commands are represented by their number from the menu. Please enter a number");
-            }
+            currentCommand = ConsoleHandler.readInt() - 1;
 
             // Map the command to its execution
-            switch (currentCommandNum) {
+            switch (currentCommand) {
                 // Read System Details File Command
                 case (0): {
                     // Get the file's path
@@ -110,16 +103,16 @@ public class Main {
                     }
 
                     ConsoleHandler.write("Enter stock symbol:");
-                    String stockName = ConsoleHandler.read().toLowerCase();
+                    final String stockName = ConsoleHandler.read();
 
                     ConsoleHandler.write("Enter amount of stocks:");
-                    int amountOfStocks = ConsoleHandler.readInt();
+                    final int amountOfStocks = ConsoleHandler.readInt();
 
                     try {
                         // LMT
                         if (orderTypeSymbol == 1) {
                             ConsoleHandler.write("Enter exchange rate (price):");
-                            int exchangeRate = ConsoleHandler.readInt();
+                            final int exchangeRate = ConsoleHandler.readInt();
                             String returnValue = isBuyOrder == 1 ? APIGatewayManager.getInstance().sellLMTOrder(stockName, amountOfStocks, exchangeRate) :
                                     APIGatewayManager.getInstance().buyLMTOrder(stockName, amountOfStocks, exchangeRate);
                             ConsoleHandler.write(returnValue);
@@ -162,7 +155,7 @@ public class Main {
                         ConsoleHandler.write("Saved the current data successfully");
                     } catch (final IOException ioException) {
                         ConsoleHandler.write("There was a problem while saving the data to the file " +
-                                "because of \" + e.getMessage()");
+                                "because of " + ioException.getMessage());
                     }
 
                     break;
@@ -182,7 +175,7 @@ public class Main {
                 }
                 default: {
                     // If we got to here then the user entered a number of a command that doesn't exist
-                    ConsoleHandler.write("The number you entered is not in the list. Please try again");
+                    ConsoleHandler.write("You can only choose a number from the list");
 
                     break;
                 }
@@ -198,6 +191,6 @@ public class Main {
                 "5. Show All Trade Commands\n" +
                 "6. Exit System\n" +
                 "7. Save System Data To A File\n" +
-                "8. Read System Data From a File");
+                "8. Load System Data From a Previously Saved File");
     }
 }
