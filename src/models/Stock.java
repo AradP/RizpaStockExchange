@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class Stock implements Serializable {
@@ -196,13 +197,13 @@ public class Stock implements Serializable {
     }
 
     /**
-     * Returns the transactions sorted be date
+     * Returns the transactions sorted by date
      *
      * @return the sorted transactions
      */
     public ArrayList<Transaction> getTransactionsSortedByDate() {
         ArrayList<Transaction> sortedTransactions = new ArrayList<>(getCompletedTransactions());
-        sortedTransactions.sort(Comparator.comparing(Transaction::getTimeStamp));
+        Collections.reverse(sortedTransactions);
         return sortedTransactions;
     }
 
@@ -214,7 +215,7 @@ public class Stock implements Serializable {
     @Override
     public String toString() {
         double ordersPeriod = 0;
-        final ArrayList<Transaction> sortedTransactions = getTransactionsSortedByDate();
+        final ArrayList<Transaction> sortedTransactions = getCompletedTransactions();
 
         // Calculate orders period
         for (Transaction transaction : sortedTransactions) {
@@ -223,8 +224,8 @@ public class Stock implements Serializable {
 
         return "Symbol: " + symbol + "\n" +
                 "Company Name: " + companyName + "\n" +
-                "Price: " + price + "\n" +
-                "Total orders number: " + getCompletedTransactions().size() + "\n" +
-                "Orders Period: " + ordersPeriod + "\n";
+                "Single Stock Price: " + price + "\n" +
+                "Total transactions number: " + getCompletedTransactions().size() + "\n" +
+                "Total transactions volume: " + ordersPeriod + "\n";
     }
 }

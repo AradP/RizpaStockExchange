@@ -121,10 +121,10 @@ public final class APIGatewayManager implements IAPICommands {
 
         for (Stock stock : StockHandler.getInstance().getStocks()) {
             returnValue = returnValue.concat(stock.getSymbol() + ":" + "\n");
-            returnValue = returnValue.concat(BLManager.getInstance().getPendingBuyOrder(stock.getSymbol()));
+            returnValue = returnValue.concat(BLManager.getInstance().getPendingBuyOrders(stock.getSymbol()));
             returnValue = returnValue.concat("\n");
 
-            returnValue = returnValue.concat(BLManager.getInstance().getPendingSellOrder(stock.getSymbol()));
+            returnValue = returnValue.concat(BLManager.getInstance().getPendingSellOrders(stock.getSymbol()));
             returnValue = returnValue.concat("\n");
 
             returnValue = returnValue.concat(BLManager.getInstance().getTransactionsHistory(stock.getSymbol()));
@@ -135,13 +135,13 @@ public final class APIGatewayManager implements IAPICommands {
     }
 
     @Override
-    public String getPendingSellOrder(final String symbol) {
-        return blManager.getPendingSellOrder(symbol);
+    public String getPendingSellOrders(final String symbol) {
+        return blManager.getPendingSellOrders(symbol);
     }
 
     @Override
-    public String getPendingBuyOrder(final String symbol) {
-        return blManager.getPendingBuyOrder(symbol);
+    public String getPendingBuyOrders(final String symbol) {
+        return blManager.getPendingBuyOrders(symbol);
     }
 
     @Override

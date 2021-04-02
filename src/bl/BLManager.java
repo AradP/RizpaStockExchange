@@ -18,6 +18,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,7 +41,7 @@ public final class BLManager implements IAPICommands {
     //endregion
 
     @Override
-    public void loadConfigurationFileByPath(String xmlFilePath) throws StockException {
+    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException {
         final File systemDetailsFile = new File(xmlFilePath);
 
         // Validates this really is a xml file
@@ -122,41 +123,30 @@ public final class BLManager implements IAPICommands {
 
     @Override
     public String getAllStocks() {
-        StringBuilder stocksInfo = new StringBuilder();
-        ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
+        final StringBuilder stocksInfo = new StringBuilder();
+        final ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
 
         // Get the basic info about every stock
         for (Stock stock : stocks) {
-            stocksInfo.append("Basic Info is:\n");
+            stocksInfo.append("Basic Info of this stock is:\n");
             stocksInfo.append(stock.toString()).append("\n");
-            final ArrayList<Transaction> sortedTransactions = stock.getTransactionsSortedByDate();
-
-            if (sortedTransactions.size() > 0) {
-                stocksInfo.append("And more info about the transactions of this stock:\n");
-
-                // Get the basic info about every order
-                for (Transaction transaction : sortedTransactions) {
-                    stocksInfo.append(transaction.toString());
-                }
-            }
         }
 
         return stocksInfo.toString();
     }
 
     @Override
-    public String getStock(String symbol) throws StockException {
+    public String getStock(final String symbol) throws StockException {
         final Stock selectedStock = StockHandler.getInstance().getStockBySymbol(symbol);
 
         if (selectedStock == null) {
             throw new SymbolDoesntExistException(symbol);
         }
 
-        StringBuilder stocksInfo = new StringBuilder();
-        ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
+        final StringBuilder stocksInfo = new StringBuilder();
 
         // Get the basic info
-        stocksInfo.append("Basic Info is:\n");
+        stocksInfo.append("Basic Info of this stock is:\n");
         stocksInfo.append(selectedStock.toString()).append("\n");
         stocksInfo.append("And more info about the transactions of this stock:\n");
         final ArrayList<Transaction> sortedTransactions = selectedStock.getTransactionsSortedByDate();
@@ -167,6 +157,7 @@ public final class BLManager implements IAPICommands {
             // Get the basic info about every transaction
             for (Transaction transaction : sortedTransactions) {
                 stocksInfo.append(transaction.toString());
+                stocksInfo.append("\n");
             }
         }
 
@@ -174,7 +165,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellLMTOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+    public String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
         String returnValue = "";
 
         try {
@@ -186,7 +177,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue = returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString()) + "\n";
                     }
 
                 } else {
@@ -201,7 +192,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyLMTOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+    public String buyLMTOrder(final String symbol, int numberOfStocks, final double highestPrice) throws StockException {
         String returnValue = "";
 
         try {
@@ -213,7 +204,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue = returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString()) + "\n";
                     }
 
                 } else {
@@ -228,7 +219,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellFOKOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+    public String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
         String returnValue = "";
 
         try {
@@ -242,7 +233,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue = returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString()) + "\n";
                     }
                 }
             }
@@ -254,7 +245,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyFOKOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+    public String buyFOKOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException {
         String returnValue = "";
 
         try {
@@ -268,7 +259,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue = returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString()) + "\n";
                     }
                 }
             }
@@ -280,7 +271,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellIOCOrder(String symbol, int numberOfStocks, double lowestPrice) throws StockException {
+    public String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
         String returnValue = "";
 
         try {
@@ -295,7 +286,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue = returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString()) + "\n";
                     }
                 }
             }
@@ -307,7 +298,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyIOCOrder(String symbol, int numberOfStocks, double highestPrice) throws StockException {
+    public String buyIOCOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException {
         String returnValue = "";
 
         try {
@@ -322,7 +313,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue = returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString()) + "\n";
                     }
                 }
             }
@@ -334,7 +325,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellMKTOrder(String symbol, int numberOfStocks) throws StockException {
+    public String sellMKTOrder(final String symbol, final int numberOfStocks) throws StockException {
         String returnValue = "";
 
         try {
@@ -346,7 +337,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue = returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString()) + "\n";
                     }
 
                 } else {
@@ -361,7 +352,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyMKTOrder(String symbol, int numberOfStocks) throws StockException {
+    public String buyMKTOrder(final String symbol, final int numberOfStocks) throws StockException {
         String returnValue = "";
 
         try {
@@ -373,7 +364,7 @@ public final class BLManager implements IAPICommands {
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
                     for (Transaction transaction : newTransactions) {
-                        returnValue = returnValue.concat(transaction.toString());
+                        returnValue = returnValue.concat(transaction.toString()) + "\n";
                     }
 
                 } else {
@@ -388,12 +379,12 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String getPendingSellOrder(String symbol) {
+    public String getPendingSellOrders(final String symbol) {
         String returnValue = "";
         List<Order> orders = StockHandler.getInstance().getPendingSellOrder(symbol);
 
         if (orders.size() == 0) {
-            returnValue = "Zero sell orders is pending" + "\n" +
+            returnValue = "Zero sell orders are pending" + "\n" +
                     "Total sell orders volume: 0" + "\n";
         } else if (orders.size() == 1) {
             returnValue = "One sell order is pending:" + "\n"
@@ -403,7 +394,7 @@ public final class BLManager implements IAPICommands {
             int totalOrderPrice = 0;
             returnValue = orders.size() + " sell orders are pending:" + "\n";
             for (Order order : orders) {
-                returnValue = returnValue.concat(order.toString());
+                returnValue = returnValue.concat(order.toString()) + "\n";
                 totalOrderPrice += order.getVolume();
             }
 
@@ -413,12 +404,12 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String getPendingBuyOrder(String symbol) {
+    public String getPendingBuyOrders(final String symbol) {
         String returnValue = "";
         List<Order> orders = StockHandler.getInstance().getPendingBuyOrder(symbol);
 
         if (orders.size() == 0) {
-            returnValue = "Zero buy orders is pending" + "\n" +
+            returnValue = "Zero buy orders are pending" + "\n" +
                     "Total buy orders volume: 0";
         } else if (orders.size() == 1) {
             returnValue = "One buy order is pending:" + "\n"
@@ -428,7 +419,7 @@ public final class BLManager implements IAPICommands {
             int totalOrderPrice = 0;
             returnValue = orders.size() + " buy orders are pending:" + "\n";
             for (Order order : orders) {
-                returnValue = returnValue.concat(order.toString());
+                returnValue = returnValue.concat(order.toString()) + " \n";
                 totalOrderPrice += order.getVolume();
             }
 
@@ -438,27 +429,19 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String getTransactionsHistory(String symbol) {
+    public String getTransactionsHistory(final String symbol) {
         String returnValue = "";
-        List<Transaction> transactions = StockHandler.getInstance().getTransactionsHistory(symbol);
+        final List<Transaction> transactions = StockHandler.getInstance().getTransactionsHistory(symbol);
 
-        if (transactions.size() == 0) {
-            returnValue = "Zero transaction is pending" + "\n" +
-                    "Total transaction volume: 0";
-        } else if (transactions.size() == 1) {
-            returnValue = "One transaction is pending:" + "\n"
-                    + transactions.get(0).toString() + "\n" +
-                    "Total transactions volume: " + transactions.get(0).getVolume();
-        } else {
-            int totalOrderPrice = 0;
-            returnValue = transactions.size() + " transactions are pending:" + "\n";
-            for (Transaction transaction : transactions) {
-                returnValue = returnValue.concat(transaction.toString());
-                totalOrderPrice += transaction.getVolume();
-            }
+        int totalOrderPrice = 0;
+        returnValue = "Number of Executed Transactions: " + transactions.size() + "\n";
 
-            returnValue = returnValue.concat("Total transactions volume: " + totalOrderPrice);
+        for (Transaction transaction : transactions) {
+            returnValue = returnValue.concat(transaction.toString()) + "\n";
+            totalOrderPrice += transaction.getVolume();
         }
+
+        returnValue = returnValue.concat("Total Executed Transactions Volume: " + totalOrderPrice);
         return returnValue + "\n";
     }
 
@@ -469,8 +452,6 @@ public final class BLManager implements IAPICommands {
 
         // Get the stocks list
         ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
-        // TODO: Save the state of orders and exchange commands after Omer finish
-        // Maybe as Object[]?
 
         // Write the stocks to the file
         oos.writeObject(stocks);

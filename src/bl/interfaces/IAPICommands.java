@@ -30,9 +30,9 @@ public interface IAPICommands {
 
     String buyMKTOrder(final String symbol, final int numberOfStocks) throws StockException;
 
-    String getPendingSellOrder(final String symbol);
+    String getPendingSellOrders(final String symbol);
 
-    String getPendingBuyOrder(final String symbol);
+    String getPendingBuyOrders(final String symbol);
 
     String getTransactionsHistory(final String symbol);
 

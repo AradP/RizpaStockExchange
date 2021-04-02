@@ -2,13 +2,14 @@ package models;
 
 import enums.OrderType;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable {
     private String symbol;
     private String timestamp;
     private int count;

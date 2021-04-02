@@ -1,12 +1,13 @@
 package models;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements Serializable {
     private String symbol;
     private String timeStamp;
     private int amountOfStocks;
@@ -81,5 +82,5 @@ public class Transaction {
         return "Date: " + getTimeStamp() + "\n" +
                 "Number Of Stocks: " + getAmountOfStocks() + "\n" +
                 "Single Stock Price: " + getPrice() + "\n" +
-                "Total Transaction Price: " + getVolume() + "\n";    }
+                "Total Transaction volume: " + getVolume() + "\n";    }
 }
