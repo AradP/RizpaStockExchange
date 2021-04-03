@@ -1,10 +1,5 @@
 package bl;
 
-
-import models.Order;
-
-import java.util.ArrayList;
-
 public final class OrderManager {
 
     //region Lazy Singleton

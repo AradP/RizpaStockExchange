@@ -39,7 +39,8 @@ public class Order implements Serializable {
     public void setCount(int count) {
         this.count = count;
     }
-    public void reduceCount(int countToReduce){
+
+    public void reduceCount(int countToReduce) {
         this.count -= countToReduce;
     }
 

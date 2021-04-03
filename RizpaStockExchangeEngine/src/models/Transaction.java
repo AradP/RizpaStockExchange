@@ -82,5 +82,6 @@ public class Transaction implements Serializable {
         return "Date: " + getTimeStamp() + "\n" +
                 "Number Of Stocks: " + getAmountOfStocks() + "\n" +
                 "Single Stock Price: " + getPrice() + "\n" +
-                "Total Transaction volume: " + getVolume() + "\n";    }
+                "Total Transaction volume: " + getVolume() + "\n";
+    }
 }

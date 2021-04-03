@@ -3,8 +3,6 @@ package models;
 import enums.OrderType;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -219,7 +217,7 @@ public class Stock implements Serializable {
 
         // Calculate orders period
         for (Transaction transaction : sortedTransactions) {
-                ordersPeriod += transaction.getVolume();
+            ordersPeriod += transaction.getVolume();
         }
 
         return "Symbol: " + symbol + "\n" +

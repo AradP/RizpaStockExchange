@@ -2,22 +2,26 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="RizpaStockExchangeEngine:jar" />
       <artifact name="RizpaStockExchangeEngine:jar2" />
       <artifact name="RizpaStockExchangeUI:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/ObjectFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RizpaStockExchangeDescriptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStocks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/apigateway/APIGatewayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/apigateway/APIGatewayManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/OrderManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/interfaces/IAPICommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/interfaces/IAPICommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RizpaStockExchangeDescriptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RizpaStockExchangeDescriptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/StockHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/StockHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUI/src/ConsoleIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/ConsoleIOHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +100,9 @@
       <workItem from="1617449711928" duration="2248000" />
       <workItem from="1617462646748" duration="1372000" />
       <workItem from="1617466077897" duration="337000" />
-      <workItem from="1617467099421" duration="1738000" />
+      <workItem from="1617467099421" duration="2387000" />
+      <workItem from="1617469719805" duration="273000" />
+      <workItem from="1617470032341" duration="695000" />
     </task>
     <servers />
   </component>

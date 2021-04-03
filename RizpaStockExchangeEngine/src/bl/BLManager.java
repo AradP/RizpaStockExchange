@@ -3,23 +3,14 @@ package bl;
 import bl.interfaces.IAPICommands;
 import enums.OrderType;
 import models.*;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import stocks.StockHandler;
 import stocks.exceptions.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,32 +43,16 @@ public final class BLManager implements IAPICommands {
             throw new InvalidSystemDataFile("the given file is not a xml file");
         }
 
-        InputStream inputStream = new FileInputStream(systemDetailsFile);
-        RizpaStockExchangeDescriptor rseDescriptor = deserializeFrom(inputStream);
+        final InputStream inputStream = new FileInputStream(systemDetailsFile);
+        final RizpaStockExchangeDescriptor rseDescriptor = deserializeFrom(inputStream);
 
         final ArrayList<Stock> newStocks = new ArrayList<Stock>();
 
         for (final RseStock currRseStock : rseDescriptor.getRseStocks().getRseStock()) {
-            // Validate the stock contains only letters and only in English
-            if (!isAlpha(currRseStock.getRseSymbol())) {
-                throw new InvalidSystemDataFile("Stock symbol must contain only English letters");
-            }
+            validateRSEStock(currRseStock);
 
-            if (currRseStock.getRsePrice() <= 0) {
-                throw new InvalidSystemDataFile("Price must be a positive number");
-            }
-
-            final String currCompanyName = currRseStock.getRseCompanyName();
-            if (currCompanyName.isEmpty()) {
-                throw new InvalidSystemDataFile("Company name can't be empty");
-            }
-
-            if (currCompanyName.startsWith(" ") || currCompanyName.endsWith(" ")) {
-                throw new InvalidSystemDataFile("Company name can't start or end with a space");
-            }
-
-            Stock stock = new Stock(currRseStock.getRseSymbol().toUpperCase(),
-                    currCompanyName,
+            final Stock stock = new Stock(currRseStock.getRseSymbol().toUpperCase(),
+                    currRseStock.getRseCompanyName(),
                     currRseStock.getRsePrice());
 
             newStocks.add(stock);
@@ -87,10 +62,7 @@ public final class BLManager implements IAPICommands {
         validateSystemFile(newStocks);
 
         // We can successfully update the stocks in our system
-        StockHandler.getInstance().
-
-                setStocks(newStocks);
-
+        StockHandler.getInstance().setStocks(newStocks);
     }
 
     @Override
@@ -99,7 +71,7 @@ public final class BLManager implements IAPICommands {
         final ArrayList<Stock> stocks = StockHandler.getInstance().getStocks();
 
         // Get the basic info about every stock
-        for (Stock stock : stocks) {
+        for (final Stock stock : stocks) {
             stocksInfo.append("Basic Info of this stock is:\n");
             stocksInfo.append(stock.toString()).append("\n");
         }
@@ -127,7 +99,7 @@ public final class BLManager implements IAPICommands {
             stocksInfo.append("No transactions were made on this stock\n");
         } else {
             // Get the basic info about every transaction
-            for (Transaction transaction : sortedTransactions) {
+            for (final Transaction transaction : sortedTransactions) {
                 stocksInfo.append(transaction.toString());
                 stocksInfo.append("\n");
             }
@@ -418,7 +390,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public void saveDataToFile(String path) throws IOException {
+    public void saveDataToFile(final String path) throws IOException {
         FileOutputStream fos = new FileOutputStream(path);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
 
@@ -431,7 +403,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public void loadDataFromFile(String path) throws InvalidSystemDataFile, IOException, ClassNotFoundException {
+    public void loadDataFromFile(final String path) throws InvalidSystemDataFile, IOException, ClassNotFoundException {
         if (path == null) {
             throw new InvalidSystemDataFile("it doesn't exist");
         }
@@ -448,7 +420,7 @@ public final class BLManager implements IAPICommands {
         System.exit(0);
     }
 
-    private boolean verifySellBuyExecution(String symbol, int numberOfStocks) throws SymbolDoesntExistException, StocksNumberIsntValidException {
+    private boolean verifySellBuyExecution(final String symbol, int numberOfStocks) throws SymbolDoesntExistException, StocksNumberIsntValidException {
         if (!StockHandler.getInstance().isSymbolExists(symbol)) {
             throw new SymbolDoesntExistException(symbol);
         } else if (numberOfStocks <= 0) {
@@ -510,9 +482,35 @@ public final class BLManager implements IAPICommands {
     }
 
     private RizpaStockExchangeDescriptor deserializeFrom(final InputStream in) throws JAXBException {
-        JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PKG_NAME);
+        final JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PKG_NAME);
 
-        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        final Unmarshaller unmarshaller = jc.createUnmarshaller();
         return (RizpaStockExchangeDescriptor) unmarshaller.unmarshal(in);
+    }
+
+    /**
+     * Checks whether an rseStock is corrupted or not
+     *
+     * @param rseStock - the rseStock to check
+     * @throws InvalidSystemDataFile - if the stock is invalid
+     */
+    private void validateRSEStock(final RseStock rseStock) throws InvalidSystemDataFile {
+        // Validate the stock contains only letters and only in English
+        if (!isAlpha(rseStock.getRseSymbol())) {
+            throw new InvalidSystemDataFile("Stock symbol must contain only English letters");
+        }
+
+        if (rseStock.getRsePrice() <= 0) {
+            throw new InvalidSystemDataFile("Price must be a positive number");
+        }
+
+        final String currCompanyName = rseStock.getRseCompanyName();
+        if (currCompanyName.isEmpty()) {
+            throw new InvalidSystemDataFile("Company name can't be empty");
+        }
+
+        if (currCompanyName.startsWith(" ") || currCompanyName.endsWith(" ")) {
+            throw new InvalidSystemDataFile("Company name can't start or end with a space");
+        }
     }
 }

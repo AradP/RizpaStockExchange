@@ -24,8 +24,7 @@ public class ConsoleIOHandler {
             final String logWithException = "Could not read the entered value because of " + e.getMessage();
             this.write(logWithException);
             log.warning(logWithException);
-        }
-        catch(final NumberFormatException e){
+        } catch (final NumberFormatException e) {
             final String logWithException = "Could not read the number";
             this.write(logWithException);
         }

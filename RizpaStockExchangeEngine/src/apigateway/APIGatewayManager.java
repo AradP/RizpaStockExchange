@@ -42,7 +42,7 @@ public final class APIGatewayManager implements IAPICommands {
     }
 
     @Override
-    public String getStock(final String symbol) throws StockException{
+    public String getStock(final String symbol) throws StockException {
         return blManager.getStock(symbol);
     }
 
@@ -121,7 +121,7 @@ public final class APIGatewayManager implements IAPICommands {
     public String AllOrdersAndTransactions() {
         String returnValue = "";
 
-        for (Stock stock : StockHandler.getInstance().getStocks()) {
+        for (final Stock stock : StockHandler.getInstance().getStocks()) {
             returnValue = returnValue.concat(stock.getSymbol() + ":" + "\n");
             returnValue = returnValue.concat(BLManager.getInstance().getPendingBuyOrders(stock.getSymbol()));
             returnValue = returnValue.concat("\n");

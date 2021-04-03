@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -33,8 +33,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -52,11 +50,9 @@ public class RseStock {
 
     /**
      * Gets the value of the rseSymbol property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRseSymbol() {
         return rseSymbol;
@@ -64,11 +60,9 @@ public class RseStock {
 
     /**
      * Sets the value of the rseSymbol property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRseSymbol(String value) {
         this.rseSymbol = value;
@@ -76,11 +70,9 @@ public class RseStock {
 
     /**
      * Gets the value of the rseCompanyName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRseCompanyName() {
         return rseCompanyName;
@@ -88,11 +80,9 @@ public class RseStock {
 
     /**
      * Sets the value of the rseCompanyName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRseCompanyName(String value) {
         this.rseCompanyName = value;
@@ -100,7 +90,6 @@ public class RseStock {
 
     /**
      * Gets the value of the rsePrice property.
-     * 
      */
     public int getRsePrice() {
         return rsePrice;
@@ -108,7 +97,6 @@ public class RseStock {
 
     /**
      * Sets the value of the rsePrice property.
-     * 
      */
     public void setRsePrice(int value) {
         this.rsePrice = value;
