@@ -4,6 +4,8 @@ import stocks.StockHandler;
 import stocks.exceptions.InvalidSystemDataFile;
 import stocks.exceptions.StockException;
 
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main {
@@ -35,8 +37,8 @@ public class Main {
                     try {
                         APIGatewayManager.getInstance().loadConfigurationFileByPath(filePath);
                         ConsoleHandler.write("Successfully updated the stocks in the system");
-                    } catch (StockException stockException) {
-                        ConsoleHandler.write(stockException.getMessage());
+                    } catch (StockException | FileNotFoundException | JAXBException e) {
+                        ConsoleHandler.write(e.getMessage());
                     }
 
                     break;
@@ -184,7 +186,7 @@ public class Main {
     private static void showMainCommandsMenu() {
         ConsoleHandler.write("1. Read System Details File\n" +
                 "2. Show All Stocks\n" +
-                "3. Show A Single stocks\n" +
+                "3. Show A Single stock\n" +
                 "4. Execute Trade\n" +
                 "5. Show All Trade Commands\n" +
                 "6. Exit System\n" +

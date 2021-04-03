@@ -3,12 +3,13 @@ package bl.interfaces;
 import stocks.exceptions.InvalidSystemDataFile;
 import stocks.exceptions.StockException;
 
+import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 public interface IAPICommands {
-    void loadConfigurationFileByPath(final String xmlFilePath) throws StockException;
+    void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException;
 
     String getAllStocks();
 

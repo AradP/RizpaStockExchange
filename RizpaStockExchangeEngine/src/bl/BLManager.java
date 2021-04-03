@@ -2,9 +2,7 @@ package bl;
 
 import bl.interfaces.IAPICommands;
 import enums.OrderType;
-import models.Order;
-import models.Stock;
-import models.Transaction;
+import models.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,6 +11,9 @@ import org.xml.sax.SAXException;
 import stocks.StockHandler;
 import stocks.exceptions.*;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,6 +25,7 @@ import java.util.Locale;
 
 public final class BLManager implements IAPICommands {
 
+    private final static String JAXB_XML_PKG_NAME = "models";
     //region Lazy Singleton
 
     private static BLManager instance;
@@ -41,7 +43,8 @@ public final class BLManager implements IAPICommands {
     //endregion
 
     @Override
-    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException {
+    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException {
+        // Validates this really is a xml file
         final File systemDetailsFile = new File(xmlFilePath);
 
         // Validates this really is a xml file
@@ -49,76 +52,45 @@ public final class BLManager implements IAPICommands {
             throw new InvalidSystemDataFile("the given file is not a xml file");
         }
 
-        final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = null;
+        InputStream inputStream = new FileInputStream(systemDetailsFile);
+        RizpaStockExchangeDescriptor rseDescriptor = deserializeFrom(inputStream);
 
-        try {
-            dBuilder = dbFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            throw new InvalidSystemDataFile(e.getMessage());
-        }
-
-        Document doc = null;
-        try {
-            doc = dBuilder.parse(systemDetailsFile);
-        } catch (SAXException | IOException e) {
-            throw new InvalidSystemDataFile(e.getMessage());
-
-        }
-
-        doc.getDocumentElement().normalize();
-        final NodeList nList = doc.getElementsByTagName("rse-stock");
         final ArrayList<Stock> newStocks = new ArrayList<Stock>();
 
-        // Get the information about each stock
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            final Node nNode = nList.item(temp);
-
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                final Element eElement = (Element) nNode;
-
-                final String tempStockSymbol = eElement.getElementsByTagName("rse-symbol").item(0).getTextContent();
-
-                // Validate the stock contains only letters and only in English
-                if (!isAlpha(tempStockSymbol)) {
-                    throw new InvalidSystemDataFile("Stock symbol must contain only English letters");
-                }
-
-                int tempStockPrice = 0;
-
-                try {
-                    tempStockPrice = Integer.parseInt(eElement.getElementsByTagName("rse-price").item(0).getTextContent());
-                } catch (NumberFormatException e) {
-                    throw new InvalidSystemDataFile("Price must be a number");
-                }
-
-                if (tempStockPrice <= 0) {
-                    throw new InvalidSystemDataFile("Price must be a positive number");
-                }
-
-                final String tempCompnanyName = eElement.getElementsByTagName("rse-company-name").item(0).getTextContent();
-
-                if (tempCompnanyName.isEmpty()) {
-                    throw new InvalidSystemDataFile("Company name can't be empty");
-                }
-
-                if (tempCompnanyName.startsWith(" ") || tempCompnanyName.endsWith(" ")) {
-                    throw new InvalidSystemDataFile("Company name can't start or end with a space");
-                }
-
-                Stock stock = new Stock(tempStockSymbol.toUpperCase(),
-                        tempCompnanyName,
-                        tempStockPrice);
-
-                newStocks.add(stock);
+        for (final RseStock currRseStock : rseDescriptor.getRseStocks().getRseStock()) {
+            // Validate the stock contains only letters and only in English
+            if (!isAlpha(currRseStock.getRseSymbol())) {
+                throw new InvalidSystemDataFile("Stock symbol must contain only English letters");
             }
+
+            if (currRseStock.getRsePrice() <= 0) {
+                throw new InvalidSystemDataFile("Price must be a positive number");
+            }
+
+            final String currCompanyName = currRseStock.getRseCompanyName();
+            if (currCompanyName.isEmpty()) {
+                throw new InvalidSystemDataFile("Company name can't be empty");
+            }
+
+            if (currCompanyName.startsWith(" ") || currCompanyName.endsWith(" ")) {
+                throw new InvalidSystemDataFile("Company name can't start or end with a space");
+            }
+
+            Stock stock = new Stock(currRseStock.getRseSymbol().toUpperCase(),
+                    currCompanyName,
+                    currRseStock.getRsePrice());
+
+            newStocks.add(stock);
         }
 
         // Validates the stocks entered
         validateSystemFile(newStocks);
 
         // We can successfully update the stocks in our system
-        StockHandler.getInstance().setStocks(newStocks);
+        StockHandler.getInstance().
+
+                setStocks(newStocks);
+
     }
 
     @Override
@@ -535,5 +507,12 @@ public final class BLManager implements IAPICommands {
      */
     private boolean isAlpha(final String name) {
         return name.matches("[a-zA-Z]+");
+    }
+
+    private RizpaStockExchangeDescriptor deserializeFrom(final InputStream in) throws JAXBException {
+        JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PKG_NAME);
+
+        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        return (RizpaStockExchangeDescriptor) unmarshaller.unmarshal(in);
     }
 }

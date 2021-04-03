@@ -7,6 +7,8 @@ import stocks.StockHandler;
 import stocks.exceptions.InvalidSystemDataFile;
 import stocks.exceptions.StockException;
 
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public final class APIGatewayManager implements IAPICommands {
@@ -30,7 +32,7 @@ public final class APIGatewayManager implements IAPICommands {
     private final BLManager blManager = BLManager.getInstance();
 
     @Override
-    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException {
+    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException {
         blManager.loadConfigurationFileByPath(xmlFilePath);
     }
 
