@@ -2,36 +2,13 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="RizpaStockExchangeEngine:jar" />
       <artifact name="RizpaStockExchangeEngine:jar2" />
+      <artifact name="RizpaStockExchangeUI:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/RizpaStockExchangeEngine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/RizpaStockExchangeUI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apigateway/APIGatewayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/apigateway/APIGatewayManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bl/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/OrderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bl/interfaces/IAPICommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/interfaces/IAPICommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/OrderType.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/enums/OrderType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stocks/StockHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/StockHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/CompanyAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/CompanyAlreadyExistException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/InvalidSystemDataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/InvalidSystemDataFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/StockException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StockException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/StockSymbolAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StockSymbolAlreadyExistException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/StocksNumberIsntValidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StocksNumberIsntValidException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/SymbolDoesntExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/SymbolDoesntExistException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uilayer/ConsoleIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/ConsoleIOHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uilayer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,7 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1617397793182</updated>
       <workItem from="1617397806302" duration="2457000" />
-      <workItem from="1617449711928" duration="1104000" />
+      <workItem from="1617449711928" duration="1587000" />
     </task>
     <servers />
   </component>
