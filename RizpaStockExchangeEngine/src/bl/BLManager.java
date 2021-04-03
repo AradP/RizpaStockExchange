@@ -471,6 +471,11 @@ public final class BLManager implements IAPICommands {
         ois.close();
     }
 
+    @Override
+    public void exitSystem() {
+        System.exit(0);
+    }
+
     private boolean verifySellBuyExecution(String symbol, int numberOfStocks) throws SymbolDoesntExistException, StocksNumberIsntValidException {
         if (!StockHandler.getInstance().isSymbolExists(symbol)) {
             throw new SymbolDoesntExistException(symbol);

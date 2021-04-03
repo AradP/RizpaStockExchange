@@ -39,4 +39,6 @@ public interface IAPICommands {
     void saveDataToFile(final String path) throws IOException;
 
     void loadDataFromFile(final String path) throws InvalidSystemDataFile, IOException, ClassNotFoundException;
+
+    void exitSystem();
 }

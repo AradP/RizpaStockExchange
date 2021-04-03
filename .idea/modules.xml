@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RizpaStockExchange.iml" filepath="$PROJECT_DIR$/RizpaStockExchange.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RizpaStockExchangeEngine/RizpaStockExchangeEngine.iml" filepath="$PROJECT_DIR$/RizpaStockExchangeEngine/RizpaStockExchangeEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RizpaStockExchangeUI/RizpaStockExchangeUI.iml" filepath="$PROJECT_DIR$/RizpaStockExchangeUI/RizpaStockExchangeUI.iml" />
     </modules>
   </component>
 </project>
