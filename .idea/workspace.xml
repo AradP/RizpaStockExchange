@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="RizpaStockExchangeEngine:jar2" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/RizpaStockExchangeEngine.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/RizpaStockExchangeUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apigateway/APIGatewayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/apigateway/APIGatewayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bl/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/OrderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bl/interfaces/IAPICommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/interfaces/IAPICommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enums/OrderType.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/enums/OrderType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stocks/StockHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/StockHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/CompanyAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/CompanyAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/InvalidSystemDataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/InvalidSystemDataFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/StockException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StockException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/StockSymbolAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StockSymbolAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/StocksNumberIsntValidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StocksNumberIsntValidException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stocks/exceptions/SymbolDoesntExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/SymbolDoesntExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uilayer/ConsoleIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/ConsoleIOHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uilayer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1qd7nzzOgBreljwbWapDsKajyUD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/RizpaStockExchangeUI" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15820312" />
+    <property name="project.structure.side.proportion" value="0.24725944" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="RizpaStockExchangeEngine" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/RizpaStockExchangeEngine" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="" />
+      <created>1617397793182</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617397793182</updated>
+      <workItem from="1617397806302" duration="2457000" />
+      <workItem from="1617449711928" duration="1104000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

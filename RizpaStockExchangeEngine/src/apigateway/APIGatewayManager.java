@@ -155,7 +155,12 @@ public final class APIGatewayManager implements IAPICommands {
     }
 
     @Override
-    public void loadDataFromFile(final String path) throws InvalidSystemDataFile {
+    public void loadDataFromFile(final String path) throws InvalidSystemDataFile, IOException, ClassNotFoundException {
+        blManager.loadDataFromFile(path);
+    }
 
+    @Override
+    public void exitSystem() {
+        blManager.exitSystem();
     }
 }

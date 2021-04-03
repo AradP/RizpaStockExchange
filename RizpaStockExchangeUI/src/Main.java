@@ -1,5 +1,3 @@
-package uilayer;
-
 import apigateway.APIGatewayManager;
 import bl.BLManager;
 import stocks.StockHandler;
@@ -175,7 +173,7 @@ public class Main {
                 }
                 default: {
                     // If we got to here then the user entered a number of a command that doesn't exist
-                    ConsoleHandler.write("You can only choose a number from the list");
+                    ConsoleHandler.write("Please choose a number from the list");
 
                     break;
                 }
