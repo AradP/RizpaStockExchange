@@ -1,4 +1,4 @@
-package stocks.exceptions;
+package exceptions;
 
 public class SymbolDoesntExistException extends StockException {
     /**

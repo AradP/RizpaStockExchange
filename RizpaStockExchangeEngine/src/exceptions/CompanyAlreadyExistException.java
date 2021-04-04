@@ -1,4 +1,4 @@
-package stocks.exceptions;
+package exceptions;
 
 public class CompanyAlreadyExistException extends StockException {
     public CompanyAlreadyExistException(final String companyName) {

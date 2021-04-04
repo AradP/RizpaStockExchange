@@ -1,8 +1,8 @@
 import apigateway.APIGatewayManager;
 import bl.BLManager;
-import stocks.StockHandler;
-import stocks.exceptions.InvalidSystemDataFile;
-import stocks.exceptions.StockException;
+import bl.StockManager;
+import exceptions.InvalidSystemDataFile;
+import exceptions.StockException;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
@@ -45,7 +45,7 @@ public class Main {
                 }
                 // Show all stocks command
                 case (1): {
-                    if (!StockHandler.getInstance().areStocksLoaded()) {
+                    if (!StockManager.getInstance().areStocksLoaded()) {
                         ConsoleHandler.write("You need to load stocks to the system first...");
                         break;
                     }
@@ -55,7 +55,7 @@ public class Main {
                 }
                 // Show a single stock command
                 case (2): {
-                    if (!StockHandler.getInstance().areStocksLoaded()) {
+                    if (!StockManager.getInstance().areStocksLoaded()) {
                         ConsoleHandler.write("You need to load stocks to the system first...");
                         break;
                     }
@@ -72,7 +72,7 @@ public class Main {
                 }
                 // Execute exchange process
                 case (3): {
-                    if (!StockHandler.getInstance().areStocksLoaded()) {
+                    if (!StockManager.getInstance().areStocksLoaded()) {
                         ConsoleHandler.write("You need to load stocks to the system first...");
                         break;
                     }
@@ -131,7 +131,7 @@ public class Main {
                     break;
                 }
                 case (4): {
-                    if (!StockHandler.getInstance().areStocksLoaded()) {
+                    if (!StockManager.getInstance().areStocksLoaded()) {
                         ConsoleHandler.write("You need to load stocks to the system first...");
                         break;
                     }

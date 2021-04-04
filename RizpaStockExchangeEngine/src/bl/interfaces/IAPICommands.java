@@ -1,7 +1,7 @@
 package bl.interfaces;
 
-import stocks.exceptions.InvalidSystemDataFile;
-import stocks.exceptions.StockException;
+import exceptions.InvalidSystemDataFile;
+import exceptions.StockException;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;

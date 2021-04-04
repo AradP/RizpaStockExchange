@@ -3,9 +3,9 @@ package apigateway;
 import bl.BLManager;
 import bl.interfaces.IAPICommands;
 import models.Stock;
-import stocks.StockHandler;
-import stocks.exceptions.InvalidSystemDataFile;
-import stocks.exceptions.StockException;
+import bl.StockManager;
+import exceptions.InvalidSystemDataFile;
+import exceptions.StockException;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
@@ -121,7 +121,7 @@ public final class APIGatewayManager implements IAPICommands {
     public String AllOrdersAndTransactions() {
         String returnValue = "";
 
-        for (final Stock stock : StockHandler.getInstance().getStocks()) {
+        for (final Stock stock : StockManager.getInstance().getStocks()) {
             returnValue = returnValue.concat(stock.getSymbol() + ":" + "\n");
             returnValue = returnValue.concat(BLManager.getInstance().getPendingBuyOrders(stock.getSymbol()));
             returnValue = returnValue.concat("\n");

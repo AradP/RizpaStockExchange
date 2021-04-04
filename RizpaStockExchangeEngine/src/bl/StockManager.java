@@ -1,22 +1,22 @@
-package stocks;
+package bl;
 
 import models.Order;
 import models.Stock;
 import models.Transaction;
-import stocks.exceptions.CompanyAlreadyExistException;
-import stocks.exceptions.StockSymbolAlreadyExistException;
+import exceptions.CompanyAlreadyExistException;
+import exceptions.StockSymbolAlreadyExistException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class StockHandler {
+public class StockManager {
     // static variable single_instance of type Singleton
-    private static StockHandler single_instance = null;
+    private static StockManager single_instance = null;
 
     private ArrayList<Stock> stocks;
 
-    public StockHandler() {
+    public StockManager() {
         this.stocks = new ArrayList<>();
     }
 
@@ -29,9 +29,9 @@ public class StockHandler {
     }
 
     // static method to create instance of Singleton class
-    public static StockHandler getInstance() {
+    public static StockManager getInstance() {
         if (single_instance == null)
-            single_instance = new StockHandler();
+            single_instance = new StockManager();
 
         return single_instance;
     }

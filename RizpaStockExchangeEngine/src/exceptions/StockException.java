@@ -1,4 +1,4 @@
-package stocks.exceptions;
+package exceptions;
 
 public abstract class StockException extends Exception {
     /**
