@@ -77,19 +77,6 @@ public class Main {
                         break;
                     }
 
-                    ConsoleHandler.write("For LMT press 1, MKT press 2, to return to the menu press 9:");
-                    int orderTypeSymbol = ConsoleHandler.readInt();
-
-
-                    while (orderTypeSymbol != 1 && orderTypeSymbol != 2 && orderTypeSymbol != 9) {
-                        ConsoleHandler.write("For LMT press 1, MKT press 2, to return to the menu press 9:");
-                        orderTypeSymbol = ConsoleHandler.readInt();
-                    }
-                    if (orderTypeSymbol == 9) {
-                        break;
-                    }
-
-
                     ConsoleHandler.write("For sell press 1, buy press 2, to return to the menu press 9:");
                     int isBuyOrder = ConsoleHandler.readInt();
 
@@ -105,14 +92,42 @@ public class Main {
                     ConsoleHandler.write("Enter stock symbol:");
                     final String stockName = ConsoleHandler.read();
 
+                    ConsoleHandler.write("For LMT press 1, MKT press 2, to return to the menu press 9:");
+                    int orderTypeSymbol = ConsoleHandler.readInt();
+
+                    while (orderTypeSymbol != 1 && orderTypeSymbol != 2 && orderTypeSymbol != 9) {
+                        ConsoleHandler.write("For LMT press 1, MKT press 2, to return to the menu press 9:");
+                        orderTypeSymbol = ConsoleHandler.readInt();
+                    }
+                    if (orderTypeSymbol == 9) {
+                        break;
+                    }
+
+                    int exchangeRate = 0;
+
+
+                    // LMT
+                    if (orderTypeSymbol == 1) {
+                        ConsoleHandler.write("Enter exchange rate (price):");
+                        exchangeRate = ConsoleHandler.readInt();
+
+                        while (exchangeRate < 1) {
+                            ConsoleHandler.write("Enter correct exchange rate (price):");
+                            exchangeRate = ConsoleHandler.readInt();
+                        }
+                    }
+
                     ConsoleHandler.write("Enter amount of stocks:");
-                    final int amountOfStocks = ConsoleHandler.readInt();
+                    int amountOfStocks = ConsoleHandler.readInt();
+
+                    while (amountOfStocks < 1) {
+                        ConsoleHandler.write("Enter correct amount of stocks:");
+                        amountOfStocks = ConsoleHandler.readInt();
+                    }
 
                     try {
                         // LMT
                         if (orderTypeSymbol == 1) {
-                            ConsoleHandler.write("Enter exchange rate (price):");
-                            final int exchangeRate = ConsoleHandler.readInt();
                             String returnValue = isBuyOrder == 1 ? APIGatewayManager.getInstance().sellLMTOrder(stockName, amountOfStocks, exchangeRate) :
                                     APIGatewayManager.getInstance().buyLMTOrder(stockName, amountOfStocks, exchangeRate);
                             ConsoleHandler.write(returnValue);
