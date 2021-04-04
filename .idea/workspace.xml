@@ -2,25 +2,14 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="RizpaStockExchangeEngine:jar2" />
       <artifact name="RizpaStockExchangeUI:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/~$Readme.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Readme.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/apigateway/APIGatewayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/apigateway/APIGatewayManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/interfaces/IAPICommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/interfaces/IAPICommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/StockHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/StockManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/CompanyAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/CompanyAlreadyExistException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/InvalidSystemDataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/InvalidSystemDataFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StockException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/StockException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StockSymbolAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/StockSymbolAlreadyExistException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/StocksNumberIsntValidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/StocksNumberIsntValidException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/stocks/exceptions/SymbolDoesntExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/SymbolDoesntExistException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +56,19 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="RizpaStockExchangeUI" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

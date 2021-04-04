@@ -403,7 +403,7 @@ public final class BLManager implements IAPICommands {
 
     @Override
     public void loadDataFromFile(final String path) throws InvalidSystemDataFile, IOException, ClassNotFoundException {
-        if (path == null) {
+        if (path == null || !(new File(path).exists())) {
             throw new InvalidSystemDataFile("it doesn't exist");
         }
 

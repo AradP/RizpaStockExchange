@@ -183,8 +183,12 @@ public class Main {
                     try {
                         BLManager.getInstance().loadDataFromFile(filePath);
                         ConsoleHandler.write("Loaded the data to the system successfully");
-                    } catch (final IOException | ClassNotFoundException | InvalidSystemDataFile e) {
-                        ConsoleHandler.write("There was a problem while reading the data because: " + e.getMessage());
+                    } catch (final  InvalidSystemDataFile e) {
+                        ConsoleHandler.write(e.getMessage());
+                    } catch (final IOException | ClassNotFoundException e) {
+                        ConsoleHandler.write("There was a problem while reading the data because the given file is corrupted" +
+                                " or not a valid file for this action. \n" +
+                                " You can only load a file which you saved earlier with the save command");
                     }
                     break;
                 }
