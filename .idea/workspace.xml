@@ -8,11 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/css/basic.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
+        <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -53,12 +58,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/RizpaStockExchangeUI" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15820312" />
     <property name="project.structure.side.proportion" value="0.24725944" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\resources\css" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\resources" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\fxmls" />
       <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeEngine\resources" />
     </key>
   </component>
@@ -77,13 +88,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -114,6 +127,8 @@
       <workItem from="1617467099421" duration="2387000" />
       <workItem from="1617469719805" duration="273000" />
       <workItem from="1617470032341" duration="3048000" />
+      <workItem from="1617606446264" duration="1688000" />
+      <workItem from="1617604581347" duration="3293000" />
     </task>
     <servers />
   </component>
