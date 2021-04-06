@@ -205,13 +205,7 @@ public class Stock implements Serializable {
         return sortedTransactions;
     }
 
-    /**
-     * Get basic information about the stock
-     *
-     * @return - the information as a string
-     */
-    @Override
-    public String toString() {
+    public double getOrderPeriod() {
         double ordersPeriod = 0;
         final ArrayList<Transaction> sortedTransactions = getCompletedTransactions();
 
@@ -220,10 +214,20 @@ public class Stock implements Serializable {
             ordersPeriod += transaction.getVolume();
         }
 
+        return ordersPeriod;
+    }
+
+    /**
+     * Get basic information about the stock
+     *
+     * @return - the information as a string
+     */
+    @Override
+    public String toString() {
         return "Symbol: " + symbol + "\n" +
                 "Company Name: " + companyName + "\n" +
                 "Single Stock Price: " + price + "\n" +
                 "Total transactions number: " + getCompletedTransactions().size() + "\n" +
-                "Total transactions volume: " + ordersPeriod + "\n";
+                "Total transactions volume: " + getOrderPeriod() + "\n";
     }
 }

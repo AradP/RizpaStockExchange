@@ -3,23 +3,87 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
-<!--            xmlns:fx="http://javafx.com/fxml"-->
-<!--            fx:controller="Main"-->
-<!--            prefHeight="400.0" prefWidth="600.0">-->
-
-<!--</AnchorPane>-->
-
-<!--<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"-->
-<!--           fx:controller="resources.controllers.HomePageController" prefWidth="500" prefHeight="300">-->
-
-<!--    <Button styleClass="round-red" text="Load System Data" onAction="#loadSystemDataFromXMLFile"/>-->
-    <BorderPane fx:id="root" prefHeight="539.0" prefWidth="494.0" stylesheets="@../css/basic.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.controllers.HomePageController">
-
+<BorderPane fx:id="root" prefHeight="539.0" prefWidth="494.0" stylesheets="@../css/basic.css"
+            xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="resources.controllers.HomePageController">
     <center>
         <TabPane tabClosingPolicy="UNAVAILABLE">
             <tabs>
+                <Tab text="Home">
+                    <content>
+                        <ScrollPane fitToWidth="true" minWidth="-Infinity">
+                            <content>
+                                <VBox id="flatbee-container">
+                                    <children>
+                                        <Label id="flatbee-xlarge" text="Welcome!"/>
+                                        <Separator prefWidth="200.0"/>
+                                        <VBox id="flatbee-card">
+                                            <Separator prefWidth="200.0"/>
+                                            <Label id="flatbee-large" text="Load System Data From XML file"/>
+                                            <HBox id="flatbee-container">
+                                                <children>
+                                                    <TextField fx:id="xmlFilePathTextField"
+                                                               promptText="xml file full path"/>
+                                                    <Button defaultButton="true" mnemonicParsing="false"
+                                                            text="Load XML File"
+                                                            onAction="#loadSystemDataFromXMLFile"/>
+                                                </children>
+                                            </HBox>
+                                            <Separator prefWidth="200.0"/>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+                <Tab text="Stocks">
+                    <content>
+                        <ScrollPane fitToWidth="true" minWidth="-Infinity">
+                            <content>
+                                <VBox id="flatbee-container">
+                                    <children>
+                                        <Label id="flatbee-large" text="Show A Single Stock"/>
+                                        <HBox id="flatbee-container">
+                                            <children>
+                                                <MenuButton fx:id="stocksMenuButton" mnemonicParsing="false"
+                                                            text="choose a stock">
+                                                </MenuButton>
+                                                <Label fx:id="singleStockSymbol"/>
+                                                <Label fx:id="singleStockCompanyName"/>
+                                                <Label fx:id="singleStockPrice"/>
+                                                <Label fx:id="singleStockTotalTransNum"/>
+                                                <Label fx:id="singleStockTotalTransVol"/>
+
+                                            </children>
+                                        </HBox>
+                                        <Label id="flatbee-xlarge" text="All Stocks"/>
+                                        <Separator prefWidth="200.0"/>
+                                        <VBox id="flatbee-card">
+                                            <Label text="All Stocks"/>
+                                            <Separator prefWidth="200.0"/>
+                                            <TableView fx:id="stocksTable" editable="true" prefHeight="200.0"
+                                                       prefWidth="200.0"
+                                                       tableMenuButtonVisible="true">
+                                                <columns>
+                                                    <TableColumn fx:id="symbol" prefWidth="142" text="Symbol"/>
+                                                    <TableColumn fx:id="companyName" prefWidth="142"
+                                                                 text="Company Name"/>
+                                                    <TableColumn fx:id="stockPrice" prefWidth="142"
+                                                                 text="Single Stock Price"/>
+                                                    <TableColumn fx:id="totalTransacsNum" prefWidth="180"
+                                                                 text="Total Transactions Number"/>
+                                                    <TableColumn fx:id="totalTransacsVol" prefWidth="180"
+                                                                 text="Total Transactions Volume"/>
+                                                </columns>
+                                            </TableView>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
                 <Tab text="FlatBee">
                     <content>
                         <ScrollPane fitToWidth="true" minWidth="-Infinity">
@@ -465,6 +529,8 @@
     </center>
     <bottom>
         <FlowPane fx:id="colorBox" BorderPane.alignment="CENTER"/>
+        <HBox>
+            <Button onAction="#exitSystem" text="Exit" defaultButton="true"/>
+        </HBox>
     </bottom>
-    </BorderPane>
-<!--</StackPane>-->
+</BorderPane>
