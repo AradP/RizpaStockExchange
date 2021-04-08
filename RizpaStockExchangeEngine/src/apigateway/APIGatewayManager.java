@@ -2,10 +2,11 @@ package apigateway;
 
 import bl.BLManager;
 import bl.interfaces.IAPICommands;
+import exceptions.users.UserAlreadyExistsException;
 import models.Stock;
 import bl.StockManager;
 import exceptions.InvalidSystemDataFile;
-import exceptions.StockException;
+import exceptions.stocks.StockException;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
@@ -32,7 +33,7 @@ public final class APIGatewayManager implements IAPICommands {
     private final BLManager blManager = BLManager.getInstance();
 
     @Override
-    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException {
+    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException, UserAlreadyExistsException {
         blManager.loadConfigurationFileByPath(xmlFilePath);
     }
 
