@@ -2,20 +2,33 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="RizpaStockExchangeEngine:jar2" />
       <artifact name="RizpaStockExchangeUI:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,42 +53,59 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/RizpaStockExchangeUI" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15820312" />
     <property name="project.structure.side.proportion" value="0.24725944" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\resources\css" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\resources" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\fxmls" />
       <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeEngine\resources" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.RSE UIFX">
+    <configuration name="RSE UI" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="RizpaStockExchangeUI" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration name="RSE UIFX" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="RizpaStockExchangeUIFX" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.RSE UI" />
+      <item itemvalue="Application.RSE UIFX" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.RSE UIFX" />
+        <item itemvalue="Application.RSE UI" />
       </list>
     </recent_temporary>
   </component>
@@ -93,8 +123,12 @@
       <workItem from="1617466077897" duration="337000" />
       <workItem from="1617467099421" duration="2387000" />
       <workItem from="1617469719805" duration="273000" />
-      <workItem from="1617470032341" duration="695000" />
-      <workItem from="1617533935492" duration="1758000" />
+      <workItem from="1617470032341" duration="3048000" />
+      <workItem from="1617606446264" duration="1688000" />
+      <workItem from="1617604581347" duration="3293000" />
+      <workItem from="1617885572324" duration="1911000" />
+      <workItem from="1617887679063" duration="88000" />
+      <workItem from="1617887818447" duration="14725000" />
     </task>
     <servers />
   </component>
@@ -115,5 +149,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java</url>
+          <line>426</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="rseDescriptor.getRseStocks().getRseStock().size()" language="JAVA" />
+        <watch expression="(double)(1 * 100 / 5) " language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
