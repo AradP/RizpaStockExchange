@@ -8,18 +8,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/RSE-V2.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UserManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseHoldings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseUsers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/users/UserAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/users/UserException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RizpaStockExchangeDescriptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RizpaStockExchangeDescriptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/apigateway/APIGatewayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/apigateway/APIGatewayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/StockManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/StockManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/interfaces/IAPICommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/interfaces/IAPICommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/CompanyAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/stocks/CompanyAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/InvalidSystemDataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/InvalidSystemDataFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/StockException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/stocks/StockException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/StockSymbolAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/stocks/StockSymbolAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/StocksNumberIsntValidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/stocks/StocksNumberIsntValidException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/SymbolDoesntExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/exceptions/stocks/SymbolDoesntExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUI/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeEngine/RSE-V2.xsd" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +138,7 @@
       <workItem from="1617604581347" duration="3293000" />
       <workItem from="1617885572324" duration="1911000" />
       <workItem from="1617887679063" duration="88000" />
-      <workItem from="1617887818447" duration="15534000" />
+      <workItem from="1617887818447" duration="20839000" />
     </task>
     <servers />
   </component>
@@ -165,15 +169,14 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java</url>
-          <line>426</line>
+          <line>460</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="rseDescriptor.getRseStocks().getRseStock().size()" language="JAVA" />
-        <watch expression="(double)(1 * 100 / 5) " language="JAVA" />
+        <watch expression="(currStockCount * 100) / totalProgressSize" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

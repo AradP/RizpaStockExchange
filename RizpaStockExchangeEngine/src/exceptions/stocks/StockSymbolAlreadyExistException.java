@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.stocks;
 
 public class StockSymbolAlreadyExistException extends StockException {
     /**

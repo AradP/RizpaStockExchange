@@ -1,5 +1,7 @@
 package exceptions;
 
+import exceptions.stocks.StockException;
+
 public class InvalidSystemDataFile extends StockException {
     /**
      * @param message - message of the exception

@@ -2,6 +2,8 @@ package bl;
 
 import bl.interfaces.IAPICommands;
 import enums.OrderType;
+import exceptions.stocks.*;
+import exceptions.users.UserAlreadyExistsException;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyDoubleWrapper;
 import models.*;
@@ -11,9 +13,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public final class BLManager implements IAPICommands {
 
@@ -37,7 +37,7 @@ public final class BLManager implements IAPICommands {
     private final ReadOnlyDoubleWrapper progress = new ReadOnlyDoubleWrapper();
 
     @Override
-    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException {
+    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException, UserAlreadyExistsException {
         progress.set(0);
 
         // Validates this really is a xml file
@@ -51,9 +51,12 @@ public final class BLManager implements IAPICommands {
         final InputStream inputStream = new FileInputStream(systemDetailsFile);
         final RizpaStockExchangeDescriptor rseDescriptor = deserializeFrom(inputStream);
 
+        final int totalProgressSize = rseDescriptor.getRseStocks().getRseStock().size() + rseDescriptor.getRseUsers().getRseUser().size();
+
+        // Stocks Validation
         final ArrayList<Stock> newStocks = new ArrayList<Stock>();
 
-        int currStockCount = 0;
+        int currProgressCount = 0;
         for (final RseStock currRseStock : rseDescriptor.getRseStocks().getRseStock()) {
             validateRSEStock(currRseStock);
 
@@ -63,8 +66,7 @@ public final class BLManager implements IAPICommands {
 
             newStocks.add(stock);
 
-            currStockCount++;
-            progress.set((double)(currStockCount * 100 / rseDescriptor.getRseStocks().getRseStock().size()));
+            progress.set((double) (++currProgressCount * 90 / totalProgressSize));
 
             // So the user can actually see the progress change
             try {
@@ -75,10 +77,42 @@ public final class BLManager implements IAPICommands {
         }
 
         // Validates the stocks entered
-        validateSystemFile(newStocks);
+        validateStocksInSystemFile(newStocks);
+
+        // Users Validation
+        final ArrayList<User> newUsers = new ArrayList<>();
+
+        for (final RseUser currRseUser : rseDescriptor.getRseUsers().getRseUser()) {
+            HashMap<Stock, Integer> currUserStocks = getRSEUserStocks(currRseUser, newStocks);
+
+            final User user = new User(currRseUser.getName(), currUserStocks);
+
+            newUsers.add(user);
+
+            progress.set((double)((++currProgressCount * 90) / totalProgressSize) - 1);
+
+            // So the user can actually see the progress change
+            try {
+                Thread.sleep(80);
+            } catch (InterruptedException e) {
+                throw new InvalidSystemDataFile(e.getMessage());
+            }
+        }
+
+        validateUsersInSystemFile(newUsers);
 
         // We can successfully update the stocks in our system
         StockManager.getInstance().setStocks(newStocks);
+        UserManager.getInstance().setUsers(newUsers);
+
+        progress.set(100);
+
+        // So the user can actually see the progress complete
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException e) {
+            throw new InvalidSystemDataFile(e.getMessage());
+        }
     }
 
     @Override
@@ -452,7 +486,7 @@ public final class BLManager implements IAPICommands {
      * @throws StockSymbolAlreadyExistException - if symbol already exists
      * @throws CompanyAlreadyExistException     - if company already has stocks
      */
-    private void validateSystemFile(final ArrayList<Stock> stocks) throws StockSymbolAlreadyExistException, CompanyAlreadyExistException {
+    private void validateStocksInSystemFile(final ArrayList<Stock> stocks) throws StockSymbolAlreadyExistException, CompanyAlreadyExistException {
         // We don't have to run for each stock, because we already do it in the inner for
         for (int stockCounter = 0; stockCounter < stocks.size(); stockCounter++) {
             for (int tempStockCounter = stockCounter + 1; tempStockCounter < stocks.size(); tempStockCounter++) {
@@ -465,6 +499,18 @@ public final class BLManager implements IAPICommands {
                 // Check the company name is unique
                 if (stocks.get(tempStockCounter).getCompanyName().equals(stocks.get(stockCounter).getCompanyName())) {
                     throw new CompanyAlreadyExistException(stocks.get(stockCounter).getCompanyName());
+                }
+            }
+        }
+    }
+
+    private void validateUsersInSystemFile(final ArrayList<User> users) throws UserAlreadyExistsException, SymbolDoesntExistException, InvalidSystemDataFile {
+        for (int userCounter = 0; userCounter < users.size(); userCounter++) {
+            for (int tempUserCounter = userCounter + 1; tempUserCounter < users.size(); tempUserCounter++) {
+
+                // Check the username is unique
+                if (users.get(tempUserCounter).getName().equals(users.get(userCounter).getName())) {
+                    throw new UserAlreadyExistsException(users.get(tempUserCounter).getName());
                 }
             }
         }
@@ -528,6 +574,26 @@ public final class BLManager implements IAPICommands {
         if (currCompanyName.startsWith(" ") || currCompanyName.endsWith(" ")) {
             throw new InvalidSystemDataFile("Company name can't start or end with a space");
         }
+    }
+
+    private HashMap<Stock, Integer> getRSEUserStocks(final RseUser rseUser, ArrayList<Stock> stocks) throws InvalidSystemDataFile, SymbolDoesntExistException {
+        HashMap<Stock, Integer> holdings = new HashMap<>();
+        for (RseItem currHolding : rseUser.getRseHoldings().getRseItem()) {
+            // Check that all stocks actually exist
+            if (StockManager.getInstance().getStockBySymbolInList(currHolding.getSymbol(), stocks) == null) {
+                throw new SymbolDoesntExistException(currHolding.getSymbol());
+            }
+
+            // Check that all the holdings' quantities are positive
+            if (currHolding.getQuantity() <= 0) {
+                throw new InvalidSystemDataFile("Stock quantity must be a positive number");
+            }
+
+            holdings.put(StockManager.getInstance().getStockBySymbol(currHolding.getSymbol()),
+                    currHolding.getQuantity());
+        }
+
+        return holdings;
     }
 
     public ReadOnlyDoubleProperty progressProperty() {

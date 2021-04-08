@@ -3,8 +3,8 @@ package bl;
 import models.Order;
 import models.Stock;
 import models.Transaction;
-import exceptions.CompanyAlreadyExistException;
-import exceptions.StockSymbolAlreadyExistException;
+import exceptions.stocks.CompanyAlreadyExistException;
+import exceptions.stocks.StockSymbolAlreadyExistException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,30 +56,34 @@ public class StockManager {
         this.stocks.add(stock);
     }
 
-    public Stock getStockBySymbol(String stockName) {
+    public Stock getStockBySymbol(final String stockName) {
         Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getSymbol().equalsIgnoreCase(stockName)).findAny();
         return tempStock.orElse(null);
-
     }
 
-    public Stock getStockByCompany(String companyName) {
+    public Stock getStockBySymbolInList(final String stockName, final ArrayList<Stock> tempStocks) {
+        Optional<Stock> tempStock = tempStocks.stream().filter(stock -> stock.getSymbol().equalsIgnoreCase(stockName)).findAny();
+        return tempStock.orElse(null);
+    }
+
+    public Stock getStockByCompany(final String companyName) {
         Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getCompanyName().equals(companyName)).findAny();
         return tempStock.orElse(null);
     }
 
-    public boolean isSymbolExists(String symbol) {
+    public boolean isSymbolExists(final String symbol) {
         return stocks.stream().anyMatch(stock -> stock.getSymbol().equalsIgnoreCase(symbol));
     }
 
-    public List<Order> getPendingSellOrder(String symbol) {
+    public List<Order> getPendingSellOrder(final String symbol) {
         return getStockBySymbol(symbol).getPendingSellOrders();
     }
 
-    public List<Order> getPendingBuyOrder(String symbol) {
+    public List<Order> getPendingBuyOrder(final String symbol) {
         return getStockBySymbol(symbol).getPendingBuyOrders();
     }
 
-    public List<Transaction> getTransactionsHistory(String symbol) {
+    public List<Transaction> getTransactionsHistory(final String symbol) {
         return getStockBySymbol(symbol).getTransactionsSortedByDate();
     }
 

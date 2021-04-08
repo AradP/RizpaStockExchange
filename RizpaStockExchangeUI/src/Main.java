@@ -2,7 +2,8 @@ import apigateway.APIGatewayManager;
 import bl.BLManager;
 import bl.StockManager;
 import exceptions.InvalidSystemDataFile;
-import exceptions.StockException;
+import exceptions.stocks.StockException;
+import exceptions.users.UserAlreadyExistsException;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
@@ -37,7 +38,7 @@ public class Main {
                     try {
                         APIGatewayManager.getInstance().loadConfigurationFileByPath(filePath);
                         ConsoleHandler.write("Successfully updated the stocks in the system");
-                    } catch (StockException | FileNotFoundException | JAXBException e) {
+                    } catch (StockException | FileNotFoundException | JAXBException | UserAlreadyExistsException e) {
                         ConsoleHandler.write(e.getMessage());
                     }
 
