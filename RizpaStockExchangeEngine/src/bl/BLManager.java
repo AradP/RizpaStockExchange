@@ -2,6 +2,8 @@ package bl;
 
 import bl.interfaces.IAPICommands;
 import enums.OrderType;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleWrapper;
 import models.*;
 import exceptions.*;
 
@@ -32,8 +34,12 @@ public final class BLManager implements IAPICommands {
 
     //endregion
 
+    private final ReadOnlyDoubleWrapper progress = new ReadOnlyDoubleWrapper();
+
     @Override
     public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException {
+        progress.set(0);
+
         // Validates this really is a xml file
         final File systemDetailsFile = new File(xmlFilePath);
 
@@ -47,6 +53,7 @@ public final class BLManager implements IAPICommands {
 
         final ArrayList<Stock> newStocks = new ArrayList<Stock>();
 
+        int currStockCount = 0;
         for (final RseStock currRseStock : rseDescriptor.getRseStocks().getRseStock()) {
             validateRSEStock(currRseStock);
 
@@ -55,6 +62,16 @@ public final class BLManager implements IAPICommands {
                     currRseStock.getRsePrice());
 
             newStocks.add(stock);
+
+            currStockCount++;
+            progress.set((double)(currStockCount * 100 / rseDescriptor.getRseStocks().getRseStock().size()));
+
+            // So the user can actually see the progress change
+            try {
+                Thread.sleep(80);
+            } catch (InterruptedException e) {
+                throw new InvalidSystemDataFile(e.getMessage());
+            }
         }
 
         // Validates the stocks entered
@@ -511,5 +528,9 @@ public final class BLManager implements IAPICommands {
         if (currCompanyName.startsWith(" ") || currCompanyName.endsWith(" ")) {
             throw new InvalidSystemDataFile("Company name can't start or end with a space");
         }
+    }
+
+    public ReadOnlyDoubleProperty progressProperty() {
+        return progress;
     }
 }

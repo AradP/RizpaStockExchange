@@ -159,7 +159,7 @@
 }
 
 .progress-bar>*.bar{
-    -fx-background-color : -color;
+    -fx-background-color : green;
 }
 
 .progress-bar>*.track{

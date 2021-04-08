@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="root" prefHeight="539.0" prefWidth="494.0" stylesheets="@../css/basic.css"
+<BorderPane fx:id="rootBorderPane" prefHeight="539.0" prefWidth="494.0" stylesheets="@../css/basic.css"
             xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="resources.controllers.HomePageController">
     <center>
@@ -15,20 +15,27 @@
                             <content>
                                 <VBox id="flatbee-container">
                                     <children>
-                                        <Label id="flatbee-xlarge" text="Welcome!"/>
+                                        <Label fx:id="welcomeLabel" id="flatbee-xlarge" text="Welcome!"/>
                                         <Separator prefWidth="200.0"/>
                                         <VBox id="flatbee-card">
                                             <Separator prefWidth="200.0"/>
                                             <Label id="flatbee-large" text="Load System Data From XML file"/>
                                             <HBox id="flatbee-container">
                                                 <children>
-                                                    <TextField fx:id="xmlFilePathTextField"
-                                                               promptText="xml file full path"/>
                                                     <Button defaultButton="true" mnemonicParsing="false"
-                                                            text="Load XML File"
+                                                            text="Select XML File"
                                                             onAction="#loadSystemDataFromXMLFile"/>
+                                                    <Label fx:id="xmlUploadProgressLabel"/>
+                                                    <ProgressBar fx:id="xmlLoadProgressBar" layoutX="54.0"
+                                                                 layoutY="103.0" prefHeight="51.0" prefWidth="326.0" progress="0"/>
                                                 </children>
                                             </HBox>
+                                            <Separator prefWidth="200.0"/>
+                                        </VBox>
+                                        <Separator prefWidth="200.0"/>
+                                        <VBox id="flatbee-card">
+                                            <Separator prefWidth="200.0"/>
+                                            <CheckBox fx:id="turnAnimationsOnCheckbox" mnemonicParsing="false" text="Turn On Animations" onAction="#setAnimationsOn"/>
                                             <Separator prefWidth="200.0"/>
                                         </VBox>
                                     </children>
@@ -49,11 +56,15 @@
                                                 <MenuButton fx:id="stocksMenuButton" mnemonicParsing="false"
                                                             text="choose a stock">
                                                 </MenuButton>
-                                                <Label fx:id="singleStockSymbol"/>
-                                                <Label fx:id="singleStockCompanyName"/>
-                                                <Label fx:id="singleStockPrice"/>
-                                                <Label fx:id="singleStockTotalTransNum"/>
-                                                <Label fx:id="singleStockTotalTransVol"/>
+                                                <HBox fx:id="singleStockInfoBox" id="flatbee-container">
+                                                    <children>
+                                                        <Label fx:id="singleStockSymbol"/>
+                                                        <Label fx:id="singleStockCompanyName"/>
+                                                        <Label fx:id="singleStockPrice"/>
+                                                        <Label fx:id="singleStockTotalTransNum"/>
+                                                        <Label fx:id="singleStockTotalTransVol"/>
+                                                    </children>
+                                                </HBox>
 
                                             </children>
                                         </HBox>
