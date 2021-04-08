@@ -7,7 +7,7 @@
             xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="resources.controllers.HomePageController">
     <center>
-        <TabPane tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="rootTabPane" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Home">
                     <content>
@@ -71,7 +71,7 @@
                                         <Label id="flatbee-xlarge" text="All Stocks"/>
                                         <Separator prefWidth="200.0"/>
                                         <VBox id="flatbee-card">
-                                            <Label text="All Stocks"/>
+                                            <Label text="All Stocks In The System"/>
                                             <Separator prefWidth="200.0"/>
                                             <TableView fx:id="stocksTable" editable="true" prefHeight="200.0"
                                                        prefWidth="200.0"

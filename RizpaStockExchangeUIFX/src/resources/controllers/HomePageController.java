@@ -2,38 +2,45 @@ package resources.controllers;
 
 import bl.BLManager;
 import bl.StockManager;
+import bl.UserManager;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import models.Stock;
+import models.User;
 
 import java.io.File;
-import java.util.concurrent.atomic.AtomicReference;
+import java.io.IOException;
 
 public class HomePageController {
     @FXML
     private Label xmlUploadProgressLabel;
 
     @FXML
-    public ProgressBar xmlLoadProgressBar;
+    private ProgressBar xmlLoadProgressBar;
 
     @FXML
     private BorderPane rootBorderPane;
+
+    @FXML
+    private TabPane rootTabPane;
 
     @FXML
     private Label welcomeLabel;
@@ -48,15 +55,15 @@ public class HomePageController {
     private HBox singleStockInfoBox;
 
     @FXML
-    public TableColumn<Stock, String> symbol;
+    private TableColumn<Stock, String> symbol;
     @FXML
-    public TableColumn<Stock, String> companyName;
+    private TableColumn<Stock, String> companyName;
     @FXML
-    public TableColumn<Stock, Integer> stockPrice;
+    private TableColumn<Stock, Integer> stockPrice;
     @FXML
-    public TableColumn<Stock, Integer> totalTransacsNum;
+    private TableColumn<Stock, Integer> totalTransacsNum;
     @FXML
-    public TableColumn<Stock, Double> totalTransacsVol;
+    private TableColumn<Stock, Double> totalTransacsVol;
 
     @FXML
     private Label singleStockSymbol;
@@ -156,6 +163,27 @@ public class HomePageController {
 
     }
 
+    private void refreshUsersTabs() {
+        for (final User user : UserManager.getInstance().getUsers()) {
+            Tab currTab = new Tab(user.getName());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxmls/UserTab.fxml"));
+            Node node = null;
+            try {
+                node = loader.load();
+            } catch (IOException ioException) {
+                // TODO: Alert
+                ioException.printStackTrace();
+            }
+            // Get the Controller from the FXMLLoader
+            UserTabController controller = loader.getController();
+            // Set data in the controller
+            controller.setUser(user);
+
+            currTab.setContent(node);
+            rootTabPane.getTabs().add(currTab);
+        }
+    }
+
     @FXML
     private void exitSystem(ActionEvent event) {
         event.consume();
@@ -185,6 +213,7 @@ public class HomePageController {
         task.setOnSucceeded(wse -> {
             refreshStocksTable();
             refreshStocksMenuTable();
+            refreshUsersTabs();
 
             EventHandler<ActionEvent> alertEvent = new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {

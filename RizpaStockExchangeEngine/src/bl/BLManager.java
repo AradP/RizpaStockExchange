@@ -580,16 +580,14 @@ public final class BLManager implements IAPICommands {
         HashMap<Stock, Integer> holdings = new HashMap<>();
         for (RseItem currHolding : rseUser.getRseHoldings().getRseItem()) {
             // Check that all stocks actually exist
-            if (StockManager.getInstance().getStockBySymbolInList(currHolding.getSymbol(), stocks) == null) {
-                throw new SymbolDoesntExistException(currHolding.getSymbol());
-            }
+            final Stock currStock = StockManager.getInstance().getStockBySymbolInList(currHolding.getSymbol(), stocks);
 
             // Check that all the holdings' quantities are positive
             if (currHolding.getQuantity() <= 0) {
                 throw new InvalidSystemDataFile("Stock quantity must be a positive number");
             }
 
-            holdings.put(StockManager.getInstance().getStockBySymbol(currHolding.getSymbol()),
+            holdings.put(Objects.requireNonNull(currStock),
                     currHolding.getQuantity());
         }
 

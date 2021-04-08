@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" minWidth="-Infinity"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="resources.controllers.UserTabController"
+            prefHeight="400.0" prefWidth="600.0">
+    <content>
+        <VBox id="flatbee-container">
+            <children>
+                <Label fx:id="userMainLabel" id="flatbee-xlarge"/>
+                <Separator prefWidth="200.0"/>
+                <VBox id="flatbee-card">
+                    <Label text="Stocks Holdings"/>
+                    <Separator prefWidth="200.0"/>
+                    <TableView fx:id="stocksTable" editable="true" prefHeight="200.0"
+                               prefWidth="200.0"
+                               tableMenuButtonVisible="true">
+                    </TableView>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
