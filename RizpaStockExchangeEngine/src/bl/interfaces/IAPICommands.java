@@ -3,6 +3,7 @@ package bl.interfaces;
 import exceptions.InvalidSystemDataFile;
 import exceptions.stocks.StockException;
 import exceptions.users.UserAlreadyExistsException;
+import models.User;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
@@ -15,21 +16,21 @@ public interface IAPICommands {
 
     String getStock(final String symbol) throws StockException;
 
-    String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException;
+    String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException;
 
-    String buyLMTOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException;
+    String buyLMTOrder(final String symbol, final int numberOfStocks, final double highestPrice, User buyer) throws StockException;
 
-    String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException;
+    String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException;
 
-    String buyFOKOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException;
+    String buyFOKOrder(final String symbol, final int numberOfStocks, final double highestPrice, User buyer) throws StockException;
 
-    String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException;
+    String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException;
 
-    String buyIOCOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException;
+    String buyIOCOrder(final String symbol, final int numberOfStocks, final double highestPrice, User buyer) throws StockException;
 
-    String sellMKTOrder(final String symbol, final int numberOfStocks) throws StockException;
+    String sellMKTOrder(final String symbol, final int numberOfStocks, User seller) throws StockException;
 
-    String buyMKTOrder(final String symbol, final int numberOfStocks) throws StockException;
+    String buyMKTOrder(final String symbol, final int numberOfStocks, User buyer) throws StockException;
 
     String getPendingSellOrders(final String symbol);
 

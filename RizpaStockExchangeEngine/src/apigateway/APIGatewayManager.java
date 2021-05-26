@@ -7,6 +7,7 @@ import models.Stock;
 import bl.StockManager;
 import exceptions.InvalidSystemDataFile;
 import exceptions.stocks.StockException;
+import models.User;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
@@ -48,72 +49,72 @@ public final class APIGatewayManager implements IAPICommands {
     }
 
     @Override
-    public String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
+    public String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         try {
-            return blManager.sellLMTOrder(symbol, numberOfStocks, lowestPrice);
+            return blManager.sellLMTOrder(symbol, numberOfStocks, lowestPrice,seller);
         } catch (StockException e) {
             throw e;
         }
     }
 
     @Override
-    public String buyLMTOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException {
+    public String buyLMTOrder(final String symbol, final int numberOfStocks, final double highestPrice, User buyer) throws StockException {
         try {
-            return blManager.buyLMTOrder(symbol, numberOfStocks, highestPrice);
+            return blManager.buyLMTOrder(symbol, numberOfStocks, highestPrice, buyer);
         } catch (StockException e) {
             throw e;
         }
     }
 
     @Override
-    public String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
+    public String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         try {
-            return blManager.sellFOKOrder(symbol, numberOfStocks, lowestPrice);
+            return blManager.sellFOKOrder(symbol, numberOfStocks, lowestPrice,seller);
         } catch (StockException e) {
             throw e;
         }
     }
 
     @Override
-    public String buyFOKOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException {
+    public String buyFOKOrder(final String symbol, final int numberOfStocks, final double highestPrice, User buyer) throws StockException {
         try {
-            return blManager.buyFOKOrder(symbol, numberOfStocks, highestPrice);
+            return blManager.buyFOKOrder(symbol, numberOfStocks, highestPrice, buyer);
         } catch (StockException e) {
             throw e;
         }
     }
 
     @Override
-    public String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
+    public String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         try {
-            return blManager.sellIOCOrder(symbol, numberOfStocks, lowestPrice);
+            return blManager.sellIOCOrder(symbol, numberOfStocks, lowestPrice,seller);
         } catch (StockException e) {
             throw e;
         }
     }
 
     @Override
-    public String buyIOCOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException {
+    public String buyIOCOrder(final String symbol, final int numberOfStocks, final double highestPrice, User buyer) throws StockException {
         try {
-            return blManager.buyIOCOrder(symbol, numberOfStocks, highestPrice);
+            return blManager.buyIOCOrder(symbol, numberOfStocks, highestPrice, buyer);
         } catch (StockException e) {
             throw e;
         }
     }
 
     @Override
-    public String sellMKTOrder(final String symbol, final int numberOfStocks) throws StockException {
+    public String sellMKTOrder(final String symbol, final int numberOfStocks, User seller) throws StockException {
         try {
-            return blManager.sellMKTOrder(symbol, numberOfStocks);
+            return blManager.sellMKTOrder(symbol, numberOfStocks,seller);
         } catch (StockException e) {
             throw e;
         }
     }
 
     @Override
-    public String buyMKTOrder(final String symbol, final int numberOfStocks) throws StockException {
+    public String buyMKTOrder(final String symbol, final int numberOfStocks, User buyer) throws StockException {
         try {
-            return blManager.buyMKTOrder(symbol, numberOfStocks);
+            return blManager.buyMKTOrder(symbol, numberOfStocks, buyer);
         } catch (StockException e) {
             throw e;
         }

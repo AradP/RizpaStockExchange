@@ -29,7 +29,7 @@ public class Main {
 
             // Map the command to its execution
             switch (currentCommand) {
-                // Read System Details File Command
+             /*   // Read System Details File Command
                 case (0): {
                     // Get the file's path
                     ConsoleHandler.write("Enter the file's path (must be xml file):");
@@ -198,7 +198,7 @@ public class Main {
                     ConsoleHandler.write("Please choose a number from the list");
 
                     break;
-                }
+                }*/
             }
         }
     }

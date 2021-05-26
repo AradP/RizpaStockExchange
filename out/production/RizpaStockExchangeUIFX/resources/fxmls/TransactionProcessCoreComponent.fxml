@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="resources.controllers.TransactionProcessCoreController">
+    <content>
+        <VBox id="flatbee-container">
+            <children>
+                <RadioButton fx:id="rbBuy" text="Buy"/>
+                <RadioButton fx:id="rbSell" text="Sale"/>
+                <Separator/>
+                <MenuButton fx:id="symbolsMenuButton" mnemonicParsing="false"
+                            text="choose stock">
+                </MenuButton>
+                <Separator/>
+                <RadioButton fx:id="rbLMT" text="LMT"/>
+                <RadioButton fx:id="rbMKT" text="MKT"/>
+                <Separator/>
+                <HBox fx:id="hbLimitRate" spacing="10.0">
+                    <children>
+                        <Label text="Limit Rate:"/>
+                        <TextField fx:id="tfLimitRate" promptText="Enter limit rate"/>
+                    </children>
+                </HBox>
+                <Separator/>
+                <HBox spacing="10.0">
+                    <children>
+                        <Label text="Amount of Stocks:"/>
+                        <TextField fx:id="tfAmountOfStocks" promptText="Enter amount of stocks, bigger than 0"/>
+                    </children>
+                </HBox>
+                <Separator/>
+                <CheckBox fx:id="cbConfirm" text="Check to Confirm"/>
+                <Button mnemonicParsing="false"
+                        fx:id="btConfirm"
+                        disable="true"
+                        text="Confirm"
+                        onAction="#confirmTransaction"/>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
