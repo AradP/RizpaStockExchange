@@ -18,18 +18,18 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import models.Stock;
 import models.User;
+import resources.interfaces.TransactionActionsListener;
 
 import java.io.File;
 import java.io.IOException;
 
-public class HomePageController {
+public class HomePageController implements TransactionActionsListener {
     @FXML
     private Label xmlUploadProgressLabel;
 
@@ -79,7 +79,38 @@ public class HomePageController {
     @FXML
     private CheckBox turnAnimationsOnCheckbox;
 
+    @FXML
+    private Tab transactionProcessTab;
+    @FXML
+    private Tab adminTab;
+
+    private TransactionProcessController transactionProcessController;
+    private AdminController adminController;
+
     private boolean areAnimationsOn = false;
+
+    @FXML
+    public void initialize() {
+        initializeTransactionProcessTab();
+        initializeAdminTab();
+    }
+
+    private void initializeAdminTab() {
+        adminTab = new Tab("Admin");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxmls/AdminTab.fxml"));
+        Node node = null;
+        try {
+            node = loader.load();
+        } catch (IOException ioException) {
+            // TODO: Alert
+            ioException.printStackTrace();
+        }
+
+        adminController = loader.getController();
+        transactionProcessController.addTransactionActionsListener(adminController);
+        adminTab.setContent(node);
+        rootTabPane.getTabs().add(adminTab);
+    }
 
     @FXML
     private void setAnimationsOn() {
@@ -178,10 +209,31 @@ public class HomePageController {
             UserTabController controller = loader.getController();
             // Set data in the controller
             controller.setUser(user);
-
+            transactionProcessController.addTransactionActionsListener(controller);
             currTab.setContent(node);
             rootTabPane.getTabs().add(currTab);
         }
+    }
+
+    private void initializeTransactionProcessTab() {
+        transactionProcessTab = new Tab("Transaction Process");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxmls/TransactionProcessTab.fxml"));
+        Node node = null;
+        try {
+            node = loader.load();
+        } catch (IOException ioException) {
+            // TODO: Alert
+            ioException.printStackTrace();
+        }
+
+        transactionProcessController = loader.getController();
+        transactionProcessController.addTransactionActionsListener(this);
+        transactionProcessTab.setContent(node);
+        rootTabPane.getTabs().add(transactionProcessTab);
+    }
+
+    private void refreshTransactionProcessTab() {
+        transactionProcessController.refreshUsers();
     }
 
     @FXML
@@ -213,6 +265,7 @@ public class HomePageController {
         task.setOnSucceeded(wse -> {
             refreshStocksTable();
             refreshStocksMenuTable();
+            refreshTransactionProcessTab();
             refreshUsersTabs();
 
             EventHandler<ActionEvent> alertEvent = new EventHandler<ActionEvent>() {
@@ -247,5 +300,10 @@ public class HomePageController {
 
         // Now, start the task on a background thread
         new Thread(task).start();
+    }
+
+    @Override
+    public void transactionWasMade() {
+
     }
 }

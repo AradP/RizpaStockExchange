@@ -15,13 +15,15 @@ public class Order implements Serializable {
     private int count;
     private double requestedExchangeRate;
     private OrderType orderType;
+    private User creator;
 
-    public Order(String symbol, int count, double requestedExchangeRate, OrderType orderType) {
+    public Order(String symbol, int count, double requestedExchangeRate, OrderType orderType, User creator) {
         this.symbol = symbol;
         this.count = count;
         this.requestedExchangeRate = requestedExchangeRate;
         this.timestamp = DateTimeFormatter.ofPattern("HH:mm:ss:SSS").format(LocalDateTime.now());
         this.orderType = orderType;
+        this.creator = creator;
     }
 
     public String getSymbol() {
@@ -56,6 +58,8 @@ public class Order implements Serializable {
         return count * requestedExchangeRate;
     }
 
+    public User getCreator(){return creator;}
+
 
     /**
      * Compare to another order by date
@@ -79,7 +83,8 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "Date: " + timestamp + "\n" +
+        return "Creator: " + getCreator().toString() + "\n" +
+                "Date: " + timestamp + "\n" +
                 "Number Of Stocks: " + count + "\n" +
                 "Single Stock Price: " + requestedExchangeRate + "\n" +
                 "Total Order Price: " + getVolume() + "\n";

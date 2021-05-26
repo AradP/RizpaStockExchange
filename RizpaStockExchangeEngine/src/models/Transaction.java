@@ -12,13 +12,16 @@ public class Transaction implements Serializable {
     private String timeStamp;
     private int amountOfStocks;
     private double price;
+    private User seller;
+    private User buyer;
 
-    public Transaction(String symbol, int amountOfStocks, double price) {
+    public Transaction(String symbol, int amountOfStocks, double price, User seller, User buyer) {
         this.symbol = symbol;
         this.amountOfStocks = amountOfStocks;
         this.price = price;
         this.timeStamp = DateTimeFormatter.ofPattern("HH:mm:ss:SSS").format(LocalDateTime.now());
-        ;
+        this.seller = seller;
+        this.buyer = buyer;
     }
 
     public String getSymbol() {
@@ -57,6 +60,22 @@ public class Transaction implements Serializable {
         return price * amountOfStocks;
     }
 
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
+    }
+
     /**
      * Compare to another order by date
      *
@@ -82,6 +101,8 @@ public class Transaction implements Serializable {
         return "Date: " + getTimeStamp() + "\n" +
                 "Number Of Stocks: " + getAmountOfStocks() + "\n" +
                 "Single Stock Price: " + getPrice() + "\n" +
-                "Total Transaction volume: " + getVolume() + "\n";
+                "Total Transaction volume: " + getVolume() + "\n" +
+                "Seller: " + getSeller().getName() + "\n" +
+                "Buyer: " + getBuyer().getName() + "\n";
     }
 }

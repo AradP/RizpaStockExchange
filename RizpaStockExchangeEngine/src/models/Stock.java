@@ -83,36 +83,37 @@ public class Stock implements Serializable {
         }
     }
 
-    public boolean CreateSellOrder(int amountOfStocks, double requestedExchangeRate, OrderType orderType) {
-        boolean didSuccess = false;
-        Order newSellOrder = new Order(getSymbol(), amountOfStocks, requestedExchangeRate, orderType);
-        didSuccess = pendingSellOrders.add(newSellOrder);
+    private boolean addPendingSellOrder(Order newSellOrder){
+        boolean didSuccess = pendingSellOrders.add(newSellOrder);
+
         if (didSuccess) {
             pendingSellOrders.sort(Comparator.comparingDouble(Order::getRequestedExchangeRate));
+            newSellOrder.getCreator().reduceStocks(this, newSellOrder.getCount());
         }
 
         return didSuccess;
     }
 
-    public boolean CreateSellOrderMKT(int amountOfStocks) {
+    public boolean CreateSellOrder(int amountOfStocks, double requestedExchangeRate, OrderType orderType, User creator) {
         boolean didSuccess = false;
-        Order newSellOrder = new Order(getSymbol(), amountOfStocks, getTheLowestPriceInPendingBuyOrders(), OrderType.MKT);
-        didSuccess = pendingSellOrders.add(newSellOrder);
-        if (didSuccess) {
-            pendingSellOrders.sort(Comparator.comparingDouble(Order::getRequestedExchangeRate));
-        }
+        Order newSellOrder = new Order(getSymbol(), amountOfStocks, requestedExchangeRate, orderType, creator);
+        return addPendingSellOrder(newSellOrder);
+    }
 
-        return didSuccess;
+    public boolean CreateSellOrderMKT(int amountOfStocks, User creator) {
+        boolean didSuccess = false;
+        Order newSellOrder = new Order(getSymbol(), amountOfStocks, getTheLowestPriceInPendingBuyOrders(), OrderType.MKT, creator);
+        return addPendingSellOrder(newSellOrder);
     }
 
 
-    public boolean CreateBuyOrderMKT(int amountOfStocks) {
-        return CreateBuyOrder(amountOfStocks, getTheHighestPriceInPendingSellOrders(), OrderType.MKT);
+    public boolean CreateBuyOrderMKT(int amountOfStocks, User creator) {
+        return CreateBuyOrder(amountOfStocks, getTheHighestPriceInPendingSellOrders(), OrderType.MKT, creator);
     }
 
-    public boolean CreateBuyOrder(int amountOfStocks, double requestedExchangeRate, OrderType orderType) {
+    public boolean CreateBuyOrder(int amountOfStocks, double requestedExchangeRate, OrderType orderType, User creator) {
         boolean didSuccess = false;
-        Order newBuyOrder = new Order(getSymbol(), amountOfStocks, requestedExchangeRate, orderType);
+        Order newBuyOrder = new Order(getSymbol(), amountOfStocks, requestedExchangeRate, orderType, creator);
         didSuccess = pendingBuyOrders.add(newBuyOrder);
         if (didSuccess) {
             pendingBuyOrders.sort(Comparator.comparingDouble(Order::getRequestedExchangeRate).reversed());
@@ -170,15 +171,18 @@ public class Stock implements Serializable {
         while (IsItPossibleToMakeATransaction()) {
             Order sellOrder = pendingSellOrders.get(0);
             Order buyOrder = pendingBuyOrders.get(0);
+            User seller = sellOrder.getCreator();
+            User buyer = buyOrder.getCreator();
 
             int maxAmountOfStocksThatPossible = Integer.min(sellOrder.getCount(), buyOrder.getCount());
             double stockPrice = sellOrder.getRequestedExchangeRate() * (isBuy ? 1 : 0) + buyOrder.getRequestedExchangeRate() * (isSell ? 1 : 0);
             setPrice((int) stockPrice);
 
-            Transaction newTransaction = new Transaction(getSymbol(), maxAmountOfStocksThatPossible, stockPrice);
+            Transaction newTransaction = new Transaction(getSymbol(), maxAmountOfStocksThatPossible, stockPrice, seller, buyer);
             newTransactions.add(newTransaction);
             sellOrder.reduceCount(maxAmountOfStocksThatPossible);
             buyOrder.reduceCount(maxAmountOfStocksThatPossible);
+            buyer.addStocks(this,maxAmountOfStocksThatPossible);
 
             if (sellOrder.getCount() == 0) {
                 pendingSellOrders.remove(0);

@@ -159,13 +159,13 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
+    public String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         String returnValue = "";
 
         try {
             ArrayList<Transaction> newTransactions;
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
-                StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, lowestPrice, OrderType.LMT);
+                StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, lowestPrice, OrderType.LMT, seller);
                 if (StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransaction()) {
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(true);
 
@@ -186,13 +186,13 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyLMTOrder(final String symbol, int numberOfStocks, final double highestPrice) throws StockException {
+    public String buyLMTOrder(final String symbol, int numberOfStocks, final double highestPrice, User buyer) throws StockException {
         String returnValue = "";
 
         try {
             ArrayList<Transaction> newTransactions;
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
-                StockManager.getInstance().getStockBySymbol(symbol).CreateBuyOrder(numberOfStocks, highestPrice, OrderType.LMT);
+                StockManager.getInstance().getStockBySymbol(symbol).CreateBuyOrder(numberOfStocks, highestPrice, OrderType.LMT, buyer);
                 if (StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransaction()) {
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(false);
 
@@ -213,7 +213,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
+    public String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         String returnValue = "";
 
         try {
@@ -222,7 +222,7 @@ public final class BLManager implements IAPICommands {
                 if (!StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionFOK(true, numberOfStocks, lowestPrice)) {
                     returnValue = "It is not possible to add this order." + "\n";
                 } else {
-                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, lowestPrice, OrderType.FOK);
+                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, lowestPrice, OrderType.FOK, seller);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(true);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
@@ -239,7 +239,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyFOKOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException {
+    public String buyFOKOrder(final String symbol, final int numberOfStocks, final double highestPrice, User buyer) throws StockException {
         String returnValue = "";
 
         try {
@@ -248,7 +248,7 @@ public final class BLManager implements IAPICommands {
                 if (!StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionFOK(false, numberOfStocks, highestPrice)) {
                     returnValue = "It is not possible to add this order." + "\n";
                 } else {
-                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, highestPrice, OrderType.FOK);
+                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, highestPrice, OrderType.FOK, buyer);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(false);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
@@ -265,7 +265,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice) throws StockException {
+    public String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         String returnValue = "";
 
         try {
@@ -275,7 +275,7 @@ public final class BLManager implements IAPICommands {
                 if (isItPossibleToMakeATransactionIOC == -1) {
                     returnValue = "It is not possible to add this order." + "\n";
                 } else {
-                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, lowestPrice, OrderType.IOC);
+                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, lowestPrice, OrderType.IOC, seller);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(true);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
@@ -292,7 +292,7 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyIOCOrder(final String symbol, final int numberOfStocks, final double highestPrice) throws StockException {
+    public String buyIOCOrder(final String symbol, final int numberOfStocks, final double highestPrice, User buyer) throws StockException {
         String returnValue = "";
 
         try {
@@ -302,7 +302,7 @@ public final class BLManager implements IAPICommands {
                 if (isItPossibleToMakeATransactionIOC == -1) {
                     returnValue = "It is not possible to add this order." + "\n";
                 } else {
-                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, highestPrice, OrderType.IOC);
+                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, highestPrice, OrderType.IOC, buyer);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(false);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
@@ -319,13 +319,13 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String sellMKTOrder(final String symbol, final int numberOfStocks) throws StockException {
+    public String sellMKTOrder(final String symbol, final int numberOfStocks, User seller) throws StockException {
         String returnValue = "";
 
         try {
             ArrayList<Transaction> newTransactions;
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
-                StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrderMKT(numberOfStocks);
+                StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrderMKT(numberOfStocks, seller);
                 if (StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransaction()) {
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(true);
 
@@ -346,13 +346,13 @@ public final class BLManager implements IAPICommands {
     }
 
     @Override
-    public String buyMKTOrder(final String symbol, final int numberOfStocks) throws StockException {
+    public String buyMKTOrder(final String symbol, final int numberOfStocks, User buyer) throws StockException {
         String returnValue = "";
 
         try {
             ArrayList<Transaction> newTransactions;
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
-                StockManager.getInstance().getStockBySymbol(symbol).CreateBuyOrderMKT(numberOfStocks);
+                StockManager.getInstance().getStockBySymbol(symbol).CreateBuyOrderMKT(numberOfStocks, buyer);
                 if (StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransaction()) {
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(false);
 

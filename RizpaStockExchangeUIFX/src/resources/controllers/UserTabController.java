@@ -12,10 +12,12 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import models.Stock;
 import models.User;
+import resources.interfaces.TransactionActionsListener;
 
+import java.util.ArrayList;
 import java.util.Map;
 
-public class UserTabController {
+public class UserTabController implements TransactionActionsListener{
     @FXML
     private Label userMainLabel;
 
@@ -31,15 +33,8 @@ public class UserTabController {
     @FXML
     private TableColumn<Map.Entry<String, Integer>, Integer> quantity;
 
-
-    public void setUser(final User user) {
-        this.user = user;
-        userMainLabel.setText(user.getName());
-
-        refreshStocksTable();
-    }
-
-    private void refreshStocksTable() {
+    @FXML
+    public void initialize() {
         // use fully detailed type for Map.Entry<String, String>
         TableColumn<Map.Entry<Stock, Integer>, String> column1 = new TableColumn<>("Stock Symbol");
         column1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<Stock, Integer>, String>, ObservableValue<String>>() {
@@ -60,11 +55,26 @@ public class UserTabController {
                 return new ReadOnlyObjectWrapper<>(p.getValue().getValue());
             }
         });
-
-        ObservableList<Map.Entry<Stock, Integer>> items = (ObservableList<Map.Entry<Stock, Integer>>) FXCollections.observableArrayList(user.getHoldings().entrySet());
-
-        stocksTable.setItems(items);
         stocksTable.getColumns().setAll(column1, column2);
+    }
 
+    public void setUser(final User user) {
+        this.user = user;
+        userMainLabel.setText(user.getName());
+
+        refreshStocksTable();
+    }
+
+    private void refreshStocksTable() {
+        ObservableList<Map.Entry<Stock, Integer>> items = (ObservableList<Map.Entry<Stock, Integer>>) FXCollections.observableArrayList(user.getHoldings().entrySet());
+        stocksTable.getItems().clear();
+        stocksTable.setItems(items);
+
+
+    }
+
+    @Override
+    public void transactionWasMade() {
+        refreshStocksTable();
     }
 }
