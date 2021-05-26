@@ -5,30 +5,39 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fitToHeight="true"
+            fitToWidth="true"
             fx:controller="resources.controllers.TransactionProcessController">
     <content>
-        <VBox id="flatbee-container" visible="true">
+        <HBox>
             <children>
-                <MenuButton fx:id="usersMenuButton" mnemonicParsing="false"
-                            text="choose user">
-                </MenuButton>
+                <VBox id="flatbee-container" visible="true">
+                    <children>
+                        <MenuButton fx:id="usersMenuButton" mnemonicParsing="false"
+                                    text="choose user">
+                        </MenuButton>
 
-                <Label fx:id="userNameLabel" id="flatbee-xlarge"/>
-                <Separator prefWidth="200.0"/>
-                <VBox id="flatbee-card">
-                    <Label text="Stocks Holdings"/>
-                    <Separator prefWidth="200.0"/>
-                    <TableView fx:id="stocksTable" editable="true"
-                               tableMenuButtonVisible="true">
-                    </TableView>
-                    <Separator prefWidth="200.0"/>
-                    <Label fx:id="valueOfAllStocksLabel" id="flatbee-large"/>
-                </VBox>
+                        <Label fx:id="userNameLabel" id="flatbee-xlarge"/>
+                        <Separator prefWidth="200.0"/>
+                        <VBox id="flatbee-card">
+                            <Label text="Stocks Holdings"/>
+                            <Separator prefWidth="200.0"/>
+                            <TableView fx:id="stocksTable" editable="true"
+                                       tableMenuButtonVisible="true">
+                            </TableView>
+                            <Separator prefWidth="200.0"/>
+                            <Label fx:id="valueOfAllStocksLabel" id="flatbee-large"/>
+                        </VBox>
+
+
                 <Button defaultButton="true" mnemonicParsing="false"
                         text="Create transaction"
                         onAction="#createTransaction"/>
-                <ScrollPane fx:id="spTransactionCore" />
+                    </children>
+                </VBox>
+                <ScrollPane fx:id="spTransactionCore" fitToWidth="true" fitToHeight="true" />
             </children>
-        </VBox>
+        </HBox>
+
     </content>
 </ScrollPane>

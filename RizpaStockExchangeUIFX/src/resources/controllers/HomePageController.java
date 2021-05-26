@@ -267,6 +267,7 @@ public class HomePageController implements TransactionActionsListener {
             refreshStocksMenuTable();
             refreshTransactionProcessTab();
             refreshUsersTabs();
+            adminController.initializeStocksMenu();
 
             EventHandler<ActionEvent> alertEvent = new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
