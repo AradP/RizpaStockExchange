@@ -58,6 +58,7 @@ public class TransactionProcessCoreController implements OrderActionListener {
     @FXML
     public void initialize() {
         transactionActionsListeners = new ArrayList<TransactionActionsListener>();
+        orderActionsListeners = new ArrayList<>();
         toggleGroupSaleBuy = new ToggleGroup();
         rbSell.setToggleGroup(toggleGroupSaleBuy);
         rbBuy.setToggleGroup(toggleGroupSaleBuy);

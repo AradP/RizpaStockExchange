@@ -50,6 +50,7 @@ public class TransactionProcessController implements TransactionActionsListener,
     @FXML
     public void initialize() {
         transactionActionsListeners = new ArrayList<TransactionActionsListener>();
+        orderActionsListeners = new ArrayList<OrderActionListener>();
         symbolColumn = new TableColumn<>("Symbol");
         quantityColumn = new TableColumn<>("Quantity");
         stockPriceColumn = new TableColumn<>("Stock price");
