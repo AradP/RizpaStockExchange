@@ -26,6 +26,11 @@
                     <Label text="Transactions"/>
                     <TableView fx:id="transactionsTable" editable="true" tableMenuButtonVisible="true"/>
                 </VBox>
+                <Button mnemonicParsing="false"
+                        fx:id="btLineChart"
+                        text="Press to show or hide line chart of stocks price"
+                        onAction="#toggleLineChart"/>
+                <HBox fx:id="hbLineChart" visible="false"/>
 
             </children>
         </VBox>
