@@ -1,18 +1,20 @@
 package resources.controllers;
 
-import bl.BLManager;
-import bl.OrderManager;
 import bl.StockManager;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import models.Order;
 import models.Stock;
@@ -59,6 +61,10 @@ public class AdminController implements TransactionActionsListener, OrderActionL
     private TableColumn<Transaction, String> sellerNameColumn;
     @FXML
     private TableColumn<Transaction, String> buyerNameColumn;
+    @FXML
+    private HBox hbLineChart;
+    @FXML
+    private LineChart lineChart;
 
 
     @FXML
@@ -80,15 +86,16 @@ public class AdminController implements TransactionActionsListener, OrderActionL
         buyerNameColumn = new TableColumn<>("Buyer Name");
         initailizeTransactionsColumns();
 
-        ordersBuyTable.getColumns().setAll(dateColumn, orderTypeColumn, quantityColumn,stockPriceColumn,creatorNameColumn);
-        ordersSellTable.getColumns().setAll(dateColumn, orderTypeColumn, quantityColumn,stockPriceColumn,creatorNameColumn);
-        transactionsTable.getColumns().setAll(symbolColumn, timeStampColumn,amountOfStocksColumn,priceColumn,volumeColumn,sellerNameColumn,buyerNameColumn);
+        ordersBuyTable.getColumns().setAll(dateColumn, orderTypeColumn, quantityColumn, stockPriceColumn, creatorNameColumn);
+        ordersSellTable.getColumns().setAll(dateColumn, orderTypeColumn, quantityColumn, stockPriceColumn, creatorNameColumn);
+        transactionsTable.getColumns().setAll(symbolColumn, timeStampColumn, amountOfStocksColumn, priceColumn, volumeColumn, sellerNameColumn, buyerNameColumn);
         ordersBuyTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ordersSellTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         transactionsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        initLineChart();
     }
 
-    private void initailizeTransactionsColumns(){
+    private void initailizeTransactionsColumns() {
         symbolColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Transaction, String>, ObservableValue<String>>() {
 
             @Override
@@ -191,6 +198,7 @@ public class AdminController implements TransactionActionsListener, OrderActionL
     }
 
     public void initializeStocksMenu() {
+        hbLineChart.setVisible(false);
         symbolsMenuButton.getItems().clear();
         symbolsMenuButton.setText("");
 
@@ -199,18 +207,20 @@ public class AdminController implements TransactionActionsListener, OrderActionL
             item.setOnAction(e -> {
                 symbolsMenuButton.setText(stock.getSymbol());
                 currentStock = stock;
+                hbLineChart.setVisible(true);
                 stockHasChosen();
             });
 
             symbolsMenuButton.getItems().add(item);
         }
 
-        if(!symbolsMenuButton.getItems().isEmpty() && currentStock == null){
+        if (!symbolsMenuButton.getItems().isEmpty() && currentStock == null) {
             symbolsMenuButton.getItems().get(0).fire();
         }
     }
 
     private void stockHasChosen() {
+        lineChart.getData().clear();
         ordersBuyTable.getItems().clear();
         ordersSellTable.getItems().clear();
         transactionsTable.getItems().clear();
@@ -220,6 +230,13 @@ public class AdminController implements TransactionActionsListener, OrderActionL
         ordersBuyTable.setItems(buyItems);
         ordersSellTable.setItems(sellItems);
         transactionsTable.setItems(transactions);
+
+        for (Transaction transaction : transactions) {
+            XYChart.Series<String, Number> data = new XYChart.Series<String, Number>();
+            data.getData().add(new XYChart.Data<>(transaction.getTimeStamp(), transaction.getPrice()));
+
+            lineChart.getData().add(data);
+        }
     }
 
     @Override
@@ -231,4 +248,20 @@ public class AdminController implements TransactionActionsListener, OrderActionL
     public void newOrderAdded() {
         stockHasChosen();
     }
+
+    private void initLineChart() {
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Time stamp");
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Stock price");
+        lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setTitle("Stock price chart");
+        hbLineChart.getChildren().add(lineChart);
+    }
+
+    @FXML
+    private void toggleLineChart() {
+        hbLineChart.setVisible(!hbLineChart.isVisible());
+    }
+
 }
