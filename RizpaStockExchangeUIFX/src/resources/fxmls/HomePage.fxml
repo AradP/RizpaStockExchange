@@ -5,13 +5,13 @@
 
 <BorderPane fx:id="rootBorderPane" prefHeight="1000" prefWidth="1000" stylesheets="@../css/basic.css"
             xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="resources.controllers.HomePageController">
+            fx:controller="resources.controllers.HomePageController" id="rootBorderPane">
     <center>
         <TabPane fx:id="rootTabPane" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Home">
                     <content>
-                        <ScrollPane>
+                        <ScrollPane id="page-container">
                             <content>
                                 <VBox id="flatbee-container">
                                     <children>
@@ -46,7 +46,7 @@
                 </Tab>
                 <Tab text="Stocks">
                     <content>
-                        <ScrollPane>
+                        <ScrollPane id="page-container">
                             <content>
                                 <VBox id="flatbee-container">
                                     <children>

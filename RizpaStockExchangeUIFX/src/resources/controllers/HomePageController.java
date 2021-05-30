@@ -15,11 +15,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import models.Stock;
@@ -28,6 +30,8 @@ import resources.interfaces.TransactionActionsListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomePageController implements TransactionActionsListener {
     @FXML
@@ -307,4 +311,36 @@ public class HomePageController implements TransactionActionsListener {
     public void transactionWasMade() {
 
     }
+//
+//    @FXML
+//    private void changeTheme(ActionEvent event, int themeNum, Stage primaryStage) {
+//        Scene scene = ((Node)event.getSource()).getScene();
+//        switch (themeNum) {
+//            case (1): {
+//                scene.getStylesheets().clear();
+//                scene.getStylesheets().add(this.getClass().getResource("../css/theme1.css").toExternalForm());
+//            } case (2): {
+//                scene.getStylesheets().clear();
+//                scene.getStylesheets().add(this.getClass().getResource("../css/theme2.css").toExternalForm());
+//            } default: {
+//                scene.getStylesheets().clear();
+//                scene.getStylesheets().add(this.getClass().getResource("../css/basic.css").toExternalForm());
+//            }
+//        }
+//    }
+//
+//    @FXML
+//    public void chThemeToDefault(ActionEvent event) {
+//        changeTheme(event, 0);
+//    }
+//
+//    @FXML
+//    public void chThemeTo1(ActionEvent event) {
+//        changeTheme(event, 1);
+//    }
+//
+//    @FXML
+//    public void chThemeTo2(ActionEvent event) {
+//        changeTheme(event, 2);
+//    }
 }

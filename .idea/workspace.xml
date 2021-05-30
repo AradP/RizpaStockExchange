@@ -4,6 +4,7 @@
     <artifacts-to-build>
       <artifact name="RizpaStockExchangeEngine:jar2" />
       <artifact name="RizpaStockExchangeUI:jar" />
+      <artifact name="RizpaStockExchangeUIFX" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -11,10 +12,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeUIFX.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/AdminTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/AdminTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/AdminTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/AdminTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/css/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/css/basic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,11 +32,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -60,7 +68,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/AdminTab.fxml" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15820312" />
     <property name="project.structure.side.proportion" value="0.24725944" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
@@ -75,17 +83,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.RSE UIFX">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RSE UI" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="RizpaStockExchangeUI" />
@@ -96,6 +93,17 @@
     <configuration name="RSE UIFX" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="RizpaStockExchangeUIFX" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -131,6 +139,7 @@
       <workItem from="1617885572324" duration="1911000" />
       <workItem from="1617887679063" duration="88000" />
       <workItem from="1617887818447" duration="28525000" />
+      <workItem from="1622394608078" duration="10823000" />
     </task>
     <servers />
   </component>
@@ -163,16 +172,7 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="user.getHoldings().entrySet()" language="JAVA" />
-        <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.UserManager" />
-        <watch expression="StockManager.getInstance().getStockBySymbol(currHolding.getSymbol()" language="JAVA" />
-        <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.StockManager,javax.jws.soap.SOAPBinding,bl.UserManager" />
-        <watch expression="loader" />
-        <watch expression="ioException" />
-        <watch expression="buyItems" />
-        <watch expression="StockManager.getInstance().getPendingBuyOrder(currentStock.getSymbol())" language="JAVA" />
-        <watch expression="ordersBuyTable" />
-        <watch expression="ordersBuyTable.getItems()" language="JAVA" />
+        <watch expression="scene.getStylesheets()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
