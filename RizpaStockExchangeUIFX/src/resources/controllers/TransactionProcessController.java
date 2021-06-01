@@ -73,8 +73,8 @@ public class TransactionProcessController implements TransactionActionsListener,
         try {
             node = loader.load();
         } catch (IOException ioException) {
-            // TODO: Alert
-            ioException.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "There was a problem loading te fxml file: " + ioException.getMessage());
+            alert.show();
         }
         coreController = loader.getController();
         coreController.addTransactionActionsListener(this);

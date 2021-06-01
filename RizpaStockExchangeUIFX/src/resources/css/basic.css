@@ -73,16 +73,6 @@
     -fx-padding : 10;
 }
 
-.button:focused {
-    -fx-color : -darkGray;
-    -fx-focus-color : -darkGray;
-}
-.button:hover {
-    -fx-color: -darkGray;
-    -fx-inner-border : -darkGray;
-    -fx-body-color : -darkGray;
-}
-
 .button:armed {
     -fx-color: -white;
 }

@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
@@ -32,7 +33,8 @@ public class Main extends Application {
             loader.setLocation(getClass().getResource("resources/fxmls/HomePage.fxml"));
             borderPane = loader.load();
         } catch (final IOException e) {
-            System.out.println("TODO: " + e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR, "There was a problem loading te fxml file: " + e.getMessage());
+            alert.show();
         }
 
         final Scene scene;

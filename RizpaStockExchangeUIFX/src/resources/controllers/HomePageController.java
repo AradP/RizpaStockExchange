@@ -3,6 +3,8 @@ package resources.controllers;
 import bl.BLManager;
 import bl.StockManager;
 import bl.UserManager;
+import exceptions.stocks.StockException;
+import exceptions.users.UserAlreadyExistsException;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -28,7 +30,9 @@ import models.Stock;
 import models.User;
 import resources.interfaces.TransactionActionsListener;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,8 +110,8 @@ public class HomePageController implements TransactionActionsListener {
         try {
             node = loader.load();
         } catch (IOException ioException) {
-            // TODO: Alert
-            ioException.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "There was a problem loading te fxml file: " + ioException.getMessage());
+            alert.show();
         }
 
         adminController = loader.getController();
@@ -206,8 +210,8 @@ public class HomePageController implements TransactionActionsListener {
             try {
                 node = loader.load();
             } catch (IOException ioException) {
-                // TODO: Alert
-                ioException.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "There was a problem loading te fxml file: " + ioException.getMessage());
+                alert.show();
             }
             // Get the Controller from the FXMLLoader
             UserTabController controller = loader.getController();
@@ -226,8 +230,8 @@ public class HomePageController implements TransactionActionsListener {
         try {
             node = loader.load();
         } catch (IOException ioException) {
-            // TODO: Alert
-            ioException.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "There was a problem loading te fxml file: " + ioException.getMessage());
+            alert.show();
         }
 
         transactionProcessController = loader.getController();
@@ -291,7 +295,8 @@ public class HomePageController implements TransactionActionsListener {
                 public void handle(ActionEvent e) {
                     // show the dialog
                     new Alert(Alert.AlertType.ERROR,
-                            task.getException().getMessage(), ButtonType.CLOSE).show();
+                            "There was a problem loading the xml file\n" +
+                                    task.getException().getMessage(), ButtonType.CLOSE).show();
                 }
             };
             alertEvent.handle(event);
