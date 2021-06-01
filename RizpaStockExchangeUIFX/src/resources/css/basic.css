@@ -73,10 +73,6 @@
     -fx-padding : 10;
 }
 
-.button:armed {
-    -fx-color: -white;
-}
-
 /*
  * **********
  * PROGRESSBAR

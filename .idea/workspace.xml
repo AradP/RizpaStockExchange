@@ -13,14 +13,10 @@
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSE Runner/RSE Runner.bat" beforeDir="false" afterPath="$PROJECT_DIR$/RSE Runner/RSE Runner.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/TransactionProcessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/TransactionProcessController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme1.css" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme2.css" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RSE Runner.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/run.bat" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +136,7 @@
       <workItem from="1617887679063" duration="88000" />
       <workItem from="1617887818447" duration="28525000" />
       <workItem from="1622394608078" duration="10824000" />
-      <workItem from="1622577965063" duration="2632000" />
+      <workItem from="1622577965063" duration="3165000" />
     </task>
     <servers />
   </component>
