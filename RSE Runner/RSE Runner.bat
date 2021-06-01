@@ -1,1 +1,1 @@
-java -cp RizpaStockExchangeUI.jar;"RizpaStockExchangeEngine.jar" Main
+java -cp RizpaStockExchangeUIFX.jar;"RizpaStockExchangeEngine.jar" Main

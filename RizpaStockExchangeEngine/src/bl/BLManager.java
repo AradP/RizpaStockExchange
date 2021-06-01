@@ -587,7 +587,11 @@ public final class BLManager implements IAPICommands {
                 throw new InvalidSystemDataFile("Stock quantity must be a positive number");
             }
 
-            holdings.put(Objects.requireNonNull(currStock),
+            if (currStock == null) {
+                throw new SymbolDoesntExistException(currHolding.getSymbol());
+            }
+
+            holdings.put(currStock,
                     currHolding.getQuantity());
         }
 

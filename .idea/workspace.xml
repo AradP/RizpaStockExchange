@@ -12,17 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeUIFX.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme1.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/css/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/css/basic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RSE Runner.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/run.bat" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +65,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15820312" />
     <property name="project.structure.side.proportion" value="0.24725944" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -97,13 +91,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -139,7 +135,8 @@
       <workItem from="1617885572324" duration="1911000" />
       <workItem from="1617887679063" duration="88000" />
       <workItem from="1617887818447" duration="28525000" />
-      <workItem from="1622394608078" duration="10823000" />
+      <workItem from="1622394608078" duration="10824000" />
+      <workItem from="1622577965063" duration="3165000" />
     </task>
     <servers />
   </component>
@@ -168,6 +165,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
