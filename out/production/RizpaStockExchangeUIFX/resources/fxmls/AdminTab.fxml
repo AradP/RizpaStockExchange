@@ -7,7 +7,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fitToHeight="true"
             fitToWidth="true"
-            fx:controller="resources.controllers.AdminController">
+            fx:controller="controllers.AdminController">
     <content>
         <VBox id="flatbee-container" visible="true">
             <children>

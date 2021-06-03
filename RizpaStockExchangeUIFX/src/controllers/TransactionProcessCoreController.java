@@ -1,19 +1,18 @@
-package resources.controllers;
+package controllers;
 
 import apigateway.APIGatewayManager;
 import bl.StockManager;
 import exceptions.stocks.StockException;
+import interfaces.OrderActionListener;
+import interfaces.TransactionActionsListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import models.Order;
 import models.Stock;
 import models.User;
-import resources.interfaces.OrderActionListener;
-import resources.interfaces.TransactionActionsListener;
 
 import java.util.ArrayList;
 import java.util.List;

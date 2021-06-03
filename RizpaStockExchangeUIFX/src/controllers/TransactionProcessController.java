@@ -1,6 +1,8 @@
-package resources.controllers;
+package controllers;
 
 import bl.UserManager;
+import interfaces.OrderActionListener;
+import interfaces.TransactionActionsListener;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -11,16 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import models.Stock;
 import models.User;
-import resources.interfaces.OrderActionListener;
-import resources.interfaces.TransactionActionsListener;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

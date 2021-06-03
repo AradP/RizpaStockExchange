@@ -1,5 +1,6 @@
-package resources.controllers;
+package controllers;
 
+import interfaces.TransactionActionsListener;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -12,12 +13,10 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import models.Stock;
 import models.User;
-import resources.interfaces.TransactionActionsListener;
 
-import java.util.ArrayList;
 import java.util.Map;
 
-public class UserTabController implements TransactionActionsListener{
+public class UserTabController implements TransactionActionsListener {
     @FXML
     private Label userMainLabel;
 

@@ -8,7 +8,7 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="resources.controllers.TransactionProcessCoreController">
+            fx:controller="controllers.TransactionProcessCoreController">
     <content>
         <VBox id="flatbee-container">
             <children>

@@ -7,7 +7,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fitToHeight="true"
             fitToWidth="true"
-            fx:controller="resources.controllers.TransactionProcessController">
+            fx:controller="controllers.TransactionProcessController">
     <content>
         <HBox>
             <children>
@@ -22,8 +22,9 @@
                         <VBox id="flatbee-card">
                             <Label text="Stocks Holdings"/>
                             <Separator prefWidth="200.0"/>
-                            <TableView fx:id="stocksTable" editable="true"
+                            <TableView fx:id="stocksTable" editable="true" prefWidth="800.0"
                                        tableMenuButtonVisible="true">
+                                <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
                             </TableView>
                             <Separator prefWidth="200.0"/>
                             <Label fx:id="valueOfAllStocksLabel" id="flatbee-large"/>

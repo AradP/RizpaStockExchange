@@ -1,6 +1,8 @@
-package resources.controllers;
+package controllers;
 
 import bl.StockManager;
+import interfaces.OrderActionListener;
+import interfaces.TransactionActionsListener;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -19,8 +21,6 @@ import javafx.util.Callback;
 import models.Order;
 import models.Stock;
 import models.Transaction;
-import resources.interfaces.OrderActionListener;
-import resources.interfaces.TransactionActionsListener;
 
 public class AdminController implements TransactionActionsListener, OrderActionListener {
     @FXML

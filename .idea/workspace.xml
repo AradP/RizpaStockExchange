@@ -3,7 +3,6 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="RizpaStockExchangeEngine:jar2" />
-      <artifact name="RizpaStockExchangeUI:jar" />
       <artifact name="RizpaStockExchangeUIFX" />
     </artifacts-to-build>
   </component>
@@ -12,11 +11,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeUI_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RSE Runner.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/TransactionProcessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/TransactionProcessController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/TransactionProcessCoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/TransactionProcessCoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/controllers/UserTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/UserTabController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/AdminTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/AdminTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/TransactionProcessCoreComponent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/TransactionProcessCoreComponent.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/TransactionProcessTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/TransactionProcessTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/UserTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/UserTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/interfaces/OrderActionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/interfaces/OrderActionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/interfaces/TransactionActionsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/interfaces/TransactionActionsListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/run.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/AdminTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/AdminTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/TransactionProcessCoreComponent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/TransactionProcessCoreComponent.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/TransactionProcessTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/TransactionProcessTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/UserTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RizpaStockExchangeUIFX/resources/fxmls/UserTab.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,11 +84,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src" />
       <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\resources\css" />
       <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\resources" />
-      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src" />
       <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\fxmls" />
-      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeEngine\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Application.RSE UIFX">
@@ -91,15 +106,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -137,6 +150,7 @@
       <workItem from="1617887818447" duration="28525000" />
       <workItem from="1622394608078" duration="10824000" />
       <workItem from="1622577965063" duration="3165000" />
+      <workItem from="1622714160697" duration="3346000" />
     </task>
     <servers />
   </component>
@@ -165,16 +179,12 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="scene.getStylesheets()" language="JAVA" />
+        <watch expression="stock" />
+        <watch expression="stock.getOrderPeriod()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

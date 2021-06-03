@@ -1,4 +1,4 @@
-package resources.interfaces;
+package interfaces;
 
 public interface TransactionActionsListener {
     void transactionWasMade();

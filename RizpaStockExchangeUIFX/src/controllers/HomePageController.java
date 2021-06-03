@@ -1,10 +1,9 @@
-package resources.controllers;
+package controllers;
 
 import bl.BLManager;
 import bl.StockManager;
 import bl.UserManager;
-import exceptions.stocks.StockException;
-import exceptions.users.UserAlreadyExistsException;
+import interfaces.TransactionActionsListener;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -17,25 +16,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import models.Stock;
 import models.User;
-import resources.interfaces.TransactionActionsListener;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomePageController implements TransactionActionsListener {
     @FXML
