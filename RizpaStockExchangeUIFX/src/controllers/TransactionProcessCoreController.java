@@ -165,36 +165,41 @@ public class TransactionProcessCoreController implements OrderActionListener {
     }
 
     private void initializeStocksMenu() {
-        symbolsMenuButton.getItems().clear();
-        symbolsMenuButton.setText("");
-        tfAmountOfStocks.setText("");
-        tfAmountOfStocks.setDisable(true);
-        tfAmountOfStocks.setEditable(false);
-        btConfirm.setDisable(true);
-        cbConfirm.setSelected(false);
-
-        if (!isSell) {
-            for (final Stock stock : StockManager.getInstance().getStocks()) {
-                MenuItem item = new MenuItem(stock.getSymbol());
-                item.setOnAction(e -> {
-                    symbolsMenuButton.setText(stock.getSymbol());
-                    currentStock = stock;
-                    stockHasChosen();
-                });
-
-                symbolsMenuButton.getItems().add(item);
-            }
+        if (currentUser == null) {
+            new Alert(Alert.AlertType.ERROR,
+                    "Please choose a user", ButtonType.CLOSE).show();
         } else {
-            for (Map.Entry<Stock, Integer> entry : currentUser.getHoldings().entrySet()) {
-                MenuItem item = new MenuItem(entry.getKey().getSymbol());
-                item.setOnAction(e -> {
-                    symbolsMenuButton.setText(entry.getKey().getSymbol());
-                    currentStock = entry.getKey();
-                    stockAmountLimit = entry.getValue();
-                    stockHasChosen();
-                });
+            symbolsMenuButton.getItems().clear();
+            symbolsMenuButton.setText("");
+            tfAmountOfStocks.setText("");
+            tfAmountOfStocks.setDisable(true);
+            tfAmountOfStocks.setEditable(false);
+            btConfirm.setDisable(true);
+            cbConfirm.setSelected(false);
 
-                symbolsMenuButton.getItems().add(item);
+            if (!isSell) {
+                for (final Stock stock : StockManager.getInstance().getStocks()) {
+                    MenuItem item = new MenuItem(stock.getSymbol());
+                    item.setOnAction(e -> {
+                        symbolsMenuButton.setText(stock.getSymbol());
+                        currentStock = stock;
+                        stockHasChosen();
+                    });
+
+                    symbolsMenuButton.getItems().add(item);
+                }
+            } else {
+                for (Map.Entry<Stock, Integer> entry : currentUser.getHoldings().entrySet()) {
+                    MenuItem item = new MenuItem(entry.getKey().getSymbol());
+                    item.setOnAction(e -> {
+                        symbolsMenuButton.setText(entry.getKey().getSymbol());
+                        currentStock = entry.getKey();
+                        stockAmountLimit = entry.getValue();
+                        stockHasChosen();
+                    });
+
+                    symbolsMenuButton.getItems().add(item);
+                }
             }
         }
     }
@@ -213,26 +218,37 @@ public class TransactionProcessCoreController implements OrderActionListener {
 
     @FXML
     public void confirmTransaction(ActionEvent actionEvent) {
-        try {
-            // LMT
-            if (isLMT) {
-                String returnValue = isSell ? APIGatewayManager.getInstance().sellLMTOrder(currentStock.getSymbol(), Integer.parseInt(tfAmountOfStocks.getText()), Integer.parseInt(tfLimitRate.getText()), currentUser) :
-                        APIGatewayManager.getInstance().buyLMTOrder(currentStock.getSymbol(), Integer.parseInt(tfAmountOfStocks.getText()), Integer.parseInt(tfLimitRate.getText()), currentUser);
-                new Alert(Alert.AlertType.CONFIRMATION,
-                        returnValue, ButtonType.CLOSE).show();
-                refreshDetails();
-            }
-            //MKT
-            else {
-                String returnValue = !isSell ? APIGatewayManager.getInstance().sellMKTOrder(currentStock.getSymbol(), Integer.parseInt(tfAmountOfStocks.getText()), currentUser) :
-                        APIGatewayManager.getInstance().buyMKTOrder(currentStock.getSymbol(), Integer.parseInt(tfAmountOfStocks.getText()), currentUser);
-                new Alert(Alert.AlertType.CONFIRMATION,
-                        returnValue, ButtonType.CLOSE).show();
-                refreshDetails();
-            }
-        } catch (StockException e) {
+        if (currentUser == null) {
             new Alert(Alert.AlertType.ERROR,
-                    e.getMessage(), ButtonType.CLOSE).show();
+                    "Please choose a user", ButtonType.CLOSE).show();
+        } else if (tfAmountOfStocks == null || tfAmountOfStocks.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,
+                    "Please choose amount of stocks", ButtonType.CLOSE).show();
+        } else if (currentStock == null) {
+            new Alert(Alert.AlertType.ERROR,
+                    "Please choose stock", ButtonType.CLOSE).show();
+        } else {
+            try {
+                // LMT
+                if (isLMT) {
+                    String returnValue = isSell ? APIGatewayManager.getInstance().sellLMTOrder(currentStock.getSymbol(), Integer.parseInt(tfAmountOfStocks.getText()), Integer.parseInt(tfLimitRate.getText()), currentUser) :
+                            APIGatewayManager.getInstance().buyLMTOrder(currentStock.getSymbol(), Integer.parseInt(tfAmountOfStocks.getText()), Integer.parseInt(tfLimitRate.getText()), currentUser);
+                    new Alert(Alert.AlertType.CONFIRMATION,
+                            returnValue, ButtonType.CLOSE).show();
+                    refreshDetails();
+                }
+                //MKT
+                else {
+                    String returnValue = isSell ? APIGatewayManager.getInstance().sellMKTOrder(currentStock.getSymbol(), Integer.parseInt(tfAmountOfStocks.getText()), currentUser) :
+                            APIGatewayManager.getInstance().buyMKTOrder(currentStock.getSymbol(), Integer.parseInt(tfAmountOfStocks.getText()), currentUser);
+                    new Alert(Alert.AlertType.CONFIRMATION,
+                            returnValue, ButtonType.CLOSE).show();
+                    refreshDetails();
+                }
+            } catch (StockException e) {
+                new Alert(Alert.AlertType.ERROR,
+                        e.getMessage(), ButtonType.CLOSE).show();
+            }
         }
     }
 

@@ -10,7 +10,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="" />
+    <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/TransactionProcessCoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/TransactionProcessCoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,14 +75,7 @@
       <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\fxmls" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RSE UIFX">
-    <configuration name="RSE UI" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="RizpaStockExchangeUI" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="RSE UIFX" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="RizpaStockExchangeUIFX" />
@@ -95,14 +94,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.RSE UI" />
-      <item itemvalue="Application.RSE UIFX" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.RSE UIFX" />
-        <item itemvalue="Application.RSE UI" />
       </list>
     </recent_temporary>
   </component>
@@ -161,8 +155,10 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="stock" />
-        <watch expression="stock.getOrderPeriod()" language="JAVA" />
+        <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.UserManager" />
+        <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.StockManager,javax.jws.soap.SOAPBinding,bl.UserManager" />
+        <watch expression="StockManager.getInstance().getPendingBuyOrder(currentStock.getSymbol())" language="JAVA" />
+        <watch expression="tfAmountOfStocks.getText()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

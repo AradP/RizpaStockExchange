@@ -31,15 +31,25 @@ public class AdminController implements TransactionActionsListener, OrderActionL
     @FXML
     private TableView<Order> ordersBuyTable;
     @FXML
-    private TableColumn<Order, String> dateColumn;
+    private TableColumn<Order, String> dateColumnBuy;
     @FXML
-    private TableColumn<Order, String> orderTypeColumn;
+    private TableColumn<Order, String> orderTypeColumnBuy;
     @FXML
-    private TableColumn<Order, Integer> quantityColumn;
+    private TableColumn<Order, Integer> quantityColumnBuy;
     @FXML
-    private TableColumn<Order, Double> stockPriceColumn;
+    private TableColumn<Order, Double> stockPriceColumnBuy;
     @FXML
-    private TableColumn<Order, String> creatorNameColumn;
+    private TableColumn<Order, String> creatorNameColumnBuy;
+    @FXML
+    private TableColumn<Order, String> dateColumnSell;
+    @FXML
+    private TableColumn<Order, String> orderTypeColumnSell;
+    @FXML
+    private TableColumn<Order, Integer> quantityColumnSell;
+    @FXML
+    private TableColumn<Order, Double> stockPriceColumnSell;
+    @FXML
+    private TableColumn<Order, String> creatorNameColumnSell;
 
     @FXML
     private TableView<Order> ordersSellTable;
@@ -70,12 +80,9 @@ public class AdminController implements TransactionActionsListener, OrderActionL
     @FXML
     public void initialize() {
         initializeStocksMenu();
-        dateColumn = new TableColumn<>("Date");
-        orderTypeColumn = new TableColumn<>("Type");
-        quantityColumn = new TableColumn<>("Amount");
-        stockPriceColumn = new TableColumn<>("Stock Price");
-        creatorNameColumn = new TableColumn<>("Creator Name");
-        initalizeOrdersColumns();
+
+        initalizeOrdersColumnsBuy();
+        initalizeOrdersColumnsSell();
 
         symbolColumn = new TableColumn<>("Symbol");
         timeStampColumn = new TableColumn<>("Time stamp");
@@ -86,8 +93,8 @@ public class AdminController implements TransactionActionsListener, OrderActionL
         buyerNameColumn = new TableColumn<>("Buyer Name");
         initailizeTransactionsColumns();
 
-        ordersBuyTable.getColumns().setAll(dateColumn, orderTypeColumn, quantityColumn, stockPriceColumn, creatorNameColumn);
-        ordersSellTable.getColumns().setAll(dateColumn, orderTypeColumn, quantityColumn, stockPriceColumn, creatorNameColumn);
+        ordersBuyTable.getColumns().setAll(dateColumnBuy, orderTypeColumnBuy, quantityColumnBuy, stockPriceColumnBuy, creatorNameColumnBuy);
+        ordersSellTable.getColumns().setAll(dateColumnSell, orderTypeColumnSell, quantityColumnSell, stockPriceColumnSell, creatorNameColumnSell);
         transactionsTable.getColumns().setAll(symbolColumn, timeStampColumn, amountOfStocksColumn, priceColumn, volumeColumn, sellerNameColumn, buyerNameColumn);
         ordersBuyTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ordersSellTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -154,8 +161,14 @@ public class AdminController implements TransactionActionsListener, OrderActionL
         });
     }
 
-    private void initalizeOrdersColumns() {
-        dateColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
+    private void initalizeOrdersColumnsBuy() {
+        dateColumnBuy = new TableColumn<>("Date");
+        orderTypeColumnBuy = new TableColumn<>("Type");
+        quantityColumnBuy = new TableColumn<>("Amount");
+        stockPriceColumnBuy = new TableColumn<>("Stock Price");
+        creatorNameColumnBuy = new TableColumn<>("Creator Name");
+
+        dateColumnBuy.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
 
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Order, String> p) {
@@ -163,7 +176,7 @@ public class AdminController implements TransactionActionsListener, OrderActionL
                 return new ReadOnlyObjectWrapper(p.getValue().getTimestamp());
             }
         });
-        orderTypeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
+        orderTypeColumnBuy.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
 
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Order, String> p) {
@@ -171,7 +184,7 @@ public class AdminController implements TransactionActionsListener, OrderActionL
                 return new ReadOnlyObjectWrapper(p.getValue().getOrderType().toString());
             }
         });
-        quantityColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, Integer>, ObservableValue<Integer>>() {
+        quantityColumnBuy.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, Integer>, ObservableValue<Integer>>() {
 
             @Override
             public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Order, Integer> p) {
@@ -179,7 +192,7 @@ public class AdminController implements TransactionActionsListener, OrderActionL
                 return new ReadOnlyObjectWrapper(p.getValue().getCount());
             }
         });
-        stockPriceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, Double>, ObservableValue<Double>>() {
+        stockPriceColumnBuy.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, Double>, ObservableValue<Double>>() {
 
             @Override
             public ObservableValue<Double> call(TableColumn.CellDataFeatures<Order, Double> p) {
@@ -187,7 +200,56 @@ public class AdminController implements TransactionActionsListener, OrderActionL
                 return new ReadOnlyObjectWrapper(p.getValue().getRequestedExchangeRate());
             }
         });
-        creatorNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
+        creatorNameColumnBuy.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Order, String> p) {
+                // for second column we use value
+                return new ReadOnlyObjectWrapper(p.getValue().getCreator().getName());
+            }
+        });
+    }
+
+    private void initalizeOrdersColumnsSell() {
+        dateColumnSell = new TableColumn<>("Date");
+        orderTypeColumnSell = new TableColumn<>("Type");
+        quantityColumnSell = new TableColumn<>("Amount");
+        stockPriceColumnSell = new TableColumn<>("Stock Price");
+        creatorNameColumnSell = new TableColumn<>("Creator Name");
+
+        dateColumnSell.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Order, String> p) {
+                // for second column we use value
+                return new ReadOnlyObjectWrapper(p.getValue().getTimestamp());
+            }
+        });
+        orderTypeColumnSell.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Order, String> p) {
+                // for second column we use value
+                return new ReadOnlyObjectWrapper(p.getValue().getOrderType().toString());
+            }
+        });
+        quantityColumnSell.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, Integer>, ObservableValue<Integer>>() {
+
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Order, Integer> p) {
+                // for second column we use value
+                return new ReadOnlyObjectWrapper(p.getValue().getCount());
+            }
+        });
+        stockPriceColumnSell.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, Double>, ObservableValue<Double>>() {
+
+            @Override
+            public ObservableValue<Double> call(TableColumn.CellDataFeatures<Order, Double> p) {
+                // for second column we use value
+                return new ReadOnlyObjectWrapper(p.getValue().getRequestedExchangeRate());
+            }
+        });
+        creatorNameColumnSell.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Order, String>, ObservableValue<String>>() {
 
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Order, String> p) {
