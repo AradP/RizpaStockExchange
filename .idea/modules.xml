@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RizpaStockExchangeEngine/RizpaStockExchangeEngine.iml" filepath="$PROJECT_DIR$/RizpaStockExchangeEngine/RizpaStockExchangeEngine.iml" />
       <module fileurl="file://$PROJECT_DIR$/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.iml" filepath="$PROJECT_DIR$/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" filepath="$PROJECT_DIR$/../RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb1.iml" filepath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb1.iml" />
     </modules>
   </component>
 </project>
