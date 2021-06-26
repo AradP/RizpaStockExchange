@@ -9,13 +9,9 @@
 <br/>
 <!-- This is the login part -->
 <form action="HelloServlet">
-
   Please enter your username
   <input type="text" name="un"/><br>
-
   <input type="submit" value="submit">
-
 </form>
-<a href="hello-servlet">Hello Servlet</a>
 </body>
 </html>

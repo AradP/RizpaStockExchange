@@ -1,5 +1,6 @@
 package models;
 
+import enums.Role;
 import javafx.beans.property.MapProperty;
 import javafx.collections.ObservableMap;
 
@@ -8,14 +9,24 @@ import java.util.HashMap;
 public class User {
     private String name;
     private HashMap<Stock, Integer> holdings;
+    private Role role;
 
-    public User(String name) {
+    public User(String name, Role role) {
         this.name = name;
+        this.role = role;
     }
 
     public User(String name, HashMap<Stock, Integer> holdings) {
         this.name = name;
         this.holdings = holdings;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getName() {

@@ -3,6 +3,7 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="RizpaStockExchangeWeb:war" />
+      <artifact name="RizpaStockExchangeWeb:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,19 +11,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UsersSessionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/Home.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/enums/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/AllUserAndStocks.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/Home.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/SingleStock.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UsersSessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UsersSessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/rizpa/proj/RizpaStockExchangeWeb/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/HomeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/Home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/target/RizpaStockExchangeWeb-1.0-SNAPSHOT/Home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/target/RizpaStockExchangeWeb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/target/RizpaStockExchangeWeb-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/target/RizpaStockExchangeWeb-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeEngine/RizpaStockExchangeEngine.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeEngine/resources/RSE-V1.xsd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeEngine/resources/RSE-V2.xsd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RizpaStockExchangeEngine/src/META-INF/MANIFEST.MF" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +51,10 @@
         <option value="FxmlFile" />
         <option value="Interface" />
         <option value="CSS File" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Tag Library Descriptor" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -77,20 +91,26 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/RizpaStockExchangeEngine/src" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15820312" />
-    <property name="project.structure.side.proportion" value="0.24725944" />
+    <property name="project.structure.side.proportion" value="0.30332682" />
     <property name="settings.editor.selected.configurable" value="project.propDebugger" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeWeb\src\main\webapp\WEB-INF\views" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeWeb\src\main\webapp" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX" />
-      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src" />
-      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\resources\css" />
-      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\resources" />
-      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeUIFX\src\fxmls" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeWeb\src\main\webapp\WEB-INF\views" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeWeb\src\main\webapp\WEB-INF" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeWeb\views" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeWeb" />
+      <recent name="C:\Users\X5-i7\IdeaProjects\RizpaStockExchange\RizpaStockExchangeWeb\target" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.RizpaStockExchangeWeb">
@@ -192,19 +212,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RizpaStockExchangeWeb" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.681" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8081/RizpaStockExchangeWeb_war" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="RizpaStockExchangeWeb:war">
@@ -289,6 +298,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="RizpaStockExchangeWeb:war" />
+          <artifact name="RizpaStockExchangeWeb:war exploded" />
         </option>
       </method>
     </configuration>
@@ -373,9 +383,7 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="RizpaStockExchangeWeb:war exploded" />
-        </option>
+        <option name="BuildArtifacts" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -414,6 +422,7 @@
       <workItem from="1622577965063" duration="3165000" />
       <workItem from="1622714160697" duration="3861000" />
       <workItem from="1624698112801" duration="10553000" />
+      <workItem from="1624729893112" duration="10842000" />
     </task>
     <servers />
   </component>
@@ -442,14 +451,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UsersSessionManager.java</url>
-          <line>18</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

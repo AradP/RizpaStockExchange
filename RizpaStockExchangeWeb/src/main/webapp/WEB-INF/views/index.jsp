@@ -8,14 +8,13 @@
 <h1><%= "Welcome To Rizpa Stock Exchange!" %></h1>
 <br/>
 <!-- This is the login part -->
-<form action="HelloServlet">
-
+<form action="HomeServlet">
   Please enter your username
-  <input type="text" name="un"/><br>
-
+  <input type="text" name="username"/><br>
+  <c:forEach items="${listRole}" var="role">
+    <option value="${role.name()}">${role.name()}</option>
+  </c:forEach>
   <input type="submit" value="submit">
-
 </form>
-<a href="hello-servlet">Hello Servlet</a>
 </body>
 </html>

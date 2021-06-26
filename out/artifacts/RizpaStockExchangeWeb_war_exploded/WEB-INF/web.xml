@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <servlet>
-        <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>servlets.HomeServlet</servlet-class>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>servlets.HelloServlet</servlet-class>
 <!--        <jsp-file>/src/main/webapp/WEB-INF/views/Home.jsp</jsp-file>-->
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/RizpaStockExchangeWeb_war/HomeServlet</url-pattern>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/RizpaStockExchangeWeb_war/HelloServlet</url-pattern>
     </servlet-mapping>
 
     <error-page>
