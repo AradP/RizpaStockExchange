@@ -6,9 +6,9 @@
     <title>Home Page</title></head>
 <body>
 <center>
-    <% User currentUser = (User) (session.getAttribute("currentSessionUser"));%>
+<%--    <% User currentUser = (User) (session.getAttribute("currentSessionUser"));%>--%>
 
-    Welcome <%= currentUser.getName()%>
+    Welcome <%= request.getParameter("username")%>
 </center>
 </body>
 </html>

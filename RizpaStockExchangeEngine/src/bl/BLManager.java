@@ -34,12 +34,8 @@ public final class BLManager implements IAPICommands {
 
     //endregion
 
-    private final ReadOnlyDoubleWrapper progress = new ReadOnlyDoubleWrapper();
-
     @Override
     public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException, UserAlreadyExistsException {
-        progress.set(0);
-
         // Validates this really is a xml file
         final File systemDetailsFile = new File(xmlFilePath);
 
@@ -50,8 +46,6 @@ public final class BLManager implements IAPICommands {
 
         final InputStream inputStream = new FileInputStream(systemDetailsFile);
         final RizpaStockExchangeDescriptor rseDescriptor = deserializeFrom(inputStream);
-
-        final int totalProgressSize = rseDescriptor.getRseStocks().getRseStock().size() + rseDescriptor.getRseUsers().getRseUser().size();
 
         // Stocks Validation
         final ArrayList<Stock> newStocks = new ArrayList<Stock>();
@@ -66,8 +60,6 @@ public final class BLManager implements IAPICommands {
 
             newStocks.add(stock);
 
-            progress.set((double) (++currProgressCount * 90 / totalProgressSize));
-
             // So the user can actually see the progress change
             try {
                 Thread.sleep(80);
@@ -79,40 +71,8 @@ public final class BLManager implements IAPICommands {
         // Validates the stocks entered
         validateStocksInSystemFile(newStocks);
 
-        // Users Validation
-        final ArrayList<User> newUsers = new ArrayList<>();
-
-        for (final RseUser currRseUser : rseDescriptor.getRseUsers().getRseUser()) {
-            HashMap<Stock, Integer> currUserStocks = getRSEUserStocks(currRseUser, newStocks);
-
-            final User user = new User(currRseUser.getName(), currUserStocks);
-
-            newUsers.add(user);
-
-            progress.set((double)((++currProgressCount * 90) / totalProgressSize) - 1);
-
-            // So the user can actually see the progress change
-            try {
-                Thread.sleep(80);
-            } catch (InterruptedException e) {
-                throw new InvalidSystemDataFile(e.getMessage());
-            }
-        }
-
-        validateUsersInSystemFile(newUsers);
-
         // We can successfully update the stocks in our system
         StockManager.getInstance().setStocks(newStocks);
-        UserManager.getInstance().setUsers(newUsers);
-
-        progress.set(100);
-
-        // So the user can actually see the progress complete
-        try {
-            Thread.sleep(80);
-        } catch (InterruptedException e) {
-            throw new InvalidSystemDataFile(e.getMessage());
-        }
     }
 
     @Override
@@ -596,9 +556,5 @@ public final class BLManager implements IAPICommands {
         }
 
         return holdings;
-    }
-
-    public ReadOnlyDoubleProperty progressProperty() {
-        return progress;
     }
 }

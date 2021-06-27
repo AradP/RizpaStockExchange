@@ -11,7 +11,7 @@
 
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/RizpaStockExchangeWeb_war/HomeServlet</url-pattern>
+        <url-pattern>/RizpaStockExchangeWeb_war/src/main/java/servlets/HomeServlet.java</url-pattern>
     </servlet-mapping>
 
     <error-page>

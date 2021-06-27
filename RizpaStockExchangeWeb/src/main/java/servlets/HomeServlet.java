@@ -5,14 +5,13 @@ import enums.Role;
 import exceptions.users.UserAlreadyExistsException;
 import models.User;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "HomeServlet", urlPatterns = {"/RizpaStockExchangeWeb_war/HomeServlet"})
+//@WebServlet(name = "HomeServlet", urlPatterns = {"/RizpaStockExchangeWeb_war/src/main/java/servlets/HomeServlet.java"})
 public class HomeServlet extends HttpServlet {
 
     @Override
