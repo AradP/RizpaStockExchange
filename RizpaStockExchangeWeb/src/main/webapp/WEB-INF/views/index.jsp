@@ -8,13 +8,18 @@
 <h1><%= "Welcome To Rizpa Stock Exchange!" %></h1>
 <br/>
 <!-- This is the login part -->
-<form action="/src/main/java/servlets/HomeServlet.java" method="post">
+<form action="servlets/HomeServlet" method="post">
   Please enter your username
   <input type="text" name="username"/><br>
 <%--  <c:forEach items="${listRole}" var="role">--%>
-<%--    <option value="${role.name()}">${role.name()}</option>--%>
+<%--    <option value="${role.toString()}">${role.toString()}</option>--%>
 <%--  </c:forEach>--%>
-  <input type="submit" value="submit">
+    <%-- TODO: get the values from the enum --%>
+    <select name="role">
+        <option value="ADMIN">Admin</option>
+        <option value="TRADER">Trader</option>
+    </select>
+  <input type="submit" value="Login">
 </form>
 </body>
 </html>

@@ -11,21 +11,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/RSE-V3.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeUIFX.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RizpaStockExchangeDescriptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RizpaStockExchangeDescriptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseHoldings.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseHoldings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/RseStocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UsersSessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UsersSessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/HomePageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/TransactionProcessController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/TransactionProcessCoreController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/controllers/UserTabController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/interfaces/OrderActionListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/interfaces/TransactionActionsListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/basic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/css/theme2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/AdminTab.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/HomePage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/TransactionProcessCoreComponent.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/TransactionProcessTab.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeUIFX/src/resources/fxmls/UserTab.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/HomeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/HomeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/Home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/AllUserAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/AllUsersAndStocks.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/Home.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/Home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/Home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeUIFX/RizpaStockExchangeUIFX.jnlp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/AllUserAndStocks.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/Home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/AllUserAndStocks.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/Home.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/index.jsp" afterDir="false" />
@@ -47,8 +67,8 @@
         <option value="CSS File" />
         <option value="Jsp File" />
         <option value="Tag Library Descriptor" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -66,8 +86,8 @@
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
+    <option name="FILTER_INFO" value="false" />
+    <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1qd7nzzOgBreljwbWapDsKajyUD" />
@@ -83,6 +103,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowServices.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -111,19 +132,6 @@
     <configuration name="RSE UIFX" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="RizpaStockExchangeUIFX" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -416,7 +424,9 @@
       <workItem from="1622577965063" duration="3165000" />
       <workItem from="1622714160697" duration="3861000" />
       <workItem from="1624698112801" duration="10553000" />
-      <workItem from="1624729893112" duration="12303000" />
+      <workItem from="1624729893112" duration="14459000" />
+      <workItem from="1625221621378" duration="12906000" />
+      <workItem from="1625422220012" duration="605000" />
     </task>
     <servers />
   </component>
@@ -445,9 +455,18 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="request.getParameter(&quot;file&quot;)" language="JAVA" />
+        <watch expression="request.getParameterNames()" language="JAVA" />
+      </configuration>
       <configuration name="Application">
         <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.UserManager" />
         <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.StockManager,javax.jws.soap.SOAPBinding,bl.UserManager" />

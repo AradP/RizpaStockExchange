@@ -6,16 +6,23 @@
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>servlets.HomeServlet</servlet-class>
-<!--        <jsp-file>/src/main/webapp/WEB-INF/views/Home.jsp</jsp-file>-->
     </servlet>
 
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/RizpaStockExchangeWeb_war/src/main/java/servlets/HomeServlet.java</url-pattern>
+        <url-pattern>/servlets/HomeServlet</url-pattern>
     </servlet-mapping>
 
-    <error-page>
-        <location>/src/main/webapp/WEB-INF/views/Error.jsp</location>
-    </error-page>
-    
+
+    <servlet>
+        <servlet-name>UploadXMLFileServlet</servlet-name>
+        <servlet-class>servlets.UploadXMLFileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UploadXMLFileServlet</servlet-name>
+        <url-pattern>/servlets/UploadXMLFileServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

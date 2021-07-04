@@ -20,7 +20,7 @@ public class UserManager {
 
     private ArrayList<User> users;
 
-    public UserManager() {
+    private UserManager() {
         this.users = new ArrayList<>();
     }
 

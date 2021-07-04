@@ -5,16 +5,15 @@ import enums.Role;
 import exceptions.users.UserAlreadyExistsException;
 import models.User;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 //@WebServlet(name = "HomeServlet", urlPatterns = {"/RizpaStockExchangeWeb_war/src/main/java/servlets/HomeServlet.java"})
 public class HomeServlet extends HttpServlet {
 
-    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
@@ -22,11 +21,11 @@ public class HomeServlet extends HttpServlet {
         Role role = Role.valueOf(request.getParameter("role"));
 
         try {
-            User user = UsersSessionManager.login(username, role);
+            User user = UsersSessionManager.getInstance().login(username, role);
 
-            HttpSession session = request.getSession(true);
-            session.setAttribute("currentSessionUser", user);
-            response.sendRedirect("Home.jsp"); // logged-in page
+            Cookie userCookie = new Cookie("username", user.getName());
+            response.addCookie(userCookie);
+            response.sendRedirect("/RizpaStockExchangeWeb_war/AllUsersAndStocks.jsp");
         } catch (UserAlreadyExistsException e) {
             response.sendError(303);
         }
