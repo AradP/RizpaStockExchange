@@ -2,15 +2,15 @@ package bl.interfaces;
 
 import exceptions.InvalidSystemDataFile;
 import exceptions.stocks.StockException;
-import exceptions.users.UserAlreadyExistsException;
 import models.User;
 
 import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface IAPICommands {
-    void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException, UserAlreadyExistsException;
+    void loadConfigurationFileForUser(File systemDetailsFile, User user) throws StockException, JAXBException, FileNotFoundException;
 
     String getAllStocks();
 

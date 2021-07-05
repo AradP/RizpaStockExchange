@@ -36,6 +36,10 @@ public class StockManager {
         return single_instance;
     }
 
+    public void addStocks(List<Stock> newStocks) {
+        this.stocks.addAll(newStocks);
+    }
+
     /**
      * Adds a stock to the stocks list if not exist
      *
@@ -61,7 +65,7 @@ public class StockManager {
         return tempStock.orElse(null);
     }
 
-    public Stock getStockBySymbolInList(final String stockName, final ArrayList<Stock> tempStocks) {
+    public Stock getStockBySymbolInList(final String stockName, final List<Stock> tempStocks) {
         Optional<Stock> tempStock = tempStocks.stream().filter(stock -> stock.getSymbol().equalsIgnoreCase(stockName)).findAny();
         return tempStock.orElse(null);
     }

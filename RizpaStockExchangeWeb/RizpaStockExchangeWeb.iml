@@ -37,13 +37,14 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.0" level="project" />
     <orderEntry type="module" module-name="RizpaStockExchangeEngine" />
     <orderEntry type="module-library">
-          <library>
-            <CLASSES />
-            <JAVADOC />
-            <SOURCES>
-              <root url="file://$MODULE_DIR$/../RizpaStockExchangeEngine/src" />
-            </SOURCES>
-          </library>
-        </orderEntry>
+      <library>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../RizpaStockExchangeEngine/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="tomcat:commons-fileupload:1.0-5.5.23" level="project" />
   </component>
 </module>

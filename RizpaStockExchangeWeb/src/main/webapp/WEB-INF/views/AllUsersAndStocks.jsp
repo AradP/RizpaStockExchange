@@ -8,8 +8,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>All Users And Stocks Page</title>
-    <script>
-        function chooseFile() {
+    <script>function chooseStock(stockName) {
+        document.location.href = "servlets/SingleStock?stockname=" + stockName
+    }
+
+    function chooseFile() {
             document.getElementById('upload')
         }
     </script>
@@ -29,8 +32,6 @@
 <%--    }--%>
 <%--%>--%>
 
-
-Welcome ${cookie['username'].value}
 <br>
 
 <!-- Users and roles table -->
@@ -69,7 +70,7 @@ Current Stocks in the System
     <tbody>
     <% ArrayList<Stock> stocks = StockManager.getInstance().getStocks();%>
     <% for (Stock stock : stocks) { %>
-    <tr>
+    <tr onclick="chooseStock(stock.getSymbol)">
         <td><%= stock.getCompanyName() %>
         </td>
         <td><%= stock.getSymbol() %>
@@ -92,22 +93,6 @@ Current Stocks in the System
         <input type="file" name="file" />
         <input type="submit" value="upload" />
     </form>
-
-<input id="ajaxfile" type="file"/> <br/>
-<button onclick="uploadFile()"> Upload </button>
-
-<!-- Ajax to Java File Upload Logic -->
-<script>
-    async function uploadFile() {
-        let formData = new FormData();
-        formData.append("file", ajaxfile.files[0]);
-        await fetch('servlets/UploadXMLFileServlet', {
-            method: "POST",
-            body: formData
-        });
-        alert('The file upload with Ajax and Java was a success!');
-    }
-</script>
 <%--</c:if>--%>
 </body>
 </html>

@@ -1,15 +1,15 @@
 package apigateway;
 
 import bl.BLManager;
-import bl.interfaces.IAPICommands;
-import exceptions.users.UserAlreadyExistsException;
-import models.Stock;
 import bl.StockManager;
+import bl.interfaces.IAPICommands;
 import exceptions.InvalidSystemDataFile;
 import exceptions.stocks.StockException;
+import models.Stock;
 import models.User;
 
 import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -34,8 +34,8 @@ public final class APIGatewayManager implements IAPICommands {
     private final BLManager blManager = BLManager.getInstance();
 
     @Override
-    public void loadConfigurationFileByPath(final String xmlFilePath) throws StockException, JAXBException, FileNotFoundException, UserAlreadyExistsException {
-        blManager.loadConfigurationFileByPath(xmlFilePath);
+    public void loadConfigurationFileForUser(final File systemDetailsFile, User user) throws StockException, JAXBException, FileNotFoundException {
+        blManager.loadConfigurationFileForUser(systemDetailsFile, user);
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class APIGatewayManager implements IAPICommands {
     @Override
     public String sellLMTOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         try {
-            return blManager.sellLMTOrder(symbol, numberOfStocks, lowestPrice,seller);
+            return blManager.sellLMTOrder(symbol, numberOfStocks, lowestPrice, seller);
         } catch (StockException e) {
             throw e;
         }
@@ -69,7 +69,7 @@ public final class APIGatewayManager implements IAPICommands {
     @Override
     public String sellFOKOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         try {
-            return blManager.sellFOKOrder(symbol, numberOfStocks, lowestPrice,seller);
+            return blManager.sellFOKOrder(symbol, numberOfStocks, lowestPrice, seller);
         } catch (StockException e) {
             throw e;
         }
@@ -87,7 +87,7 @@ public final class APIGatewayManager implements IAPICommands {
     @Override
     public String sellIOCOrder(final String symbol, final int numberOfStocks, final double lowestPrice, User seller) throws StockException {
         try {
-            return blManager.sellIOCOrder(symbol, numberOfStocks, lowestPrice,seller);
+            return blManager.sellIOCOrder(symbol, numberOfStocks, lowestPrice, seller);
         } catch (StockException e) {
             throw e;
         }
@@ -105,7 +105,7 @@ public final class APIGatewayManager implements IAPICommands {
     @Override
     public String sellMKTOrder(final String symbol, final int numberOfStocks, User seller) throws StockException {
         try {
-            return blManager.sellMKTOrder(symbol, numberOfStocks,seller);
+            return blManager.sellMKTOrder(symbol, numberOfStocks, seller);
         } catch (StockException e) {
             throw e;
         }
