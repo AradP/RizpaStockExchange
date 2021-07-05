@@ -3,6 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/views/index.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>servlets.HomeServlet</servlet-class>
@@ -13,6 +25,15 @@
         <url-pattern>/servlets/HomeServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Single</servlet-name>
+        <jsp-file>/views/SingleStock.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Single</servlet-name>
+        <url-pattern>/Single</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>UploadXMLFileServlet</servlet-name>
@@ -25,4 +46,13 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>SingleStock</servlet-name>
+        <servlet-class>servlets.SingleStock</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SingleStock</servlet-name>
+        <url-pattern>/servlets/SingleStock</url-pattern>
+    </servlet-mapping>
 </web-app>

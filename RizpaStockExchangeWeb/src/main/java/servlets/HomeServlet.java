@@ -14,7 +14,6 @@ import java.io.IOException;
 public class HomeServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
 
         String username = request.getParameter("username");
         Role role = Role.valueOf(request.getParameter("role"));
@@ -23,10 +22,14 @@ public class HomeServlet extends HttpServlet {
             User user = UsersSessionManager.getInstance().login(username, role);
 
             Cookie userCookie = new Cookie("username", user.getName());
+
+            response.setContentType("text/html");
+
             response.addCookie(userCookie);
-            response.sendRedirect("/RizpaStockExchangeWeb_war/AllUsersAndStocks.jsp");
+            response.sendRedirect("/RizpaStockExchangeWeb_war/views/AllUsersAndStocks.jsp");
         } catch (UserAlreadyExistsException e) {
-            response.sendError(303);
+            response.setContentType("text/html");
+            response.getWriter().println("This user is already logged");
         }
     }
 

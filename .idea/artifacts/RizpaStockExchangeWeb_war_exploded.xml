@@ -9,7 +9,6 @@
         </element>
       </element>
       <element id="javaee-facet-resources" facet="RizpaStockExchangeWeb/web/Web" />
-      <element id="dir-copy" path="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views" />
     </root>
   </artifact>
 </component>

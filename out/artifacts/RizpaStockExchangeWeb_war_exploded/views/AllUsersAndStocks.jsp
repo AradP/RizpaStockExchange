@@ -8,11 +8,33 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>All Users And Stocks Page</title>
-    <script>function chooseStock(stockName) {
-        document.location.href = "servlets/SingleStock?stockname=" + stockName
-    }
+    <script>
+        // $(document).ready(function () {
+        //     $('.stock-row').click(function () {
+        //         var stockSymbolChosen = $(this).closest(".tr").find('.stock-symbol').text();
+        //         alert("Chosen stock: " + stockSymbolChosen);
+        //
+        //         $.post("SingleStock.jsp", {
+        //             stockSymbolChosen: stockSymbolChosen
+        //         });
+        //     });
+        // });
 
-    function chooseFile() {
+        function chooseStock(stock) {
+            alert("Stock Chosen: " + stock.innerText);
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    var data = xhr.responseText;
+                    alert("AAA: " + data);
+                }
+            }
+            xhr.open('GET', '${pageContext.request.contextPath}/servlets/SingleStock?stockname=' + stock.innerText, true);
+            xhr.send(null);
+        }
+
+        function chooseFile() {
             document.getElementById('upload')
         }
     </script>
@@ -61,8 +83,8 @@ Current Stocks in the System
 <table>
     <thead>
     <tr>
-        <td>Company Name</td>
         <td>Symbol</td>
+        <td>Company Name</td>
         <td>Price</td>
         <td>Order Period</td>
     </tr>
@@ -70,10 +92,10 @@ Current Stocks in the System
     <tbody>
     <% ArrayList<Stock> stocks = StockManager.getInstance().getStocks();%>
     <% for (Stock stock : stocks) { %>
-    <tr onclick="chooseStock(stock.getSymbol)">S
-        <td><%= stock.getCompanyName() %>
+    <tr class="stock-row">
+        <td class="stock-symbol" onclick="chooseStock(this)"><%= stock.getSymbol() %>
         </td>
-        <td><%= stock.getSymbol() %>
+        <td><%= stock.getCompanyName() %>
         </td>
         <td><%= stock.getPrice() %>
         </td>
@@ -89,10 +111,10 @@ Current Stocks in the System
 
 <!-- Upload XML file -->
 <%--<c:if test="currentUser.role.name().equals(`TRADER`)">--%>
-    <form method="post" action="servlets/UploadXMLFileServlet" enctype="multipart/form-data">
-        <input type="file" name="file" />
-        <input type="submit" value="upload" />
-    </form>
+<form method="post" action="/RizpaStockExchangeWeb_war/servlets/UploadXMLFileServlet" enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <input type="submit" value="upload"/>
+</form>
 <%--</c:if>--%>
 </body>
 </html>

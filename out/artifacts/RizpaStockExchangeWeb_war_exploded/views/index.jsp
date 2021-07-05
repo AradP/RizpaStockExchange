@@ -8,7 +8,7 @@
 <h1><%= "Welcome To Rizpa Stock Exchange!" %></h1>
 <br/>
 <!-- This is the login part -->
-<form action="servlets/HomeServlet" method="post">
+<form action="/RizpaStockExchangeWeb_war/servlets/HomeServlet" method="post">
   Please enter your username
   <input type="text" name="username"/><br>
 <%--  <c:forEach items="${listRole}" var="role">--%>
