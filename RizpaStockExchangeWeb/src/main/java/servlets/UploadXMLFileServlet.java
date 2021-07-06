@@ -89,7 +89,6 @@ public class UploadXMLFileServlet extends HttpServlet {
         out.println("alert('" + message + "');");
         out.println("location='/RizpaStockExchangeWeb_war/views/AllUsersAndStocks.jsp';");
         out.println("</script>");
-//        response.sendRedirect("/RizpaStockExchangeWeb_war/AllUsersAndStocks.jsp");
     }
 
     public void destroy() {

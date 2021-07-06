@@ -5,7 +5,8 @@ import enums.Role;
 import exceptions.users.UserAlreadyExistsException;
 import models.User;
 
-import javax.servlet.http.Cookie;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,19 +15,27 @@ import java.io.IOException;
 public class HomeServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         String username = request.getParameter("username");
         Role role = Role.valueOf(request.getParameter("role"));
 
         try {
             User user = UsersSessionManager.getInstance().login(username, role);
 
-            Cookie userCookie = new Cookie("username", user.getName());
+            request.setAttribute("loggedUser", user);
 
-            response.setContentType("text/html");
+            try {
+                RequestDispatcher rd = request.getRequestDispatcher("/AllUsersAndStocksPage");
+                rd.forward(request, response);
+            } catch (ServletException e) {
+                response.getWriter().println("Can't forward to the home page because: " + e.getMessage());
+            }
 
-            response.addCookie(userCookie);
-            response.sendRedirect("/RizpaStockExchangeWeb_war/views/AllUsersAndStocks.jsp");
+//            Cookie userCookie = new Cookie("username", user.getName());
+//
+//            response.setContentType("text/html");
+//
+//            response.addCookie(userCookie);
+//            response.sendRedirect("/RizpaStockExchangeWeb_war/views/AllUsersAndStocks.jsp");
         } catch (UserAlreadyExistsException e) {
             response.setContentType("text/html");
             response.getWriter().println("This user is already logged");

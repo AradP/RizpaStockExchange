@@ -11,27 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/SingleStock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/SingleStock.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/HomeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/HomeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/SingleStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/SingleStock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/AllUsersAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/AllUsersAndStocks.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/Error.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/Error.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/SingleStock.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/AllUsersAndStocks.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/Error.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/SingleStock.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/AllUsersAndStocks.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/Error.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/SingleStock.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/views/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/AllUsersAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/AllUsersAndStocks.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/SingleStock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/SingleStock.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/views/AllUsersAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/views/AllUsersAndStocks.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/views/SingleStock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/views/SingleStock.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -419,7 +408,7 @@
       <workItem from="1624698112801" duration="10553000" />
       <workItem from="1624729893112" duration="14459000" />
       <workItem from="1625221621378" duration="12906000" />
-      <workItem from="1625422220012" duration="25105000" />
+      <workItem from="1625422220012" duration="31397000" />
     </task>
     <servers />
   </component>
@@ -448,16 +437,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/SingleStock.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/SingleStock.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

@@ -14,7 +14,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>servlets.HomeServlet</servlet-class>
@@ -23,6 +22,16 @@
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/servlets/HomeServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AllUsersAndStocksPage</servlet-name>
+        <jsp-file>/views/AllUsersAndStocks.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AllUsersAndStocksPage</servlet-name>
+        <url-pattern>/AllUsersAndStocksPage</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -35,16 +44,6 @@
         <url-pattern>/Single</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>UploadXMLFileServlet</servlet-name>
-        <servlet-class>servlets.UploadXMLFileServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>UploadXMLFileServlet</servlet-name>
-        <url-pattern>/servlets/UploadXMLFileServlet</url-pattern>
-    </servlet-mapping>
-
 
     <servlet>
         <servlet-name>SingleStock</servlet-name>
@@ -54,5 +53,15 @@
     <servlet-mapping>
         <servlet-name>SingleStock</servlet-name>
         <url-pattern>/servlets/SingleStock</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UploadXMLFileServlet</servlet-name>
+        <servlet-class>servlets.UploadXMLFileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UploadXMLFileServlet</servlet-name>
+        <url-pattern>/servlets/UploadXMLFileServlet</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -3,35 +3,14 @@
 <%@ page import="models.Stock" %>
 <%@ page import="bl.UsersSessionManager" %>
 <%@ page import="bl.StockManager" %>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" errorPage="Error.jsp" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>All Users And Stocks Page</title>
     <script>
-        // $(document).ready(function () {
-        //     $('.stock-row').click(function () {
-        //         var stockSymbolChosen = $(this).closest(".tr").find('.stock-symbol').text();
-        //         alert("Chosen stock: " + stockSymbolChosen);
-        //
-        //         $.post("SingleStock.jsp", {
-        //             stockSymbolChosen: stockSymbolChosen
-        //         });
-        //     });
-        // });
-
         function chooseStock(stock) {
-            alert("Stock Chosen: " + stock.innerText);
-
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                    var data = xhr.responseText;
-                    alert("AAA: " + data);
-                }
-            }
-            xhr.open('GET', '${pageContext.request.contextPath}/servlets/SingleStock?stockname=' + stock.innerText, true);
-            xhr.send(null);
+            window.location.href = '${pageContext.request.contextPath}/servlets/SingleStock?stockname=' + stock.innerText;
         }
 
         function chooseFile() {
@@ -40,7 +19,6 @@
     </script>
 </head>
 <body>
-
 <%--<%--%>
 <%--    Cookie[] cookies = null;--%>
 
@@ -53,8 +31,6 @@
 <%--<%--%>
 <%--    }--%>
 <%--%>--%>
-
-<br>
 
 <!-- Users and roles table -->
 Logged Users table
@@ -109,12 +85,19 @@ Current Stocks in the System
 <%--<!-- Get the current logged in user -->--%>
 <%--<% User currentUser = (User) (session.getAttribute("currentSessionUser"));%>--%>
 
+
+<% User loggedUser = (User) request.getAttribute("loggedUser");
+%>
+
 <!-- Upload XML file -->
-<%--<c:if test="currentUser.role.name().equals(`TRADER`)">--%>
-<form method="post" action="/RizpaStockExchangeWeb_war/servlets/UploadXMLFileServlet" enctype="multipart/form-data">
-    <input type="file" name="file"/>
-    <input type="submit" value="upload"/>
-</form>
-<%--</c:if>--%>
+<% if ((loggedUser == null) || loggedUser.getRole().name().equals("TRADER")) { %>
+    <form method = "post" action = "/RizpaStockExchangeWeb_war/servlets/UploadXMLFileServlet"
+    enctype = "multipart/form-data" >
+        <input type = "file" name = "file">
+        <input type = "submit" value = "upload">
+    </form >
+<% } else { %>
+BI
+<% } %>
 </body>
 </html>
