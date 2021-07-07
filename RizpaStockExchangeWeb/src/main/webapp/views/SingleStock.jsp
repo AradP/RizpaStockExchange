@@ -9,6 +9,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Single Stock Page</title></head>
 <body>
+<% User loggedUser = (User) request.getAttribute("loggeUser");
+%>
+
 <% Stock selectedStock = (Stock) request.getAttribute("selectedStock");
 %>
 

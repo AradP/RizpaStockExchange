@@ -12,25 +12,9 @@
         function chooseStock(stock) {
             window.location.href = '${pageContext.request.contextPath}/servlets/SingleStock?stockname=' + stock.innerText;
         }
-
-        function chooseFile() {
-            document.getElementById('upload')
-        }
     </script>
 </head>
 <body>
-<%--<%--%>
-<%--    Cookie[] cookies = null;--%>
-
-<%--    // Get an array of Cookies associated with the this domain--%>
-<%--    cookies = request.getCookies();--%>
-<%--%>--%>
-<%--<% for (Cookie cookie : cookies) { %>--%>
-<%--Name: <%= cookie.getName() %>--%>
-<%--value: <%= cookie.getValue() %>--%>
-<%--<%--%>
-<%--    }--%>
-<%--%>--%>
 
 <!-- Users and roles table -->
 Logged Users table
@@ -87,6 +71,7 @@ Current Stocks in the System
 
 
 <% User loggedUser = (User) request.getAttribute("loggedUser");
+request.getServletContext().setAttribute("loggedUser", loggedUser);
 %>
 
 <!-- Upload XML file -->
@@ -97,7 +82,7 @@ Current Stocks in the System
         <input type = "submit" value = "upload">
     </form >
 <% } else { %>
-BI
+TODO: OMER's PART
 <% } %>
 </body>
 </html>

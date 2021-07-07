@@ -1,7 +1,6 @@
 package servlets;
 
 import bl.BLManager;
-import enums.Role;
 import exceptions.stocks.StockException;
 import models.User;
 
@@ -40,7 +39,7 @@ public class UploadXMLFileServlet extends HttpServlet {
         String message;
 
         // TODO: Get the user from the cookie
-        User user = new User("aa", Role.TRADER);
+        User user = (User) request.getServletContext().getAttribute("loggedUser");
 
         Part filePart = null; // Retrieves <input type="file" name="file">
         try {
