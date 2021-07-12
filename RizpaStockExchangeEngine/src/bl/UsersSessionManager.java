@@ -22,7 +22,7 @@ public class UsersSessionManager {
     private static ArrayList<User> users;
 
     private UsersSessionManager() {
-        this.users = new ArrayList<>();
+        users = new ArrayList<>();
     }
 
     public ArrayList<User> getUsers() {

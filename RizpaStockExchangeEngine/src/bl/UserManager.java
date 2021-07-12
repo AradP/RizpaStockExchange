@@ -1,34 +1,41 @@
 package bl;
 
-import models.Stock;
 import models.User;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
+/*
+Adding and retrieving users is synchronized and in that manner - these actions are thread safe
+Note that asking if a user exists (isUserExists) does not participate in the synchronization and it is the responsibility
+of the user of this class to handle the synchronization of isUserExists with other methods here on it's own
+ */
 public class UserManager {
-    // static variable single_instance of type Singleton
-    private static UserManager single_instance = null;
 
-    // static method to create instance of Singleton class
-    public static UserManager getInstance() {
-        if (single_instance == null)
-            single_instance = new UserManager();
+    private final Set<User> usersSet;
 
-        return single_instance;
+    public UserManager() {
+        usersSet = new HashSet<>();
     }
 
-    private ArrayList<User> users;
-
-    private UserManager() {
-        this.users = new ArrayList<>();
+    public synchronized void addUser(User username) {
+        usersSet.add(username);
     }
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public synchronized void removeUser(User user) {
+        usersSet.remove(user);
     }
 
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
+    public synchronized Set<User> getUsers() {
+        return Collections.unmodifiableSet(usersSet);
+    }
+
+    public synchronized boolean isUserExists(User user) {
+        return usersSet.contains(user);
+    }
+
+    public synchronized boolean isLoggedIn(String username) {
+        return usersSet.stream().anyMatch(user -> user.getName().equals(username));
     }
 }

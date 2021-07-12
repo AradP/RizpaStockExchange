@@ -1,0 +1,10 @@
+#usersArea {
+    overflow-y: scroll;
+    max-height: 100px;
+    width: 300px;
+}
+
+#stocksArea {
+    overflow-y: scroll;
+    max-height: 100px;
+}

@@ -16,15 +16,20 @@ public class StockManager {
 
     private ArrayList<Stock> stocks;
 
-    public StockManager() {
+    private StockManager() {
         this.stocks = new ArrayList<>();
     }
 
-    public ArrayList<Stock> getStocks() {
+    public synchronized ArrayList<Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(ArrayList<Stock> stocks) {
+    public synchronized ArrayList<Stock> getStocksWithOrdersPeriod() {
+        stocks.forEach(stock -> stock.setOrdersPeriod(stock.getOrderPeriod()));
+        return stocks;
+    }
+
+    public synchronized void setStocks(ArrayList<Stock> stocks) {
         this.stocks = stocks;
     }
 
@@ -36,7 +41,7 @@ public class StockManager {
         return single_instance;
     }
 
-    public void addStocks(List<Stock> newStocks) {
+    public synchronized void addStocks(List<Stock> newStocks) {
         this.stocks.addAll(newStocks);
     }
 
@@ -46,7 +51,7 @@ public class StockManager {
      * @param stock - the stock to add
      * @throws StockSymbolAlreadyExistException - thrown if stock symbol already exits
      */
-    public void addStock(Stock stock) throws StockSymbolAlreadyExistException, CompanyAlreadyExistException {
+    public synchronized void addStock(Stock stock) throws StockSymbolAlreadyExistException, CompanyAlreadyExistException {
         // Check that the stock symbol doesn't already exist
         if (this.getStockBySymbol(stock.getSymbol()) != null) {
             throw new StockSymbolAlreadyExistException(stock.getSymbol());
@@ -60,34 +65,34 @@ public class StockManager {
         this.stocks.add(stock);
     }
 
-    public Stock getStockBySymbol(final String stockName) {
+    public synchronized Stock getStockBySymbol(final String stockName) {
         Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getSymbol().equalsIgnoreCase(stockName)).findAny();
         return tempStock.orElse(null);
     }
 
-    public Stock getStockBySymbolInList(final String stockName, final List<Stock> tempStocks) {
+    public synchronized Stock getStockBySymbolInList(final String stockName, final List<Stock> tempStocks) {
         Optional<Stock> tempStock = tempStocks.stream().filter(stock -> stock.getSymbol().equalsIgnoreCase(stockName)).findAny();
         return tempStock.orElse(null);
     }
 
-    public Stock getStockByCompany(final String companyName) {
+    public synchronized Stock getStockByCompany(final String companyName) {
         Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getCompanyName().equals(companyName)).findAny();
         return tempStock.orElse(null);
     }
 
-    public boolean isSymbolExists(final String symbol) {
+    public synchronized boolean isSymbolExists(final String symbol) {
         return stocks.stream().anyMatch(stock -> stock.getSymbol().equalsIgnoreCase(symbol));
     }
 
-    public List<Order> getPendingSellOrder(final String symbol) {
+    public synchronized List<Order> getPendingSellOrder(final String symbol) {
         return getStockBySymbol(symbol).getPendingSellOrders();
     }
 
-    public List<Order> getPendingBuyOrder(final String symbol) {
+    public synchronized List<Order> getPendingBuyOrder(final String symbol) {
         return getStockBySymbol(symbol).getPendingBuyOrders();
     }
 
-    public List<Transaction> getTransactionsHistory(final String symbol) {
+    public synchronized List<Transaction> getTransactionsHistory(final String symbol) {
         return getStockBySymbol(symbol).getTransactionsSortedByDate();
     }
 
@@ -96,7 +101,7 @@ public class StockManager {
      *
      * @return - true if there are stocks loaded, else false
      */
-    public boolean areStocksLoaded() {
+    public synchronized boolean areStocksLoaded() {
         return stocks.size() > 0;
     }
 }

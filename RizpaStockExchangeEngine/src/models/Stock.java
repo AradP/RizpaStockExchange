@@ -16,6 +16,16 @@ public class Stock implements Serializable {
 
     private ArrayList<Order> pendingBuyOrders;
 
+    public double getOrdersPeriod() {
+        return ordersPeriod;
+    }
+
+    public void setOrdersPeriod(double ordersPeriod) {
+        this.ordersPeriod = ordersPeriod;
+    }
+
+    private double ordersPeriod;
+
     public Stock(String symbol, String companyName, int price) {
         this.symbol = symbol;
         this.companyName = companyName;
@@ -106,7 +116,6 @@ public class Stock implements Serializable {
         return addPendingSellOrder(newSellOrder);
     }
 
-
     public boolean CreateBuyOrderMKT(int amountOfStocks, User creator) {
         return CreateBuyOrder(amountOfStocks, getTheHighestPriceInPendingSellOrders(), OrderType.MKT, creator);
     }
@@ -162,7 +171,6 @@ public class Stock implements Serializable {
 
         return tempAmountOfStocks == amountOfStocks ? -1 : tempAmountOfStocks <= 0 ? 0 : tempAmountOfStocks;
     }
-
 
     public ArrayList<Transaction> makeATransaction(boolean isSell) {
         ArrayList<Transaction> newTransactions = new ArrayList<>();

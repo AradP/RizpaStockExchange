@@ -7,6 +7,7 @@
           <element id="module-output" name="RizpaStockExchangeWeb" />
           <element id="module-output" name="RizpaStockExchangeEngine" />
         </element>
+        <element id="library" level="project" name="gson-2.8.2" />
       </element>
       <element id="javaee-facet-resources" facet="RizpaStockExchangeWeb/web/Web" />
     </root>

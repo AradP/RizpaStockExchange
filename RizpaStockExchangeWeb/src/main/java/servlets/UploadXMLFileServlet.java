@@ -1,6 +1,7 @@
 package servlets;
 
 import bl.BLManager;
+import constants.Constants;
 import exceptions.stocks.StockException;
 import models.User;
 
@@ -18,28 +19,13 @@ import java.io.PrintWriter;
 @MultipartConfig
 public class UploadXMLFileServlet extends HttpServlet {
     private static final String SAVE_DIR = "uploadFiles";
+    private final String ALL_USERS_AND_STOCKS_URL = "../pages/views/AllUsersAndStocks.jsp";
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        response.setContentType("text/html");
-//
-//        String username = request.getParameter("username");
-//        Role role = Role.valueOf(request.getParameter("role"));
-//
-//        try {
-//            User user = UsersSessionManager.getInstance().login(username, role);
-//
-//            Cookie userCookie = new Cookie("username", user.getName());
-//            response.addCookie(userCookie);
-//            response.sendRedirect("/RizpaStockExchangeWeb_war/AllUsersAndStocks.jsp");
-//        } catch (UserAlreadyExistsException e) {
-//            response.sendError(303);
-//        }
-
         // Get the current user
-        String message;
+        User user = (User) request.getSession(false).getAttribute(Constants.USERNAME);
 
-        // TODO: Get the user from the cookie
-        User user = (User) request.getServletContext().getAttribute("loggedUser");
+        String message;
 
         Part filePart = null; // Retrieves <input type="file" name="file">
         try {
@@ -68,25 +54,39 @@ public class UploadXMLFileServlet extends HttpServlet {
                         part.write(savePath + File.separator + tmpFileName);
                     }
 
-//                    String fileName = filePart.getSubmittedFileName();
-
                     BLManager.getInstance().loadConfigurationFileForUser(new File(savePath + File.separator + tmpFileName), user);
                     message = "Successfully updated the system";
+
                 } catch (StockException | JAXBException invalidSystemDataFile) {
                     message = "There was a problem while uploading the file: " + invalidSystemDataFile.getMessage();
                 }
             } else {
                 message = "Please choose a file";
             }
-        } catch (
-                ServletException e) {
+        } catch (ServletException e) {
             message = "There was a problem while parsing the file: " + e.getMessage();
         }
+
+//        request.getSession(true).setAttribute(Constants.USERNAME, user);
+        response.setStatus(200);
+        request.setAttribute("xmlUploadMsg", message);
+//        request.setAttribute("loggedUser", user);
+
+//        response.getOutputStream().println(ALL_USERS_AND_STOCKS_URL);
+//
+//
+//        RequestDispatcher rd = request.getRequestDispatcher("/pages/views/AllUsersAndStocks.jsp");
+//
+//        try {
+//            rd.forward(request, response);
+//        } catch (ServletException e) {
+//            response.getWriter().println("Can't upload the file because: " + e.getMessage());
+//        }
 
         PrintWriter out = response.getWriter();
         out.println("<script type=\"text/javascript\">");
         out.println("alert('" + message + "');");
-        out.println("location='/RizpaStockExchangeWeb_war/views/AllUsersAndStocks.jsp';");
+        out.println("location='"  + ALL_USERS_AND_STOCKS_URL + "';");
         out.println("</script>");
     }
 
