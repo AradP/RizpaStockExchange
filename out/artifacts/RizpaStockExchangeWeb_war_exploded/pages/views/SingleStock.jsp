@@ -31,7 +31,7 @@
     <br>
     <!-- Selected Stock Data Table --->
     <h4>Stock Data</h4>
-    <table  class="styled-table">
+    <table class="styled-table">
         <thead>
         </thead>
         <tbody>
@@ -86,7 +86,7 @@
     <% if (loggedUser.getRole().name().equals("ADMIN")) { %>
     <!-- Selected Stock Sell Orders Table --->
     <h4>Pending Buy Orders</h4>
-    <table>
+    <table class="styled-table">
         <thead>
         <tr>
             <td>Date</td>
@@ -120,7 +120,7 @@
 
     <!-- Selected Stock Buy Orders Table --->
     <h4>Pending Sell Orders</h4>
-    <table>
+    <table class="styled-table">
         <thead>
         <tr>
             <td>Date</td>
