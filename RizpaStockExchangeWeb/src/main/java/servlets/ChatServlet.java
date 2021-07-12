@@ -4,6 +4,7 @@ import bl.chat.ChatManager;
 import bl.chat.SingleChatEntry;
 import com.google.gson.Gson;
 import constants.Constants;
+import models.User;
 import utils.ServletUtils;
 import utils.SessionUtils;
 
@@ -22,7 +23,7 @@ public class ChatServlet extends HttpServlet {
         
         response.setContentType("application/json");
         ChatManager chatManager = ServletUtils.getChatManager(getServletContext());
-        String username = SessionUtils.getUsername(request);
+        User username = SessionUtils.getUsername(request);
         if (username == null) {
             response.sendRedirect(request.getContextPath() + "/index.html");
         }
@@ -51,7 +52,7 @@ public class ChatServlet extends HttpServlet {
         ChatAndVersion cav = new ChatAndVersion(chatEntries, chatManagerVersion);
         Gson gson = new Gson();
         String jsonResponse = gson.toJson(cav);
-        logServerMessage("Server Chat version: " + chatManagerVersion + ", User '" + username + "' Chat version: " + chatVersion);
+        logServerMessage("Server Chat version: " + chatManagerVersion + ", User '" + username.getName() + "' Chat version: " + chatVersion);
         logServerMessage(jsonResponse);
 
         try (PrintWriter out = response.getWriter()) {

@@ -39,6 +39,9 @@
     <br>
 
     <h2>Welcome!</h2>
+<%--    <a href="/RizpaStockExchangeWeb_war/pages/chatroom/chatroom.html">To Chat</a>--%>
+    <a href="../chatroom/chatroom.html">Click here to enter the chat room</a>
+
 
     <h4>Online Users</h4>
     <br>

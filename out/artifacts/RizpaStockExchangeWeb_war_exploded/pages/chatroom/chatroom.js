@@ -10,9 +10,9 @@ function refreshUsersList(users) {
     $("#userslist").empty();
     
     // rebuild the list of users: scan all users and add them to the list of users
-    $.each(users || [], function(index, username) {
+    $.each(users || [], function(index, user) {
         //create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
-        $('<li>' + username + '</li>')
+        $('<li>' + user.name + '</li>')
             .appendTo($("#userslist"));
     });
 }
@@ -58,24 +58,6 @@ function ajaxChatContent() {
         data: "chatversion=" + chatVersion,
         dataType: 'json',
         success: function(data) {
-            /*
-             data will arrive in the next form:
-             {
-                "entries": [
-                    {
-                        "chatString":"Hi",
-                        "username":"bbb",
-                        "time":1485548397514
-                    },
-                    {
-                        "chatString":"Hello",
-                        "username":"bbb",
-                        "time":1485548397514
-                    }
-                ],
-                "version":1
-             }
-             */
             if (data.version !== chatVersion) {
                 chatVersion = data.version;
                 appendToChatArea(data.entries);

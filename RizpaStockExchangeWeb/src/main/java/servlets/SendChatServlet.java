@@ -2,6 +2,7 @@ package servlets;
 
 import bl.chat.ChatManager;
 import constants.Constants;
+import models.User;
 import utils.ServletUtils;
 import utils.SessionUtils;
 
@@ -26,7 +27,7 @@ public class SendChatServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ChatManager chatManager = ServletUtils.getChatManager(getServletContext());
-        String username = SessionUtils.getUsername(request);
+        User username = SessionUtils.getUsername(request);
         if (username == null) {
             response.sendRedirect(request.getContextPath() + "/index.html");
         }
@@ -35,7 +36,7 @@ public class SendChatServlet extends HttpServlet {
         if (userChatString != null && !userChatString.isEmpty()) {
             logServerMessage("Adding chat string from " + username + ": " + userChatString);
             synchronized (getServletContext()) {
-                chatManager.addChatString(userChatString, username);
+                chatManager.addChatString(userChatString, username.getName());
             }
         }
     }
