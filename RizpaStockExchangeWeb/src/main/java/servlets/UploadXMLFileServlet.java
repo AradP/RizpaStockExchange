@@ -31,11 +31,12 @@ public class UploadXMLFileServlet extends HttpServlet {
         try {
             filePart = request.getPart("file");
 
-            if (filePart != null) {
+            if ((filePart != null) && !filePart.getSubmittedFileName().equals("")) {
                 try {
                     // Save the file to our local folder
                     // gets absolute path of the web application
                     String appPath = request.getServletContext().getRealPath("");
+
                     // constructs path of the directory to save uploaded file
                     String savePath = appPath + File.separator + SAVE_DIR;
 
@@ -67,21 +68,8 @@ public class UploadXMLFileServlet extends HttpServlet {
             message = "There was a problem while parsing the file: " + e.getMessage();
         }
 
-//        request.getSession(true).setAttribute(Constants.USERNAME, user);
         response.setStatus(200);
         request.setAttribute("xmlUploadMsg", message);
-//        request.setAttribute("loggedUser", user);
-
-//        response.getOutputStream().println(ALL_USERS_AND_STOCKS_URL);
-//
-//
-//        RequestDispatcher rd = request.getRequestDispatcher("/pages/views/AllUsersAndStocks.jsp");
-//
-//        try {
-//            rd.forward(request, response);
-//        } catch (ServletException e) {
-//            response.getWriter().println("Can't upload the file because: " + e.getMessage());
-//        }
 
         PrintWriter out = response.getWriter();
         out.println("<script type=\"text/javascript\">");

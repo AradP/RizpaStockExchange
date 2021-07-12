@@ -1,23 +1,13 @@
-<%--
-    Document   : index
-    Created on : Jan 24, 2012, 6:01:31 AM
-    Author     : blecherl
-    This is the login JSP for the online chat application
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%@page import="chat.utils.*" %>
-    <%@ page import="chat.constants.Constants" %>
+    <%@ page import="utils.SessionUtils" %>
+    <%@ page import="constants.Constants" %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Online Chat</title>
-<!--        Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
         <link rel="stylesheet" href="../../common/bootstrap.min.css"/>
-<!--        Link jQuery JavaScript library in order to use the $ (jQuery) method-->
-<!--        <script src="script/jquery-2.0.3.min.js"></script>-->
-<!--        and\or any other scripts you might need to operate the JSP file behind the scene once it arrives to the client-->
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
     </head>
     <body>
         <div class="container">

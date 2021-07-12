@@ -33,9 +33,12 @@
     </script>
     <%}%>
 
-    Logged in as <%=loggedUser.getName()%>
+    <h3>Logged in as <%=loggedUser.getName()%>
+    </h3>
 
     <br>
+
+    <h2>Welcome!</h2>
 
     <h4>Online Users</h4>
     <br>
@@ -66,22 +69,11 @@
         <tbody id="stocks_table">
         </tbody>
     </table>
-    <!--
-    Here we could give chat/logout, and the executed request was relative to this page url (=== <context path>/pages/chatroom/),
-    in this option it would have come out eventually with '<context path>/pages/chatroom/chat/logout'
-    (note that this option is the one used with the form above for the action of 'sendChat'...)
-
-    Another option, just to prove that the browser takes everything relative to the current page (<context path>/pages/chatroom/),
-    is to use relative path here.
-    So '../../chat/logout' steps backward 2 levels from current page (putting it in the root web app, right after the context path: '/<context path>/')
-    and from there assembles the rest, so we end up with <context path>/chat/logout.
-    (when this request will arrive to tomcat it will strip down the context path and will expect to find a registered servlet with the mapping of /chat/logout)
-    -->
-    <a href="../../chat/logout">Logout</a>
 
     <!-- Upload XML file -->
     <% if (loggedUser.getRole().name().equals("TRADER")) { %>
     <br>
+    <h4>Upload XML file</h4>
     <form method="post" action="/RizpaStockExchangeWeb_war/servlets/UploadXMLFileServlet"
           enctype="multipart/form-data">
         <input type="file" name="file">

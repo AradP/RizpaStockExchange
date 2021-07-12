@@ -47,5 +47,6 @@
     </orderEntry>
     <orderEntry type="library" name="tomcat:commons-fileupload:1.0-5.5.23" level="project" />
     <orderEntry type="library" name="gson-2.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.7.0" level="project" />
   </component>
 </module>
