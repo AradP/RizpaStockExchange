@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class SingleStock extends HttpServlet {
+public class SingleStockServlet extends HttpServlet {
     private final String SINGLE_STOCK_URL = "../pages/views/SingleStock.jsp";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

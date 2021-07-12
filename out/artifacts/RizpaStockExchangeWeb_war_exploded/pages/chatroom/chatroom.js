@@ -11,8 +11,6 @@ function refreshUsersList(users) {
     
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(users || [], function(index, username) {
-        console.log("Adding user #" + index + ": " + username);
-
         //create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
         $('<li>' + username + '</li>')
             .appendTo($("#userslist"));
@@ -78,7 +76,6 @@ function ajaxChatContent() {
                 "version":1
              }
              */
-            console.log("Server chat version: " + data.version + ", Current chat version: " + chatVersion);
             if (data.version !== chatVersion) {
                 chatVersion = data.version;
                 appendToChatArea(data.entries);

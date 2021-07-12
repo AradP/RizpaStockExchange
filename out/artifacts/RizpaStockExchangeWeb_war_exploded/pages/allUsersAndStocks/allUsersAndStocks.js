@@ -8,8 +8,6 @@ function refreshUsersList(users) {
     
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(users || [], function(index, user) {
-        console.log("Adding user #" + index + ": " + user);
-
         $('<tr><td>' + user.name + '</td><td>' + user.role + '</td></tr>')
             .appendTo($("#users_table"));
     });
@@ -21,8 +19,6 @@ function refreshStocksList(stocks) {
 
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(stocks || [], function(index, stock) {
-        console.log("Adding stock #" + index + ": " + stock);
-
         // create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
         $('<tr><td class="stock-symbol" onclick="chooseStock(this)">' + stock.symbol + '</td>' +
             '<td>' + stock.companyName + '</td><td>' + stock.price + '</td><td>' + stock.ordersPeriod + '</td></tr>')

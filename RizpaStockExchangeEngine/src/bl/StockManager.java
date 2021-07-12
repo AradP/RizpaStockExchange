@@ -70,6 +70,17 @@ public class StockManager {
         return tempStock.orElse(null);
     }
 
+    public synchronized Stock getStockBySymbolWithOrdersPeriod(final String stockName) {
+        Optional<Stock> tempStock = stocks.stream().filter(stock -> stock.getSymbol().equalsIgnoreCase(stockName)).findAny();
+        if (!tempStock.isPresent()) {
+            return null;
+        } else {
+            Stock s = tempStock.get();
+            s.setOrdersPeriod(s.getOrderPeriod());
+            return s;
+        }
+    }
+
     public synchronized Stock getStockBySymbolInList(final String stockName, final List<Stock> tempStocks) {
         Optional<Stock> tempStock = tempStocks.stream().filter(stock -> stock.getSymbol().equalsIgnoreCase(stockName)).findAny();
         return tempStock.orElse(null);
