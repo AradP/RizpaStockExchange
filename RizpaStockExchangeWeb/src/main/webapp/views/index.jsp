@@ -3,9 +3,12 @@
 <html>
 <head>
   <title>JSP - Hello World</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"
+            type="text/javascript"></script>
+    <script src="js/app-ajax.js" type="text/javascript"></script>
 </head>
 <body>
-<h1><%= "Welcome To Rizpa Stock Exchange!" %></h1>
+<h1><%= "Welcome To Rizpa Stock Exchange!" %></h1>S
 <br/>
 <!-- This is the login part -->
 <form action="/RizpaStockExchangeWeb_war/servlets/HomeServlet" method="post">

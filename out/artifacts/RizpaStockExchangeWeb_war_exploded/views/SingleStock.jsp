@@ -5,16 +5,45 @@
 <%@ page import="models.Order" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="Error.jsp" %>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Single Stock Page</title></head>
-<body>
-<% User loggedUser = (User) request.getAttribute("loggeUser");
+<% User loggedUser = (User) request.getAttribute("loggedUser");
 %>
 
 <% Stock selectedStock = (Stock) request.getAttribute("selectedStock");
 %>
-
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log("statrtd")
+            getCurrentAmountOfStocks();
+        });
+        function getCurrentAmountOfStocks() {
+            var symbol = <%= selectedStock.getSymbol() %>;
+            var userName = <%= loggedUser %>;
+            $.ajax({
+                type: "GET",
+                url: "/RizpaStockExchangeWeb_war/servlets/UserSingleStockServlet",
+                data: {
+                    stockName: symbol,
+                    userName: userName,
+                },
+                success: function (resp) {
+                    document.getElementById("currentAmountOfStocksContent").textContent = "Current amount of stocks: ${resp.responseText}";
+                    alert(resp.responseText);
+                    console.log(resp);
+                },
+                error: function (req, status, err) {
+                    alert(req.responseText)
+                }
+            }).done(function (data) {
+                console.log(data);
+            });
+        }
+    </script>
+    <title>Single Stock Page</title></head>
+<body>
+<a href="${pageContext.request.contextPath}/servlets/HomeServlet" class="btn btn-info btn-lg active"
+   role="button">Back</a>
 Stock Information Page About: <%= selectedStock.getSymbol() %>
 
 <!-- Selected Stock Data Table --->
@@ -66,6 +95,12 @@ Previous Transactions
     </tr>
     </tbody>
 </table>
+
+<!-- Upload XML file -->
+<% if ((loggedUser == null) || loggedUser.getRole().name().equals("TRADER")) { %>
+<h2 id="currentAmountOfStocksContent"/>
+<% } %>
+
 
 <!-- Get the current logged in user -->
 <% User currentUser = (User) (request.getAttribute("currentSessionUser"));%>

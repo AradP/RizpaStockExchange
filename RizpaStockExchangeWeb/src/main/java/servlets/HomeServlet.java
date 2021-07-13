@@ -14,13 +14,12 @@ import java.io.IOException;
 
 public class HomeServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         Role role = Role.valueOf(request.getParameter("role"));
 
         try {
             User user = UsersSessionManager.getInstance().login(username, role);
-
             request.setAttribute("loggedUser", user);
 
             try {
@@ -37,8 +36,26 @@ public class HomeServlet extends HttpServlet {
 //            response.addCookie(userCookie);
 //            response.sendRedirect("/RizpaStockExchangeWeb_war/views/AllUsersAndStocks.jsp");
         } catch (UserAlreadyExistsException e) {
-            response.setContentType("text/html");
-            response.getWriter().println("This user is already logged");
+            request.setAttribute("loggedUser", (User) request.getServletContext().getAttribute("loggedUser"));
+            RequestDispatcher rd = request.getRequestDispatcher("/AllUsersAndStocksPage");
+            rd.forward(request, response);
+            // response.setContentType("text/html");
+            //response.getWriter().println("This user is already logged");
+        }
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        try {
+            request.setAttribute("loggedUser", (User) request.getServletContext().getAttribute("loggedUser"));
+            try {
+                RequestDispatcher rd = request.getRequestDispatcher("/AllUsersAndStocksPage");
+                rd.forward(request, response);
+            } catch (ServletException e) {
+                response.getWriter().println("Can't forward to the home page because: " + e.getMessage());
+            }
+        } catch (Exception e) {
+
         }
     }
 
