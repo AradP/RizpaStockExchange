@@ -2,27 +2,47 @@ package models;
 
 import enums.Role;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
     private String name;
     private HashMap<Stock, Integer> holdings;
     private Role role;
+    private int currentMoney;
+    private String alertMsg;
+
+    private ArrayList<TradeActivity> tradeActivities;
 
     public User(String name, Role role) {
         this.name = name;
         this.role = role;
+        this.currentMoney = 0;
+        this.tradeActivities = new ArrayList<TradeActivity>();
+        this.holdings = new HashMap<Stock, Integer>();
+        this.alertMsg = "";
     }
 
     public User(String name, HashMap<Stock, Integer> holdings) {
         this.name = name;
         this.holdings = holdings;
+        this.currentMoney = 0;
+        this.tradeActivities = new ArrayList<TradeActivity>();
+        this.holdings = new HashMap<Stock, Integer>();
+        this.alertMsg = "";
     }
 
     public User(User user) {
         this.name = user.getName();
         this.role = user.getRole();
         this.holdings = user.getHoldings();
+        this.currentMoney = 0;
+        this.tradeActivities = new ArrayList<TradeActivity>();
+        this.alertMsg = "";
+        if (this.holdings == null) {
+            this.holdings = new HashMap<Stock, Integer>();
+
+        }
     }
 
     public Role getRole() {
@@ -45,6 +65,26 @@ public class User {
         return holdings;
     }
 
+    public int getCurrentMoney() {
+        return this.currentMoney;
+    }
+
+    public void setCurrentMoney(int currentMoney) {
+        this.currentMoney = currentMoney;
+    }
+
+    public String getAlertMsg() {
+        return alertMsg.toString();
+    }
+
+    public void setAlertMsg(String alertMsg) {
+        this.alertMsg = alertMsg;
+    }
+
+    public ArrayList<TradeActivity> getTradeActivities() {
+        return tradeActivities;
+    }
+
     public HashMap<Stock, Integer> holdingsProperty() {
         return holdings;
     }
@@ -63,6 +103,11 @@ public class User {
         if (holdings.get(stock) == 0) {
             holdings.remove(stock);
         }
+    }
+
+    public void addMoney(int moneyToAdd) {
+        getTradeActivities().add(new TradeActivity(moneyToAdd, this.currentMoney));
+        this.currentMoney += moneyToAdd;
     }
 
     @Override

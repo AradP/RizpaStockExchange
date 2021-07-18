@@ -180,7 +180,7 @@ public final class BLManager implements IAPICommands {
             ArrayList<Transaction> newTransactions;
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
                 if (!StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionFOK(true, numberOfStocks, lowestPrice)) {
-                    returnValue = "It is not possible to add this order." + "\n";
+                    seller.setAlertMsg("It is not possible to add this order.");
                 } else {
                     StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, lowestPrice, OrderType.FOK, seller);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(true);
@@ -206,9 +206,9 @@ public final class BLManager implements IAPICommands {
             ArrayList<Transaction> newTransactions;
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
                 if (!StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionFOK(false, numberOfStocks, highestPrice)) {
-                    returnValue = "It is not possible to add this order." + "\n";
+                    buyer.setAlertMsg("It is not possible to add this order.");
                 } else {
-                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks, highestPrice, OrderType.FOK, buyer);
+                    StockManager.getInstance().getStockBySymbol(symbol).CreateBuyOrder(numberOfStocks, highestPrice, OrderType.FOK, buyer);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(false);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";
@@ -233,7 +233,7 @@ public final class BLManager implements IAPICommands {
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
                 int isItPossibleToMakeATransactionIOC = StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionIOC(true, numberOfStocks, lowestPrice);
                 if (isItPossibleToMakeATransactionIOC == -1) {
-                    returnValue = "It is not possible to add this order." + "\n";
+                    seller.setAlertMsg("It is not possible to add this order.");
                 } else {
                     StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, lowestPrice, OrderType.IOC, seller);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(true);
@@ -260,7 +260,7 @@ public final class BLManager implements IAPICommands {
             if (verifySellBuyExecution(symbol, numberOfStocks)) {
                 int isItPossibleToMakeATransactionIOC = StockManager.getInstance().getStockBySymbol(symbol).IsItPossibleToMakeATransactionIOC(false, numberOfStocks, highestPrice);
                 if (isItPossibleToMakeATransactionIOC == -1) {
-                    returnValue = "It is not possible to add this order." + "\n";
+                    buyer.setAlertMsg("It is not possible to add this order.");
                 } else {
                     StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, highestPrice, OrderType.IOC, buyer);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(false);

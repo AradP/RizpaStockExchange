@@ -26,6 +26,8 @@ public class StocksListServlet extends HttpServlet {
             String json = gson.toJson(stocksList);
             out.println(json);
             out.flush();
+        } catch (Exception ex){
+            String v = ex.toString();
         }
     }
 

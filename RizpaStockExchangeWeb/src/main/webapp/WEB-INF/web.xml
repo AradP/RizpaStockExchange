@@ -23,7 +23,7 @@
         <url-pattern>/servlets/UploadXMLFileServlet</url-pattern>
     </servlet-mapping>
 
-<!--    Starts here -->
+    <!--    Starts here -->
     <servlet>
         <servlet-name>ChatServlet</servlet-name>
         <servlet-class>servlets.ChatServlet</servlet-class>
@@ -71,5 +71,53 @@
     <servlet-mapping>
         <servlet-name>GetSelectedStockServlet</servlet-name>
         <url-pattern>/getSelectedStock</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserUpdateMoneyServlet</servlet-name>
+        <servlet-class>servlets.UserUpdateMoneyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UserUpdateMoneyServlet</servlet-name>
+        <url-pattern>/servlets/UserUpdateMoneyServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateNewStockServlet</servlet-name>
+        <servlet-class>servlets.CreateNewStockServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateNewStockServlet</servlet-name>
+        <url-pattern>/servlets/CreateNewStockServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserSingleStockServlet</servlet-name>
+        <servlet-class>servlets.UserSingleStockServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UserSingleStockServlet</servlet-name>
+        <url-pattern>/servlets/UserSingleStockServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TransactionUpdateAlertServlet</servlet-name>
+        <servlet-class>servlets.TransactionUpdateAlertServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionUpdateAlertServlet</servlet-name>
+        <url-pattern>/servlets/TransactionUpdateAlertServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TransactionActionServlet</servlet-name>
+        <servlet-class>servlets.TransactionActionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionActionServlet</servlet-name>
+        <url-pattern>/servlets/TransactionActionServlet</url-pattern>
     </servlet-mapping>
 </web-app>

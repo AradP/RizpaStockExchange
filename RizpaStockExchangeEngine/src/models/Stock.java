@@ -93,7 +93,7 @@ public class Stock implements Serializable {
         }
     }
 
-    private boolean addPendingSellOrder(Order newSellOrder){
+    private boolean addPendingSellOrder(Order newSellOrder) {
         boolean didSuccess = pendingSellOrders.add(newSellOrder);
 
         if (didSuccess) {
@@ -142,13 +142,14 @@ public class Stock implements Serializable {
     public boolean IsItPossibleToMakeATransactionFOK(boolean isSell, int amountOfStocks, double requestedExchangeRate) {
         ArrayList<Order> oppositeOrders = isSell ? pendingBuyOrders : pendingSellOrders;
         int currentCell = 0;
-        while (amountOfStocks > 0 && oppositeOrders.size() > currentCell &&
-                isSell ? requestedExchangeRate <= oppositeOrders.get(currentCell).getRequestedExchangeRate() :
-                requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate()) {
-            amountOfStocks -= oppositeOrders.get(currentCell++).getCount();
+        if (oppositeOrders.size() > 0) {
+            while (amountOfStocks > 0 && oppositeOrders.size() > currentCell &&
+                    isSell ? requestedExchangeRate <= oppositeOrders.get(currentCell).getRequestedExchangeRate() :
+                    requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate()) {
+                amountOfStocks -= oppositeOrders.get(currentCell++).getCount();
+            }
         }
-
-        return amountOfStocks == 0;
+        return amountOfStocks == 0 && oppositeOrders.size() > 0;
     }
 
     /**
@@ -163,13 +164,15 @@ public class Stock implements Serializable {
         ArrayList<Order> oppositeOrders = isSell ? pendingBuyOrders : pendingSellOrders;
         int currentCell = 0;
         int tempAmountOfStocks = amountOfStocks;
-        while (tempAmountOfStocks > 0 && oppositeOrders.size() > currentCell &&
-                isSell ? requestedExchangeRate <= oppositeOrders.get(currentCell).getRequestedExchangeRate() :
-                requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate()) {
-            tempAmountOfStocks -= oppositeOrders.get(currentCell++).getCount();
+        if (oppositeOrders.size() > 0) {
+            while (tempAmountOfStocks > 0 && oppositeOrders.size() > currentCell &&
+                    isSell ? requestedExchangeRate <= oppositeOrders.get(currentCell).getRequestedExchangeRate() :
+                    requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate()) {
+                tempAmountOfStocks -= oppositeOrders.get(currentCell++).getCount();
+            }
+            return tempAmountOfStocks == amountOfStocks ? -1 : tempAmountOfStocks <= 0 ? 0 : tempAmountOfStocks;
         }
-
-        return tempAmountOfStocks == amountOfStocks ? -1 : tempAmountOfStocks <= 0 ? 0 : tempAmountOfStocks;
+        return -1;
     }
 
     public ArrayList<Transaction> makeATransaction(boolean isSell) {
@@ -190,7 +193,7 @@ public class Stock implements Serializable {
             newTransactions.add(newTransaction);
             sellOrder.reduceCount(maxAmountOfStocksThatPossible);
             buyOrder.reduceCount(maxAmountOfStocksThatPossible);
-            buyer.addStocks(this,maxAmountOfStocksThatPossible);
+            buyer.addStocks(this, maxAmountOfStocksThatPossible);
 
             if (sellOrder.getCount() == 0) {
                 pendingSellOrders.remove(0);

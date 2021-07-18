@@ -1,7 +1,10 @@
 package bl;
 
+import enums.TradeActivityType;
+import models.TradeActivity;
 import models.User;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -37,5 +40,32 @@ public class UserManager {
 
     public synchronized boolean isLoggedIn(String username) {
         return usersSet.stream().anyMatch(user -> user.getName().equals(username));
+    }
+
+    public ArrayList<TradeActivity> getTradeActivities(User currentUser) {
+        User specUser = getUsers().stream().filter(user -> user.getName().equalsIgnoreCase(currentUser.getName())).findFirst().get();
+        return specUser.getTradeActivities();
+    }
+
+    /**
+     * @param currentUser
+     * @param moneyToAdd
+     */
+    public User addMoneyToSpecUser(User currentUser, int moneyToAdd) {
+        User specUser = getUsers().stream().filter(user -> user.getName().equalsIgnoreCase(currentUser.getName())).findFirst().get();
+        specUser.addMoney(moneyToAdd);
+        return specUser;
+    }
+
+    public User AddStockToUserByIPO(User currentUser, String symbol, int amount) {
+        User specUser = getUsers().stream().filter(user -> user.getName().equalsIgnoreCase(currentUser.getName())).findFirst().get();
+        specUser.addStocks(StockManager.getInstance().getStockBySymbol(symbol), amount);
+        specUser.getTradeActivities().add(new TradeActivity(TradeActivityType.BUY_STOCK, symbol, 0, specUser.getCurrentMoney()));
+        return specUser;
+    }
+
+    public User getUserByName(String name) {
+        User specUser = getUsers().stream().filter(user -> user.getName().equalsIgnoreCase(name)).findFirst().get();
+        return specUser;
     }
 }

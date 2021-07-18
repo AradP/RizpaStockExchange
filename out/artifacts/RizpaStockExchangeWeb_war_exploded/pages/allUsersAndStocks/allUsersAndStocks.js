@@ -1,4 +1,4 @@
-var refreshRate = 2000; //milli seconds
+var refreshRate = 1000; //milli seconds
 var USER_LIST_URL = buildUrlWithContextPath("userslist");
 var STOCK_LIST_URL = buildUrlWithContextPath("stockslist");
 
@@ -45,13 +45,73 @@ function ajaxStocksList() {
     });
 }
 
+function ajav(){
+    $.ajax({
+        type: "GET",
+        url: "/RizpaStockExchangeWeb_war/servlets/TransactionUpdateAlertServlet",
+        success: function (resp) {
+            document.getElementById("toastBody").innerHTML = resp;
+            $("#myToast").toast('show');
+        }
+    });
+}
+
 //activate the timer calls after the page is loaded
 $(function() {
     //The users list is refreshed automatically every second
     setInterval(ajaxUsersList, refreshRate);
     setInterval(ajaxStocksList, refreshRate);
-});
+    setInterval(ajav, refreshRate);
 
-function chooseStock(stock) {
-    window.location.href = '${pageContext.request.contextPath}/servlets/SingleStock?stockname=' + stock.innerText;
+    /* attach a submit handler to the form */
+    $("#createNewStockForm").submit(function (event) {
+        $.ajax({
+            type: "POST",
+            url: "/RizpaStockExchangeWeb_war/servlets/CreateNewStockServlet",
+            data: {
+                companyName: $('#CompanyNameInput').val(),
+                symbol: $('#SymbolInput').val(),
+                amountOfStocks: $('#AmountOfStocksInput').val(),
+                companyValue: $('#CompanyValueInput').val(),
+            },
+            success: function (resp) {
+                console.log(resp);
+            },
+            error: function (req, status, err) {
+                alert(req.responseText)
+            }
+        }).done(function (data) {
+            console.log(data);
+            location.reload();
+        });
+        event.preventDefault();
+    });
+
+    /* attach a submit handler to the form */
+    $("#updateMoneyForm").submit(function (event) {
+        $.ajax({
+            type: "POST",
+            url: "/RizpaStockExchangeWeb_war/servlets/UserUpdateMoneyServlet",
+            data: {moneyToAdd: $('#moneyToAddInput').val()},
+            success: function (resp) {
+                console.log(resp);
+            },
+            error: function (req, status, err) {
+                console.log('Something went wrong', status, err);
+                console.log(req);
+            }
+        }).done(function (data) {
+            console.log(data);
+            location.reload();
+        });
+        event.preventDefault();
+    });
+});
+function toggleShowCreateNewStockSection() {
+    var x = document.getElementById("newStockSection");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
 }

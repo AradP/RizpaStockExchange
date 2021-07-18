@@ -1,5 +1,7 @@
 package models;
 
+import enums.TradeActivityType;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,6 +24,13 @@ public class Transaction implements Serializable {
         this.timeStamp = DateTimeFormatter.ofPattern("HH:mm:ss:SSS").format(LocalDateTime.now());
         this.seller = seller;
         this.buyer = buyer;
+
+        seller.getTradeActivities().add(new TradeActivity(TradeActivityType.SELL_STOCK, symbol, (int) getVolume(), seller.getCurrentMoney()));
+        buyer.getTradeActivities().add(new TradeActivity(TradeActivityType.BUY_STOCK, symbol, (int) getVolume(), buyer.getCurrentMoney()));
+        seller.setCurrentMoney(seller.getCurrentMoney() + (int) getVolume());
+        buyer.setCurrentMoney(buyer.getCurrentMoney() + (int) getVolume());
+        buyer.setAlertMsg(getBuyInfoAlert());
+        seller.setAlertMsg(getSellInfoAlert());
     }
 
     public String getSymbol() {
@@ -96,6 +105,22 @@ public class Transaction implements Serializable {
         }
     }
 
+    private String getBuyInfoAlert() {
+        return "Symbol: " + getSymbol() + "\n" +
+                "Transaction activity: buy" + "\n" +
+                "Number Of Stocks: " + getAmountOfStocks() + "\n" +
+                "Single Stock Price: " + getPrice() + "\n" +
+                "Total Transaction volume: " + getVolume();
+    }
+
+    private String getSellInfoAlert() {
+        return "Symbol: " + getSymbol() + "\n" +
+                "Transaction activity: sell" + "\n" +
+                "Number Of Stocks: " + getAmountOfStocks() + "\n" +
+                "Single Stock Price: " + getPrice() + "\n" +
+                "Total Transaction volume: " + getVolume();
+    }
+
     @Override
     public String toString() {
         return "Date: " + getTimeStamp() + "\n" +
@@ -103,6 +128,7 @@ public class Transaction implements Serializable {
                 "Single Stock Price: " + getPrice() + "\n" +
                 "Total Transaction volume: " + getVolume() + "\n" +
                 "Seller: " + getSeller().getName() + "\n" +
-                "Buyer: " + getBuyer().getName() + "\n";
+                "Buyer: " + getBuyer().getName() + "\n" +
+                "Total Transaction volume: " + getVolume();
     }
 }

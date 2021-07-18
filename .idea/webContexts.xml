@@ -3,6 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/SingleStock.jsp" value="file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views" />
         <entry key="file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views/AllUsersAndStocks.jsp" value="file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/views" />
       </map>
     </option>
