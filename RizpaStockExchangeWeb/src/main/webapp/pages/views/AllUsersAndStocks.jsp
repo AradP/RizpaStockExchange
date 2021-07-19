@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./../allUsersAndStocks/allUsersAndStocks.css">
     <script>
         function chooseStock(stock) {
-            window.location.href = '${pageContext.request.contextPath}/servlets/SingleStock?stockname=' + stock.innerText;
+            window.location.href = '${pageContext.request.contextPath}/servlets/SingleStock?stockname=' + stock.firstChild.textContent;
         }
     </script>
 </head>

@@ -8,3 +8,7 @@
     overflow-y: scroll;
     max-height: 100px;
 }
+
+.stock-symbol {
+    color: #5cb85c;
+}

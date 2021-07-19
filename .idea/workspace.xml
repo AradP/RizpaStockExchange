@@ -11,28 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UserUpdateMoneyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UserUpdateMoneyServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/allUsersAndStocks/allUsersAndStocks.css" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/allUsersAndStocks/allUsersAndStocks.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/allUsersAndStocks/allUsersAndStocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/allUsersAndStocks/allUsersAndStocks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/singleStock/singleStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/singleStock/singleStock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/chatroom/chatroom.html" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/chatroom/chatroom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/signup/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/signup/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/AllUsersAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/AllUsersAndStocks.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/SingleStock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/SingleStock.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/allUsersAndStocks/allUsersAndStocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/allUsersAndStocks/allUsersAndStocks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/singleStock/singleStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/singleStock/singleStock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/views/AllUsersAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/views/AllUsersAndStocks.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/views/SingleStock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/views/SingleStock.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,13 +124,15 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.RizpaStockExchangeWeb">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -487,7 +477,6 @@
         <watch expression="request.getSession(false).getAttribute(&quot;username&quot;)" language="JAVA" />
         <watch expression="request.getSession(false).getAttribute(&quot;selectedStock&quot;)" language="JAVA" />
         <watch expression="filePart.getSubmittedFileName()" language="JAVA" />
-        <watch expression="amountOfStocks &gt; 0" />
       </configuration>
       <configuration name="Application">
         <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.UserManager" />
@@ -498,6 +487,6 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/RizpaStockExchange$RizpaStockExchangeWeb.ic" NAME="RizpaStockExchangeWeb Coverage Results" MODIFIED="1626536235680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/RizpaStockExchange$RizpaStockExchangeWeb.ic" NAME="RizpaStockExchangeWeb Coverage Results" MODIFIED="1624708127331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
