@@ -159,8 +159,6 @@
         </form>
     </div>
 
-    <% } else { %>
-    TODO: OMER's PART
     <% } %>
 </div>
 </body>

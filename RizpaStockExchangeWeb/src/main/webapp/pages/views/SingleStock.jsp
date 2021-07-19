@@ -18,6 +18,7 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
     <script src="./../singleStock/singleStock.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 <a href="http://localhost:8081/RizpaStockExchangeWeb_war/pages/views/AllUsersAndStocks.jsp"
@@ -211,6 +212,6 @@
     </table>
 </div>
 <%}%>
-
+<div id="chart_div"></div>
 </body>
 </html>

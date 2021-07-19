@@ -2,6 +2,8 @@ var refreshRate = 200; //milli seconds
 var GET_SELECTED_STOCK_URL = buildUrlWithContextPath("getSelectedStock");
 var selectedStockSymbol;
 var maxAmountOfStocksForSell;
+var completedTransactionsLength = 0;
+var transactions = [];
 
 function createTransactionAction(arg) {
     $.ajax({
@@ -54,6 +56,12 @@ function refreshStockOrderPeriod(stock) {
     $("#order_period").text(stock.ordersPeriod);
 
     $("#completed_transactions_table").empty();
+    var currentcompletedTransactionsLength = stock.completedTransactions.length;
+    if (currentcompletedTransactionsLength > completedTransactionsLength) {
+        completedTransactionsLength = stock.completedTransactions.length;
+        transactions = stock.completedTransactions;
+        drawLogScales();
+    }
 
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(stock.completedTransactions || [], function (index, transaction) {
@@ -64,14 +72,14 @@ function refreshStockOrderPeriod(stock) {
     $("#pending_buy_orders_table").empty();
 
     $.each(stock.pendingBuyOrders || [], function (index, order) {
-        $('<tr><td>' + order.timeStamp + '</td><td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.creator.name + '</td></tr>')
+        $('<tr><td>' + order.timestamp + '</td><td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.creator.name + '</td></tr>')
             .appendTo($("#pending_buy_orders_table"));
     });
 
     $("#pending_sell_orders_table").empty();
 
     $.each(stock.pendingSellOrders || [], function (index, order) {
-        $('<tr><td>' + order.timeStamp + '</td><td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.creator.name + '</td></tr>')
+        $('<tr><td>' + order.timestamp + '</td><td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.creator.name + '</td></tr>')
             .appendTo($("#pending_sell_orders_table"));
     });
 }
@@ -79,11 +87,10 @@ function refreshStockOrderPeriod(stock) {
 function ajaxGetSelectedStock() {
     $.ajax({
         url: GET_SELECTED_STOCK_URL,
-        success: function (users) {
-            refreshStockOrderPeriod(users);
+        success: function (stock) {
+            refreshStockOrderPeriod(stock);
         }
     });
-
 }
 
 function showTransactionActivityForm() {
@@ -145,14 +152,16 @@ $(function () {
             document.getElementById("highestPrice").style.display = "none";
             document.getElementById("lowestPrice").style.display = "block";
             document.getElementById("numberOfStocks").max = maxAmountOfStocksForSell;
-            if ($('input:radio[name=orderTypeGroup]:checked') == 'MKT') {
+            if ($('input:radio[name=orderTypeGroup]:checked').val() == 'MKT') {
                 document.getElementById("lowestPrice").style.display = "none";
+                document.getElementById("highestPrice").style.display = "none";
             }
         } else if (this.value == 'Buy') {
             document.getElementById("highestPrice").style.display = "block";
             document.getElementById("lowestPrice").style.display = "none";
             document.getElementById("numberOfStocks").max = "99999";
-            if ($('input:radio[name=orderTypeGroup]:checked') == 'MKT') {
+            if ($('input:radio[name=orderTypeGroup]:checked').val() == 'MKT') {
+                document.getElementById("lowestPrice").style.display = "none";
                 document.getElementById("highestPrice").style.display = "none";
             }
         }
@@ -171,5 +180,30 @@ $(function () {
         createTransactionAction(body);
         event.preventDefault();
     });
+
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawLogScales);
 });
+
+function drawLogScales() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Timestamp');
+    data.addColumn('number', 'Price');
+    transactions.forEach(x => data.addRow([x.timeStamp, x.price]));
+
+    var options = {
+        hAxis: {
+            title: 'Timestamp',
+            logScale: true
+        },
+        vAxis: {
+            title: 'Price',
+            logScale: false
+        },
+        colors: ['#a52714', '#097138']
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
 
