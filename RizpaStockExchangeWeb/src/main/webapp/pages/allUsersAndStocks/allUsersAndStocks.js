@@ -20,7 +20,7 @@ function refreshStocksList(stocks) {
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(stocks || [], function (index, stock) {
         // create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
-        $('<tr><th scope="row" onclick="chooseStock(this)">' + stock.symbol + '</th>' +
+        $('<tr onclick="chooseStock(this)"><td class="stock-symbol">' + stock.symbol + '</td>' +
             '<td>' + stock.companyName + '</td><td>' + stock.price + '</td><td>' + stock.ordersPeriod + '</td></tr>')
             .appendTo($("#stocks_table"));
 

@@ -4,6 +4,7 @@ import enums.Role;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class User {
     private String name;
@@ -93,9 +94,23 @@ public class User {
         this.holdings = holdings;
     }
 
+    public void addHoldings(HashMap<Stock, Integer> newHoldings) {
+        newHoldings.forEach(this::addStocks);
+    }
+
     public void addStocks(Stock stock, int amountOfStocks) {
-        int oldAmount = holdings.containsKey(stock) ? holdings.get(stock) : 0;
-        holdings.put(stock, oldAmount + amountOfStocks);
+        boolean stockExists = false;
+        for (Stock s : holdings.keySet()) {
+            if (s.getSymbol().toLowerCase(Locale.ROOT).equals(stock.getSymbol().toLowerCase(Locale.ROOT))) {
+                holdings.put(s, holdings.get(s) + amountOfStocks);
+                stockExists = true;
+            }
+        }
+
+        if (!stockExists) {
+        holdings.put(stock,amountOfStocks);
+        }
+//        int oldAmount = holdings.containsKey(stock) ? holdings.get(stock) : 0;
     }
 
     public void reduceStocks(Stock stock, int amountOfStocks) {
