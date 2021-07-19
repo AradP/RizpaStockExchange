@@ -1,7 +1,7 @@
 var refreshRate = 200; //milli seconds
 var GET_SELECTED_STOCK_URL = buildUrlWithContextPath("getSelectedStock");
 var selectedStockSymbol;
-var maxAmountOfStocksForSell;
+var maxAmountOfStocksForSell = -1;
 var completedTransactionsLength = 0;
 var transactions = [];
 
@@ -32,7 +32,10 @@ function refreshStockOrderPeriod(stock) {
         },
         success: function (resp) {
             document.getElementById("currentAmountOfStocksContent").textContent = "Current amount of stocks:" + resp;
-            maxAmountOfStocksForSell = resp;
+            if (maxAmountOfStocksForSell != parseInt(resp) && ($('input:radio[name=isSellRadioGroup]:checked').val() == 'Sell')) {
+                maxAmountOfStocksForSell = parseInt(resp);
+                document.getElementById("numberOfStocks").max = maxAmountOfStocksForSell;
+            }
         },
         error: function (req, status, err) {
             alert(req.responseText)
@@ -119,32 +122,46 @@ $(function () {
             if ($('input:radio[name=isSellRadioGroup]:checked').val() == 'Sell') {
                 document.getElementById("lowestPrice").style.display = "block";
                 document.getElementById("highestPrice").style.display = "none";
+                document.getElementById("lowestPrice").required = true;
+                document.getElementById("highestPrice").required = false;
             } else {
                 document.getElementById("highestPrice").style.display = "block";
                 document.getElementById("lowestPrice").style.display = "none";
+                document.getElementById("highestPrice").required = true;
+                document.getElementById("lowestPrice").required = false;
             }
         } else if (this.value == 'IOC') {
             showTransactionActivityForm();
             if ($('input:radio[name=isSellRadioGroup]:checked').val() == 'Sell') {
                 document.getElementById("lowestPrice").style.display = "block";
                 document.getElementById("highestPrice").style.display = "none";
+                document.getElementById("lowestPrice").required = true;
+                document.getElementById("highestPrice").required = false;
             } else {
                 document.getElementById("highestPrice").style.display = "block";
                 document.getElementById("lowestPrice").style.display = "none";
+                document.getElementById("highestPrice").required = true;
+                document.getElementById("lowestPrice").required = false;
             }
         } else if (this.value == 'LMT') {
             showTransactionActivityForm();
             if ($('input:radio[name=isSellRadioGroup]:checked').val() == 'Sell') {
                 document.getElementById("lowestPrice").style.display = "block";
                 document.getElementById("highestPrice").style.display = "none";
+                document.getElementById("lowestPrice").required = true;
+                document.getElementById("highestPrice").required = false;
             } else {
                 document.getElementById("highestPrice").style.display = "block";
                 document.getElementById("lowestPrice").style.display = "none";
+                document.getElementById("highestPrice").required = true;
+                document.getElementById("lowestPrice").required = false;
             }
         } else if (this.value == 'MKT') {
             showTransactionActivityForm();
             document.getElementById("lowestPrice").style.display = "none";
             document.getElementById("highestPrice").style.display = "none";
+            document.getElementById("lowestPrice").required = false;
+            document.getElementById("highestPrice").required = false;
         }
     });
     $('input[type=radio][name=isSellRadioGroup]').change(function () {
@@ -152,17 +169,25 @@ $(function () {
             document.getElementById("highestPrice").style.display = "none";
             document.getElementById("lowestPrice").style.display = "block";
             document.getElementById("numberOfStocks").max = maxAmountOfStocksForSell;
+            document.getElementById("lowestPrice").required = true;
+            document.getElementById("highestPrice").required = false;
             if ($('input:radio[name=orderTypeGroup]:checked').val() == 'MKT') {
                 document.getElementById("lowestPrice").style.display = "none";
                 document.getElementById("highestPrice").style.display = "none";
+                document.getElementById("lowestPrice").required = false;
+                document.getElementById("highestPrice").required = false;
             }
         } else if (this.value == 'Buy') {
             document.getElementById("highestPrice").style.display = "block";
             document.getElementById("lowestPrice").style.display = "none";
-            document.getElementById("numberOfStocks").max = "99999";
+            document.getElementById("highestPrice").required = true;
+            document.getElementById("lowestPrice").required = false;
+            document.getElementById("numberOfStocks").max = "999999999";
             if ($('input:radio[name=orderTypeGroup]:checked').val() == 'MKT') {
                 document.getElementById("lowestPrice").style.display = "none";
                 document.getElementById("highestPrice").style.display = "none";
+                document.getElementById("lowestPrice").required = false;
+                document.getElementById("highestPrice").required = false;
             }
         }
     });

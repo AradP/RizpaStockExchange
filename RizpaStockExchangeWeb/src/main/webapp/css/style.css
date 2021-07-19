@@ -1,6 +1,5 @@
 .container {
     white-space: nowrap;
-    height: 100%;
     overflow: auto;
 }
 
