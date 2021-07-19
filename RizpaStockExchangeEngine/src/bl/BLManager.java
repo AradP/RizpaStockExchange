@@ -72,7 +72,7 @@ public final class BLManager implements IAPICommands {
         StockManager.getInstance().addStocks(newStocks);
 
         // We can successfully update the holdings for the user
-        user.setHoldings(newHoldings);
+        user.addHoldings(newHoldings);
     }
 
     @Override
