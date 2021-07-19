@@ -133,7 +133,6 @@ $(function () {
             data: {moneyToAdd: $('#moneyToAddInput').val()},
             success: function (resp) {
                 console.log(resp);
-                location.reload();
             },
             error: function (req, status, err) {
                 console.log('Something went wrong', status, err);

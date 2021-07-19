@@ -31,7 +31,7 @@ public class UploadXMLFileServlet extends HttpServlet {
         try {
             filePart = request.getPart("file");
 
-            if ((filePart != null) && !filePart.getSubmittedFileName().equals("")) {
+            if (filePart != null) {
                 try {
                     // Save the file to our local folder
                     // gets absolute path of the web application

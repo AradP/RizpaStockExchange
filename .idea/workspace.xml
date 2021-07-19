@@ -12,8 +12,9 @@
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/allUsersAndStocks/allUsersAndStocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/allUsersAndStocks/allUsersAndStocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/views/AllUsersAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/views/AllUsersAndStocks.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -467,6 +468,11 @@
           <line>112</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -477,12 +483,7 @@
     </pin-to-top-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="request.getSession(false).getAttribute(&quot;username&quot;)" language="JAVA" />
-        <watch expression="request.getSession(false).getAttribute(&quot;selectedStock&quot;)" language="JAVA" />
-        <watch expression="filePart.getSubmittedFileName()" language="JAVA" />
-        <watch expression="holdings" language="JAVA" />
-        <watch expression="holdings.get(stock)" language="JAVA" />
-        <watch expression="holdings.containsKey(stock)" language="JAVA" />
+        <watch expression="filePart.getName()" language="JAVA" />
       </configuration>
       <configuration name="Application">
         <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.UserManager" />

@@ -101,7 +101,7 @@
         <input type="submit" value="upload">
     </form>
 
-    <h3 id="AccountCurrentMoney">Acount current money: 0</h3>
+    <h3 id="AccountCurrentMoney">Account current money: 0</h3>
 
     <form id="updateMoneyForm" name="updateMoneyForm">
         <label for="moneyToAddInput">Money to add (more or equal to 1)</label>
