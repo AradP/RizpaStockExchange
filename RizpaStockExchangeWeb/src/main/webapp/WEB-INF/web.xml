@@ -120,4 +120,13 @@
         <servlet-name>TransactionActionServlet</servlet-name>
         <url-pattern>/servlets/TransactionActionServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TradeActivitiesServlet</servlet-name>
+        <servlet-class>servlets.TradeActivitiesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TradeActivitiesServlet</servlet-name>
+        <url-pattern>/servlets/TradeActivitiesServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -21,8 +21,6 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-<a href="http://localhost:8081/RizpaStockExchangeWeb_war/pages/views/AllUsersAndStocks.jsp"
-   role="button">Back</a>
 <div aria-live="polite" aria-atomic="true" class="position-relative">
     <div class="toast-container fixed-top top-0 end-0 p-3">
         <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -40,7 +38,8 @@
     <% User loggedUser = (User) request.getSession(false).getAttribute(Constants.USERNAME);
         Stock selectedStock = (Stock) request.getSession(false).getAttribute("selectedStock");
     %>
-
+    <a href="http://localhost:8081/RizpaStockExchangeWeb_war/pages/views/AllUsersAndStocks.jsp"
+       class="btn btn-primary" role="button">Back</a>
     <h3>Logged in as <%=loggedUser.getName()%>
     </h3>
 
@@ -149,7 +148,7 @@
             </label>
         </div>
         <label for="numberOfStocks">Number of stocks</label>
-        <input type="number" id="numberOfStocks" name="numberOfStocks" min="1"/><br>
+        <input required type="number" id="numberOfStocks" name="numberOfStocks" min="1"/><br>
         <label for="lowestPrice">Lowest price</label>
         <input type="number" id="lowestPrice" name="lowestPrice" min="1"/><br>
         <label for="highestPrice">Highest price</label>
@@ -171,27 +170,9 @@
             <td>Amount</td>
             <td>Requested Exchange Rate</td>
             <td>Creator</td>
-            <%--            <% ArrayList<Order> sellOrders = selectedStock.getPendingSellOrders();--%>
-            <%--                for (int i = 0; i < sellOrders.size(); i++) {--%>
-            <%--            %>--%>
-            <%--            <td><%= sellOrders.get(i).getTimestamp()%>--%>
-            <%--            </td>--%>
-            <%--            <%} %>--%>
         </tr>
         </thead>
         <tbody id="pendingBuyOrders_table">
-        <%--        <tr>--%>
-        <%--            <% for (int j = 0; j < sellOrders.size(); j++) { %>--%>
-        <%--            <td><%= sellOrders.get(j).getOrderType().toString() %>--%>
-        <%--            </td>--%>
-        <%--            <td><%= sellOrders.get(j).getCount()%>--%>
-        <%--            </td>--%>
-        <%--            <td><%= sellOrders.get(j).getRequestedExchangeRate()%>--%>
-        <%--            </td>--%>
-        <%--            <td><%= sellOrders.get(j).getCreator()%>--%>
-        <%--            </td>--%>
-        <%--            <%} %>--%>
-        <%--        </tr>--%>
         </tbody>
     </table>
 

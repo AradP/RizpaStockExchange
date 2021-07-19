@@ -78,7 +78,7 @@
     <h4>Stocks</h4>
     <br>
     <!-- place holder to hold all the chat lines -->
-    <table class="styled-table">
+    <table class="table styled-table table-striped table-hover">
         <thead>
         <tr>
             <td>Symbol</td>
@@ -97,7 +97,7 @@
     <h4>Upload XML file</h4>
     <form method="post" action="/RizpaStockExchangeWeb_war/servlets/UploadXMLFileServlet"
           enctype="multipart/form-data">
-        <input type="file" name="file">
+        <input required type="file" name="file">
         <input type="submit" value="upload">
     </form>
 
@@ -105,13 +105,14 @@
 
     <form id="updateMoneyForm" name="updateMoneyForm">
         <label for="moneyToAddInput">Money to add (more or equal to 1)</label>
-        <input type="number" id="moneyToAddInput" name="moneyToAddInput" min="1"/><br>
+        <input required type="number" id="moneyToAddInput" name="moneyToAddInput" min="1"/><br>
         <input type="submit" value="Add">
     </form>
 
     Trade activities
     <!-- Trade activities Table --->
-    <table>
+
+    <table class="table styled-table table-striped table-hover">
         <thead>
         <tr>
             <td>Time stamp</td>
@@ -122,24 +123,7 @@
             <td>Money after</td>
         </tr>
         </thead>
-        <tbody>
-        <% ArrayList<TradeActivity> activities = loggedUser.getTradeActivities();%>
-        <% for (TradeActivity activity : activities) { %>
-        <tr class="activity-row">
-            <td><%= activity.getTimeStamp() %>
-            </td>
-            <td><%= activity.getSymbol() %>
-            </td>
-            <td><%= activity.getTradeActivityTypeAsString() %>
-            </td>
-            <td><%= activity.getPrice() %>
-            </td>
-            <td><%= activity.getMoneyLeftBefore() %>
-            </td>
-            <td><%= activity.getMoneyLeftAfter() %>
-            </td>
-            <%} %>
-        </tr>
+        <tbody id="trade_activities_table">
         </tbody>
     </table>
 
@@ -148,13 +132,13 @@
     <div id="newStockSection" style="display: none">
         <form id="createNewStockForm">
             <label for="CompanyNameInput">Company name</label>
-            <input type="text" id="CompanyNameInput" name="CompanyNameInput" minlength="1"/><br>
+            <input required  type="text" id="CompanyNameInput" name="CompanyNameInput" pattern="[A-Za-z]{1,}" minlength="1"/><br>
             <label for="SymbolInput">Symbol</label>
-            <input type="text" id="SymbolInput" name="SymbolInput" minlength="1"/><br>
+            <input required  type="text" id="SymbolInput" name="SymbolInput" pattern="[A-Za-z]{1,}" minlength="1"/><br>
             <label for="AmountOfStocksInput">Amount of stocks</label>
-            <input type="number" id="AmountOfStocksInput" name="AmountOfStocksInput" minlength="1"/><br>
+            <input required  type="number" id="AmountOfStocksInput" name="AmountOfStocksInput" min="1" minlength="1" onchange="document.getElementById('CompanyValueInput').min=this.value;"/><br>
             <label for="CompanyValueInput">Company value</label>
-            <input type="number" id="CompanyValueInput" name="CompanyValueInput" minlength="1"/><br>
+            <input required  type="number" id="CompanyValueInput" name="CompanyValueInput" min="1" minlength="1"/><br>
             <input type="submit" value="Create">
         </form>
     </div>

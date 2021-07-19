@@ -1,4 +1,4 @@
-var refreshRate = 200; //milli seconds
+var refreshRate = 600; //milli seconds
 var USER_LIST_URL = buildUrlWithContextPath("userslist");
 var STOCK_LIST_URL = buildUrlWithContextPath("stockslist");
 
@@ -20,9 +20,23 @@ function refreshStocksList(stocks) {
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(stocks || [], function (index, stock) {
         // create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
-        $('<tr><td class="stock-symbol" onclick="chooseStock(this)">' + stock.symbol + '</td>' +
+        $('<tr><th scope="row" onclick="chooseStock(this)">' + stock.symbol + '</th>' +
             '<td>' + stock.companyName + '</td><td>' + stock.price + '</td><td>' + stock.ordersPeriod + '</td></tr>')
             .appendTo($("#stocks_table"));
+
+    });
+}
+
+function refreshTradeActivities(activities) {
+    //clear all current users
+    $("#trade_activities_table").empty();
+
+    // rebuild the list of users: scan all users and add them to the list of users
+    $.each(activities || [], function (index, activity) {
+        // create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
+        $('<tr><th>' + activity.timeStamp + '</th>' +
+            '<td>' + activity.symbol + '</td><td>' + activity.tradeActivityType + '</td><td>' + activity.price + '</td><td>' + activity.moneyLeftBefore + '</td><td>' + activity.moneyLeftAfter + '</td></tr>')
+            .appendTo($("#trade_activities_table"));
 
     });
 }
@@ -45,6 +59,16 @@ function ajaxStocksList() {
     });
 }
 
+function ajaxTradeActivities() {
+    $.ajax({
+        type: "GET",
+        url: "/RizpaStockExchangeWeb_war/servlets/TradeActivitiesServlet",
+        success: function (activities) {
+            refreshTradeActivities(activities);
+        }
+    });
+}
+
 function ajav() {
     $.ajax({
         type: "GET",
@@ -63,7 +87,7 @@ function getMoney() {
         type: "GET",
         url: "/RizpaStockExchangeWeb_war/servlets/UserUpdateMoneyServlet",
         success: function (resp) {
-            document.getElementById("AccountCurrentMoney").textContent = "Acount current money: " + resp;
+            document.getElementById("AccountCurrentMoney").textContent = "Account current money: " + resp;
         }
     });
 }
@@ -75,6 +99,7 @@ $(function () {
     setInterval(ajaxStocksList, refreshRate);
     setInterval(ajav, refreshRate);
     setInterval(getMoney, refreshRate);
+    setInterval(ajaxTradeActivities, refreshRate);
 
     /* attach a submit handler to the form */
     $("#createNewStockForm").submit(function (event) {
