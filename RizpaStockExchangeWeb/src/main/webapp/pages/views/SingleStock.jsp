@@ -23,7 +23,7 @@
 <a href="http://localhost:8081/RizpaStockExchangeWeb_war/pages/views/AllUsersAndStocks.jsp"
    role="button">Back</a>
 <div aria-live="polite" aria-atomic="true" class="position-relative">
-    <div class="toast-container position-absolute top-0 end-0 p-3">
+    <div class="toast-container fixed-top top-0 end-0 p-3">
         <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <strong class="mr-auto"><i class="fa fa-grav"></i> Transaction Action!</strong>
@@ -101,62 +101,11 @@
         <%--        </tr>--%>
         </tbody>
     </table>
-
-    <!-- Selected Stock Pending Orders -->
-    <% if (loggedUser.getRole().name().equals("ADMIN")) { %>
-    <!-- Selected Stock Sell Orders Table --->
-    <h4>Pending Buy Orders</h4>
-    <table class="styled-table">
-        <thead>
-        <tr>
-            <td>Date</td>
-            <td>Order Type</td>
-            <td>Amount</td>
-            <td>Requested Exchange Rate</td>
-            <td>Creator</td>
-            <%--            <% ArrayList<Order> sellOrders = selectedStock.getPendingSellOrders();--%>
-            <%--                for (int i = 0; i < sellOrders.size(); i++) {--%>
-            <%--            %>--%>
-            <%--            <td><%= sellOrders.get(i).getTimestamp()%>--%>
-            <%--            </td>--%>
-            <%--            <%} %>--%>
-        </tr>
-        </thead>
-        <tbody id="pendingBuyOrders_table">
-        <%--        <tr>--%>
-        <%--            <% for (int j = 0; j < sellOrders.size(); j++) { %>--%>
-        <%--            <td><%= sellOrders.get(j).getOrderType().toString() %>--%>
-        <%--            </td>--%>
-        <%--            <td><%= sellOrders.get(j).getCount()%>--%>
-        <%--            </td>--%>
-        <%--            <td><%= sellOrders.get(j).getRequestedExchangeRate()%>--%>
-        <%--            </td>--%>
-        <%--            <td><%= sellOrders.get(j).getCreator()%>--%>
-        <%--            </td>--%>
-        <%--            <%} %>--%>
-        <%--        </tr>--%>
-        </tbody>
-    </table>
-
-    <!-- Selected Stock Buy Orders Table --->
-    <h4>Pending Sell Orders</h4>
-    <table class="styled-table">
-        <thead>
-        <tr>
-            <td>Date</td>
-            <td>Order Type</td>
-            <td>Amount</td>
-            <td>Requested Exchange Rate</td>
-            <td>Creator</td>
-        </tr>
-        </thead>
-        <tbody id="pendingSellOrders_table">
-        </tbody>
-    </table>
-    <%} else {%>
+    <% if (loggedUser.getRole().name().equals("TRADER")) { %>
     <h2 id="currentAmountOfStocksContent"/>
     <%}%>
 </div>
+<% if (loggedUser.getRole().name().equals("TRADER")) { %>
 <div>
     <form id="formOrderType">
         <div class="form-check-inline">
@@ -207,5 +156,61 @@
         <input type="submit" value="Create a transaction">
     </form>
 </div>
+<%}%>
+<!-- Selected Stock Pending Orders -->
+<% if (loggedUser.getRole().name().equals("ADMIN")) { %>
+<div>
+    <!-- Selected Stock Sell Orders Table --->
+    <h4>Pending Buy Orders</h4>
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <td>Date</td>
+            <td>Order Type</td>
+            <td>Amount</td>
+            <td>Requested Exchange Rate</td>
+            <td>Creator</td>
+            <%--            <% ArrayList<Order> sellOrders = selectedStock.getPendingSellOrders();--%>
+            <%--                for (int i = 0; i < sellOrders.size(); i++) {--%>
+            <%--            %>--%>
+            <%--            <td><%= sellOrders.get(i).getTimestamp()%>--%>
+            <%--            </td>--%>
+            <%--            <%} %>--%>
+        </tr>
+        </thead>
+        <tbody id="pendingBuyOrders_table">
+        <%--        <tr>--%>
+        <%--            <% for (int j = 0; j < sellOrders.size(); j++) { %>--%>
+        <%--            <td><%= sellOrders.get(j).getOrderType().toString() %>--%>
+        <%--            </td>--%>
+        <%--            <td><%= sellOrders.get(j).getCount()%>--%>
+        <%--            </td>--%>
+        <%--            <td><%= sellOrders.get(j).getRequestedExchangeRate()%>--%>
+        <%--            </td>--%>
+        <%--            <td><%= sellOrders.get(j).getCreator()%>--%>
+        <%--            </td>--%>
+        <%--            <%} %>--%>
+        <%--        </tr>--%>
+        </tbody>
+    </table>
+
+    <!-- Selected Stock Buy Orders Table --->
+    <h4>Pending Sell Orders</h4>
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <td>Date</td>
+            <td>Order Type</td>
+            <td>Amount</td>
+            <td>Requested Exchange Rate</td>
+            <td>Creator</td>
+        </tr>
+        </thead>
+        <tbody id="pendingSellOrders_table">
+        </tbody>
+    </table>
+</div>
+<%}%>
+
 </body>
 </html>

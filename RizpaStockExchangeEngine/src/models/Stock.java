@@ -142,14 +142,15 @@ public class Stock implements Serializable {
     public boolean IsItPossibleToMakeATransactionFOK(boolean isSell, int amountOfStocks, double requestedExchangeRate) {
         ArrayList<Order> oppositeOrders = isSell ? pendingBuyOrders : pendingSellOrders;
         int currentCell = 0;
+        int temp = amountOfStocks;
         if (oppositeOrders.size() > 0) {
-            while (amountOfStocks > 0 && oppositeOrders.size() > currentCell &&
+            while (temp > 0 && (oppositeOrders.size() > currentCell &&
                     isSell ? requestedExchangeRate <= oppositeOrders.get(currentCell).getRequestedExchangeRate() :
-                    requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate()) {
-                amountOfStocks -= oppositeOrders.get(currentCell++).getCount();
+                    requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate())) {
+                temp -= oppositeOrders.get(currentCell++).getCount();
             }
         }
-        return amountOfStocks == 0 && oppositeOrders.size() > 0;
+        return temp == 0 && oppositeOrders.size() > 0;
     }
 
     /**
@@ -165,9 +166,9 @@ public class Stock implements Serializable {
         int currentCell = 0;
         int tempAmountOfStocks = amountOfStocks;
         if (oppositeOrders.size() > 0) {
-            while (tempAmountOfStocks > 0 && oppositeOrders.size() > currentCell &&
+            while (tempAmountOfStocks > 0 && (oppositeOrders.size() > currentCell &&
                     isSell ? requestedExchangeRate <= oppositeOrders.get(currentCell).getRequestedExchangeRate() :
-                    requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate()) {
+                    requestedExchangeRate >= oppositeOrders.get(currentCell).getRequestedExchangeRate())) {
                 tempAmountOfStocks -= oppositeOrders.get(currentCell++).getCount();
             }
             return tempAmountOfStocks == amountOfStocks ? -1 : tempAmountOfStocks <= 0 ? 0 : tempAmountOfStocks;

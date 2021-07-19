@@ -9,10 +9,11 @@ function createTransactionAction(arg) {
         url: "/RizpaStockExchangeWeb_war/servlets/TransactionActionServlet",
         data: arg,
         success: function (resp) {
+            if (resp != "0" && resp != "") {
+                document.getElementById("toastBody").innerHTML = resp;
+                $("#myToast").toast("show");
+            }
         },
-        error: function (req, status, err) {
-            alert(req.responseText)
-        }
     }).done(function (data) {
         console.log(data);
     });
@@ -63,14 +64,14 @@ function refreshStockOrderPeriod(stock) {
     $("#pending_buy_orders_table").empty();
 
     $.each(stock.pendingBuyOrders || [], function (index, order) {
-        $('<tr><td>' + order.timeStamp + '</td><td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.creator + '</td></tr>')
+        $('<tr><td>' + order.timeStamp + '</td><td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.creator.name + '</td></tr>')
             .appendTo($("#pending_buy_orders_table"));
     });
 
     $("#pending_sell_orders_table").empty();
 
     $.each(stock.pendingSellOrders || [], function (index, order) {
-        $('<tr><td>' + order.timeStamp + '</td><td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.creator + '</td></tr>')
+        $('<tr><td>' + order.timeStamp + '</td><td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.creator.name + '</td></tr>')
             .appendTo($("#pending_sell_orders_table"));
     });
 }
@@ -82,7 +83,6 @@ function ajaxGetSelectedStock() {
             refreshStockOrderPeriod(users);
         }
     });
-
 }
 
 function showTransactionActivityForm() {
@@ -144,14 +144,16 @@ $(function () {
             document.getElementById("highestPrice").style.display = "none";
             document.getElementById("lowestPrice").style.display = "block";
             document.getElementById("numberOfStocks").max = maxAmountOfStocksForSell;
-            if ($('input:radio[name=orderTypeGroup]:checked') == 'MKT') {
+            if ($('input:radio[name=orderTypeGroup]:checked').val() == 'MKT') {
                 document.getElementById("lowestPrice").style.display = "none";
+                document.getElementById("highestPrice").style.display = "none";
             }
         } else if (this.value == 'Buy') {
             document.getElementById("highestPrice").style.display = "block";
             document.getElementById("lowestPrice").style.display = "none";
             document.getElementById("numberOfStocks").max = "99999";
-            if ($('input:radio[name=orderTypeGroup]:checked') == 'MKT') {
+            if ($('input:radio[name=orderTypeGroup]:checked').val() == 'MKT') {
+                document.getElementById("lowestPrice").style.display = "none";
                 document.getElementById("highestPrice").style.display = "none";
             }
         }

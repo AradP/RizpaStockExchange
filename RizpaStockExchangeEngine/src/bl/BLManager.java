@@ -262,7 +262,7 @@ public final class BLManager implements IAPICommands {
                 if (isItPossibleToMakeATransactionIOC == -1) {
                     buyer.setAlertMsg("It is not possible to add this order.");
                 } else {
-                    StockManager.getInstance().getStockBySymbol(symbol).CreateSellOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, highestPrice, OrderType.IOC, buyer);
+                    StockManager.getInstance().getStockBySymbol(symbol).CreateBuyOrder(numberOfStocks - isItPossibleToMakeATransactionIOC, highestPrice, OrderType.IOC, buyer);
                     newTransactions = StockManager.getInstance().getStockBySymbol(symbol).makeATransaction(false);
 
                     returnValue = "The order has been executed successfully and transactions had been made:" + "\n";

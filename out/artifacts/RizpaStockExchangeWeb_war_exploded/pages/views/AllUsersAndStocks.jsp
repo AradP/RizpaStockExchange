@@ -7,11 +7,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>All Users And Stocks Page</title>
-    <link rel="stylesheet" href="../../common/bootstrap.min.css">
-    <script src="../../common/jquery-2.0.3.min.js"></script>
-    <script src="../../common/context-path-helper.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+    <script src="../../common/context-path-helper.js"></script>
     <script src="./../allUsersAndStocks/allUsersAndStocks.js"></script>
     <link rel="stylesheet" href="./../allUsersAndStocks/allUsersAndStocks.css">
     <script>
@@ -21,14 +24,18 @@
     </script>
 </head>
 <body>
-<div class="toast" id="myToast" style="position: absolute; top: 0; right: 0;">
-    <div class="toast-header">
-        <strong class="mr-auto"><i class="fa fa-grav"></i> Transaction Action!</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container fixed-top top-0 end-0 p-3">
+        <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="mr-auto"><i class="fa fa-grav"></i> Transaction Action!</strong>
+            </div>
+            <div class="d-flex">
+                <div id="toastBody" class="toast-body"/>
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
     </div>
-    <div id="toastBody" class="toast-body"/>
 </div>
 <div class="container">
     <% String xmlUploadMsg = (String) request.getAttribute("xmlUploadMsg");
@@ -50,7 +57,7 @@
     <br>
 
     <h2>Welcome!</h2>
-<%--    <a href="/RizpaStockExchangeWeb_war/pages/chatroom/chatroom.html">To Chat</a>--%>
+    <%--    <a href="/RizpaStockExchangeWeb_war/pages/chatroom/chatroom.html">To Chat</a>--%>
     <a href="../chatroom/chatroom.html">Click here to enter the chat room</a>
 
 
@@ -93,14 +100,8 @@
         <input type="file" name="file">
         <input type="submit" value="upload">
     </form>
-    <form method="post" action="/RizpaStockExchangeWeb_war/servlets/UploadXMLFileServlet"
-          enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="upload">
-    </form>
 
-    <h3> Acount current money: <%= loggedUser.getCurrentMoney() %>
-    </h3>
+    <h3 id="AccountCurrentMoney">Acount current money: 0</h3>
 
     <form id="updateMoneyForm" name="updateMoneyForm">
         <label for="moneyToAddInput">Money to add (more or equal to 1)</label>

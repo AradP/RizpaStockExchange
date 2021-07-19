@@ -11,15 +11,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/enums/TradeActivityType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/TradeActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/BackToHomePageServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/CreateNewStockServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/TransactionActionServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/TransactionUpdateAlertServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UserSingleStockServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UserUpdateMoneyServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/RizpaStockExchangeWeb_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" beforeDir="false" />
@@ -30,22 +21,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/UserManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeEngine/src/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/RizpaStockExchangeWeb.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/StocksListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/StocksListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UploadXMLFileServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UserUpdateMoneyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/UserUpdateMoneyServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/allUsersAndStocks/allUsersAndStocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/allUsersAndStocks/allUsersAndStocks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/singleStock/singleStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/singleStock/singleStock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/AllUsersAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/AllUsersAndStocks.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/SingleStock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/SingleStock.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/allUsersAndStocks/allUsersAndStocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/allUsersAndStocks/allUsersAndStocks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/singleStock/singleStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/singleStock/singleStock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/views/AllUsersAndStocks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RizpaStockExchangeWeb_war_exploded/pages/views/AllUsersAndStocks.jsp" afterDir="false" />
@@ -452,7 +435,7 @@
       <workItem from="1625848665278" duration="5586000" />
       <workItem from="1625937524571" duration="4409000" />
       <workItem from="1626027402638" duration="21805000" />
-      <workItem from="1626533505503" duration="27394000" />
+      <workItem from="1626533505503" duration="34709000" />
     </task>
     <servers />
   </component>
@@ -487,9 +470,9 @@
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/java/servlets/TransactionActionServlet.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="36" />
+          <url>file://$PROJECT_DIR$/RizpaStockExchangeEngine/src/bl/BLManager.java</url>
+          <line>207</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -504,6 +487,7 @@
         <watch expression="request.getSession(false).getAttribute(&quot;username&quot;)" language="JAVA" />
         <watch expression="request.getSession(false).getAttribute(&quot;selectedStock&quot;)" language="JAVA" />
         <watch expression="filePart.getSubmittedFileName()" language="JAVA" />
+        <watch expression="amountOfStocks &gt; 0" />
       </configuration>
       <configuration name="Application">
         <watch expression="UserManager.getInstance().getUsers()" language="JAVA" custom="bl.UserManager" />

@@ -1,13 +1,13 @@
-var refreshRate = 1000; //milli seconds
+var refreshRate = 200; //milli seconds
 var USER_LIST_URL = buildUrlWithContextPath("userslist");
 var STOCK_LIST_URL = buildUrlWithContextPath("stockslist");
 
 function refreshUsersList(users) {
     //clear all current users
     $("#users_table").empty();
-    
+
     // rebuild the list of users: scan all users and add them to the list of users
-    $.each(users || [], function(index, user) {
+    $.each(users || [], function (index, user) {
         $('<tr><td>' + user.name + '</td><td>' + user.role + '</td></tr>')
             .appendTo($("#users_table"));
     });
@@ -18,7 +18,7 @@ function refreshStocksList(stocks) {
     $("#stocks_table").empty();
 
     // rebuild the list of users: scan all users and add them to the list of users
-    $.each(stocks || [], function(index, stock) {
+    $.each(stocks || [], function (index, stock) {
         // create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
         $('<tr><td class="stock-symbol" onclick="chooseStock(this)">' + stock.symbol + '</td>' +
             '<td>' + stock.companyName + '</td><td>' + stock.price + '</td><td>' + stock.ordersPeriod + '</td></tr>')
@@ -30,7 +30,7 @@ function refreshStocksList(stocks) {
 function ajaxUsersList() {
     $.ajax({
         url: USER_LIST_URL,
-        success: function(users) {
+        success: function (users) {
             refreshUsersList(users);
         }
     });
@@ -39,29 +39,42 @@ function ajaxUsersList() {
 function ajaxStocksList() {
     $.ajax({
         url: STOCK_LIST_URL,
-        success: function(stocks) {
+        success: function (stocks) {
             refreshStocksList(stocks);
         }
     });
 }
 
-function ajav(){
+function ajav() {
     $.ajax({
         type: "GET",
         url: "/RizpaStockExchangeWeb_war/servlets/TransactionUpdateAlertServlet",
         success: function (resp) {
-            document.getElementById("toastBody").innerHTML = resp;
-            $("#myToast").toast('show');
+            if (resp != "0" && resp != "") {
+                document.getElementById("toastBody").innerHTML = resp;
+                $("#myToast").toast("show");
+            }
+        }
+    });
+}
+
+function getMoney() {
+    $.ajax({
+        type: "GET",
+        url: "/RizpaStockExchangeWeb_war/servlets/UserUpdateMoneyServlet",
+        success: function (resp) {
+            document.getElementById("AccountCurrentMoney").textContent = "Acount current money: " + resp;
         }
     });
 }
 
 //activate the timer calls after the page is loaded
-$(function() {
+$(function () {
     //The users list is refreshed automatically every second
     setInterval(ajaxUsersList, refreshRate);
     setInterval(ajaxStocksList, refreshRate);
     setInterval(ajav, refreshRate);
+    setInterval(getMoney, refreshRate);
 
     /* attach a submit handler to the form */
     $("#createNewStockForm").submit(function (event) {
@@ -100,13 +113,11 @@ $(function() {
                 console.log('Something went wrong', status, err);
                 console.log(req);
             }
-        }).done(function (data) {
-            console.log(data);
-            location.reload();
         });
         event.preventDefault();
     });
 });
+
 function toggleShowCreateNewStockSection() {
     var x = document.getElementById("newStockSection");
     if (x.style.display === "none") {
