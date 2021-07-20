@@ -67,7 +67,7 @@ function refreshStockOrderPeriod(stock) {
     }
 
     // rebuild the list of users: scan all users and add them to the list of users
-    $.each(stock.completedTransactions || [], function (index, transaction) {
+    $.each(stock.completedTransactions.reverse() || [], function (index, transaction) {
         $('<tr><td>' + transaction.timeStamp + '</td><td>' + transaction.amountOfStocks + '</td><td>' + transaction.price + '</td></tr>')
             .appendTo($("#completed_transactions_table"));
     });
@@ -92,6 +92,8 @@ function ajaxGetSelectedStock() {
         url: GET_SELECTED_STOCK_URL,
         success: function (stock) {
             refreshStockOrderPeriod(stock);
+            refreshPendingSellOrdersList(stock.pendingSellOrders.reverse())
+            refreshPendingBuyOrdersList(stock.pendingBuyOrders.reverse())
         }
     });
 }
@@ -232,3 +234,34 @@ function drawLogScales() {
     chart.draw(data, options);
 }
 
+
+
+function refreshPendingSellOrdersList(orders) {
+    //clear all current users
+    $("#pendingSellOrders_table").empty();
+
+    // rebuild the list of users: scan all users and add them to the list of users
+    $.each(orders || [], function (index, order) {
+        // create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
+        $('<tr><td>' + order.timestamp + '</td>' +
+            '<td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.requestedExchangeRate + '</td>' +
+            '<td>' + order.creator.name + '</td></tr>')
+            .appendTo($("#pendingSellOrders_table"));
+
+    });
+}
+
+function refreshPendingBuyOrdersList(orders) {
+    //clear all current users
+    $("#pendingBuyOrders_table").empty();
+
+    // rebuild the list of users: scan all users and add them to the list of users
+    $.each(orders || [], function (index, order) {
+        // create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
+        $('<tr><td>' + order.timestamp + '</td>' +
+            '<td>' + order.orderType + '</td><td>' + order.count + '</td><td>' + order.requestedExchangeRate + '</td>' +
+            '<td>' + order.creator.name + '</td></tr>')
+            .appendTo($("#pendingBuyOrders_table"));
+
+    });
+}
