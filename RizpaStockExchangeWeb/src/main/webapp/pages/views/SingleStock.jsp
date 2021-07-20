@@ -38,7 +38,7 @@
     <% User loggedUser = (User) request.getSession(false).getAttribute(Constants.USERNAME);
         Stock selectedStock = (Stock) request.getSession(false).getAttribute("selectedStock");
     %>
-    <a href="http://localhost:8081/RizpaStockExchangeWeb_war/pages/views/AllUsersAndStocks.jsp"
+    <a href="/RizpaStockExchangeWeb_war/pages/views/AllUsersAndStocks.jsp"
        class="btn btn-primary" role="button">Back</a>
     <h3>Logged in as <%=loggedUser.getName()%>
     </h3>

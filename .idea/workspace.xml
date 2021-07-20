@@ -13,6 +13,7 @@
     <list default="true" id="635bcc91-f577-4bdc-b69f-c51e56f0c884" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/singleStock/singleStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/singleStock/singleStock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/SingleStock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/RizpaStockExchangeWeb/src/main/webapp/pages/views/SingleStock.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -405,7 +406,8 @@
       <workItem from="1625937524571" duration="4409000" />
       <workItem from="1626027402638" duration="21805000" />
       <workItem from="1626533505503" duration="34709000" />
-      <workItem from="1626801138278" duration="2515000" />
+      <workItem from="1626801138278" duration="2901000" />
+      <workItem from="1626804491560" duration="122000" />
     </task>
     <servers />
   </component>
