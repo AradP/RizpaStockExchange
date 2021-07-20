@@ -58,7 +58,7 @@ function refreshStockOrderPeriod(stock) {
     //clear all current users
     $("#order_period").text(stock.ordersPeriod);
 
-    $("#completed_transactions_tabble").empty();
+    $("#completed_transactions_table").empty();
     var currentcompletedTransactionsLength = stock.completedTransactions.length;
     if (currentcompletedTransactionsLength > completedTransactionsLength) {
         completedTransactionsLength = stock.completedTransactions.length;
